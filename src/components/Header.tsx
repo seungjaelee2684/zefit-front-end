@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react"
+import NavModal from "./NavModal";
+import { aboutNavList, businessNavList, communityNavList } from "@/data/navData";
 
 export default function Header() {
 
@@ -8,11 +10,15 @@ export default function Header() {
     const [isKorean, setIsKorean] = useState<boolean>(false);
     const [url, setUrl] = useState<string>('http://www.zefit.co.kr/theme/basic/assets/images/logo-dark.png');
     const [scroll, setScroll] = useState<number>(0);
+    const [navValue, setNavValue] = useState<{
+        id: string,
+        href: string
+    }[] | undefined>(undefined);
 
     useEffect(() => {
         const scrollEvent = async () => {
             if (!headerRef.current) return;
-            const scrolly = window.scrollY
+            const scrolly = window.scrollY;
             setScroll(scrolly);
 
             if (scrolly !== 0) {
@@ -50,20 +56,32 @@ export default function Header() {
                     <img src={url} alt="로고 이미지" className="w-[100%] h-[100%]" />
                 </a>
                 <ul className="w-[34%] h-[100%] flex justify-between items-center text-[16px] font-medium text-shadow-sm">
-                    <li className="h-[100%] flex justify-center items-center">
+                    <li
+                        className="h-[100%] flex justify-center items-center relative"
+                        onMouseOver={() => setNavValue(aboutNavList)}
+                        onMouseLeave={() => setNavValue(undefined)}>
                         <a className="cursor-pointer" href="/content/company">
                             회사소개
                         </a>
+                        {(navValue && (navValue[0].id === "회사개요")) && <NavModal />}
                     </li>
-                    <li className="h-[100%] flex justify-center items-center">
+                    <li
+                        className="h-[100%] flex justify-center items-center relative"
+                        onMouseOver={() => setNavValue(businessNavList)}
+                        onMouseLeave={() => setNavValue(undefined)}>
                         <a className="cursor-pointer" href="/content/zebrafish">
                             사업소개
                         </a>
+                        {(navValue && (navValue[0].id === "모델")) && <NavModal />}
                     </li>
-                    <li className="h-[100%] flex justify-center items-center">
+                    <li
+                        className="h-[100%] flex justify-center items-center relative"
+                        onMouseOver={() => setNavValue(communityNavList)}
+                        onMouseLeave={() => setNavValue(undefined)}>
                         <a className="cursor-pointer" href="/notice">
                             커뮤니티
                         </a>
+                        {(navValue && (navValue[0].id === "공지사항")) && <NavModal />}
                     </li>
                 </ul>
                 <ul className="w-[17%] h-[100%] flex justify-between items-center text-[16px] font-semibold">

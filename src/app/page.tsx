@@ -9,14 +9,20 @@ export default function Home() {
           alt="상단 배너 이미지"
           className="w-[100%] h-[100%] absolute top-0 left-0 z-10 object-cover object-center" />
         <div className="w-[100%] h-[100%] bg-black opacity-30 absolute top-0 left-0 z-[11]" />
-        <h1 className="w-[100%] h-[100%] flex justify-center items-center absolute top-0 left-0 text-[64px] font-bold text-white z-[12]">
-          Greater Value For Your Life
-        </h1>
+        <div className="w-[300px] h-[400px] absolute bottom-0 left-0 bg-blue-800 bg-opacity-60 z-[12]" />
+        <div className="web:w-[1170px] w-[100%] h-[100%] flex flex-col justify-center items-start gap-4 absolute top-0 left-[calc(50%-585px)] text-white z-[13]">
+          <h1 className="text-[64px] font-bold">
+            Greater Value For Your Life
+          </h1>
+          <p className="text-[24px] font-medium">
+            Using zebrafish, in-vivo model based biotech & pharmaceutical company
+          </p>
+        </div>
       </section>
       <div className="w-[94%] web:w-[1170px] flex flex-col justify-center items-center gap-20">
         <section className="w-[60%] flex flex-col justify-center items-center gap-10">
-          <h3 className="text-[20px] font-semibold">
-            COMPANY
+          <h3 className="text-[18px] font-semibold">
+            Company
           </h3>
           <p className="w-[100%] text-[24px] font-normal text-center">
             <span className="font-bold">
@@ -30,8 +36,8 @@ export default function Home() {
           <div className="w-[100%] h-[300px] bg-gray-500"></div>
         </section>
         <section className="w-[100%] flex flex-col justify-center items-center gap-10">
-          <h3 className="text-[20px] font-semibold">
-            BUSINESS
+          <h3 className="text-[18px] font-semibold">
+            Business
           </h3>
           <ul className="w-[calc(100dvw-17px)] h-[600px] flex justify-start items-center">
             <li className="w-[100%] h-[100%] bg-gray-300 flex flex-col justify-center items-center gap-4 text-white">
