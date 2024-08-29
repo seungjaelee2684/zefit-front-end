@@ -26,6 +26,11 @@ const config: Config = {
         'zefit-normal': '#0190D6',
         'zefit-neutral': '#00AEEF'
       },
+      textColor: {
+        'zefit-heavy': '#1D5BA2',
+        'zefit-normal': '#0190D6',
+        'zefit-neutral': '#00AEEF'
+      },
       textShadow: {
         'sm': '1px 1px 2px rgba(0, 0, 0, 0.2)',
         'md': '2px 2px 4px rgba(0, 0, 0, 0.2)',
@@ -33,6 +38,20 @@ const config: Config = {
         'xl': '4px 4px 8px rgba(0, 0, 0, 0.2)',
         'none': 'none',
       },
+      animation: {
+        'custom-fade-in': 'custom-fade-in 0.5s forwards',
+        'custom-slide': 'custom-slide 20s linear infinite forwards'
+      },
+      keyframes: {
+        'custom-fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        },
+        'custom-slide': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' }
+        }
+      }
     }
   },
   plugins: [

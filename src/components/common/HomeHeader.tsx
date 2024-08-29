@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from "react"
 import NavModal from "./NavModal";
 import { aboutNavList, businessNavList, communityNavList } from "@/data/navData";
 
-export default function Header() {
+export default function HomeHeader() {
 
     const headerRef = useRef<HTMLHeadElement>(null);
+    const navModalRef = useRef<HTMLUListElement>(null);
     const [isKorean, setIsKorean] = useState<boolean>(false);
     const [url, setUrl] = useState<string>('http://www.zefit.co.kr/theme/basic/assets/images/logo-dark.png');
     const [scroll, setScroll] = useState<number>(0);
@@ -25,7 +26,7 @@ export default function Header() {
                 headerRef.current.style.height = '60px';
                 headerRef.current.style.backgroundColor = '#FFFFFF';
                 headerRef.current.style.color = '#444444';
-                headerRef.current.style.boxShadow = '2px 2px 4px rgba(0, 0, 0, 0.3)';
+                headerRef.current.style.boxShadow = '0px 2px 8px rgba(139, 139, 139, 0.186)';
 
                 setUrl('http://www.zefit.co.kr/theme/basic/assets/images/logo.png');
             } else {
@@ -46,64 +47,66 @@ export default function Header() {
     }, []);
 
     return (
-        <header ref={headerRef} className="transition-all ease-in-out duration-300 flex justify-center items-center fixed top-0 left-0 w-[100%] h-[100px] z-20 text-white">
-            <nav className="web:w-[1170px] w-[94%] h-[100%] flex items-center justify-between">
+        <header
+            ref={headerRef}
+            className="transition-all ease-in-out duration-300 flex justify-center items-center text-white
+                fixed top-0 left-0 w-full h-[100px] z-20">
+            <nav className="web:w-[1170px] w-[94%] h-full flex items-center justify-between">
                 <a
                     className={(scroll === 0)
-                        ? 'w-auto h-[100%] flex items-center justify-center cursor-pointer'
+                        ? 'w-auto h-full flex items-center justify-center cursor-pointer'
                         : 'w-auto h-[95%] flex items-center justify-center cursor-pointer'}
                     href="/">
-                    <img src={url} alt="로고 이미지" className="w-[100%] h-[100%]" />
+                    <img src={url} alt="로고 이미지" className="w-full h-full" />
                 </a>
-                <ul className="w-[34%] h-[100%] flex justify-between items-center text-[16px] font-medium text-shadow-sm">
+                <ul className="h-full flex justify-center items-center text-[16px] font-medium text-shadow-sm gap-[103px]">
                     <li
-                        className="h-[100%] flex justify-center items-center relative"
+                        className="h-full flex justify-center items-center relative"
                         onMouseOver={() => setNavValue(aboutNavList)}
                         onMouseLeave={() => setNavValue(undefined)}>
                         <a className="cursor-pointer" href="/content/company">
                             회사소개
                         </a>
-                        {(navValue && (navValue[0].id === "회사개요")) && <NavModal />}
+                        {(navValue && (navValue[0].id === "회사개요")) && <NavModal navModalRef={navModalRef} navValue={navValue} />}
                     </li>
                     <li
-                        className="h-[100%] flex justify-center items-center relative"
+                        className="h-full flex justify-center items-center relative"
                         onMouseOver={() => setNavValue(businessNavList)}
                         onMouseLeave={() => setNavValue(undefined)}>
                         <a className="cursor-pointer" href="/content/zebrafish">
                             사업소개
                         </a>
-                        {(navValue && (navValue[0].id === "모델")) && <NavModal />}
+                        {(navValue && (navValue[0].id === "모델")) && <NavModal navModalRef={navModalRef} navValue={navValue} />}
                     </li>
                     <li
-                        className="h-[100%] flex justify-center items-center relative"
+                        className="h-full flex justify-center items-center relative"
                         onMouseOver={() => setNavValue(communityNavList)}
                         onMouseLeave={() => setNavValue(undefined)}>
                         <a className="cursor-pointer" href="/notice">
                             커뮤니티
                         </a>
-                        {(navValue && (navValue[0].id === "공지사항")) && <NavModal />}
+                        {(navValue && (navValue[0].id === "공지사항")) && <NavModal navModalRef={navModalRef} navValue={navValue} />}
                     </li>
                 </ul>
-                <ul className="w-[17%] h-[100%] flex justify-between items-center text-[16px] font-semibold">
-                    <li className="h-[100%] flex justify-center items-center gap-3">
+                <ul className="w-fit h-full flex justify-center items-center text-[16px] font-semibold gap-6">
+                    <li className="h-[80%] flex justify-center items-center">
                         <button
                             onClick={() => setIsKorean(false)}
                             className={(!isKorean)
-                                ? `font-bold bg-transparent outline-none text-[14px] cursor-pointer w-[30px] border-b-2`
-                                : `font-light bg-transparent border-none outline-none text-[14px] cursor-pointer w-[30px]`}>
+                                ? `font-bold bg-white text-[#444444] outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tl-full rounded-bl-full border border-white`
+                                : `font-light bg-transparent outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tl-full rounded-bl-full border border-white border-l-0`}>
                             ENG
                         </button>
-                        <div className="w-[1px] h-[14px] bg-inherit" />
                         <button
                             onClick={() => setIsKorean(true)}
                             className={(isKorean)
-                                ? "font-bold bg-transparent outline-none text-[14px] cursor-pointer w-[30px] border-b-2"
-                                : "font-light bg-transparent border-none outline-none text-[14px] cursor-pointer w-[30px]"}>
+                                ? "font-bold bg-white text-[#444444] outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tr-full rounded-br-full border border-white"
+                                : "font-light bg-transparent outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tr-full rounded-br-full border border-white border-l-0"}>
                             KOR
                         </button>
                     </li>
                     <li>
-                        <a href="/contact" className="py-[6px] px-[12px] border border-solid rounded-lg font-medium hover:bg-zefit-heavy hover:border-zefit-heavy">
+                        <a href="/contact" className="transition-all py-[6px] px-[16px] border border-solid rounded-3xl font-medium hover:bg-zefit-normal hover:border-zefit-normal">
                             문의하기
                         </a>
                     </li>

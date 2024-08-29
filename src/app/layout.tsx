@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_KR } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Footer from "@/components/common/Footer";
 
 const notoSansKr = Noto_Sans_KR({
   // preload: true, 기본값
@@ -29,13 +28,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={notoSansKr.className}>
-        <Header />
-        <main className="w-[100%] flex min-h-screen flex-col items-center justify-between mb-[102px]">
-          {children}
-        </main>
+        {children}
         <Footer />
       </body>
     </html>
