@@ -40,16 +40,21 @@ const config: Config = {
       },
       animation: {
         'custom-fade-in': 'custom-fade-in 0.5s forwards',
-        'custom-slide': 'custom-slide 20s linear infinite forwards'
+        'custom-slide-left': 'custom-slide-left 25s linear infinite forwards',
+        'custom-slide-right': 'custom-slide-right 25s linear infinite forwards'
       },
       keyframes: {
         'custom-fade-in': {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' }
         },
-        'custom-slide': {
+        'custom-slide-left': {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-100%)' }
+        },
+        'custom-slide-right': {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(100%)' }
         }
       }
     }

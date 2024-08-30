@@ -1,5 +1,9 @@
+'use client';
+
 export default function Zebrafish() {
     return (
-        <article className="pt-[100px]">Zebrafish</article>
+        <main className="w-full flex min-h-screen flex-col items-center justify-between mb-[102px]">
+            <article className="pt-[100px]">Zebrafish</article>
+        </main>
     )
 };

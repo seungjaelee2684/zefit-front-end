@@ -13,7 +13,11 @@ export default function PageHeader() {
     const [scroll, setScroll] = useState<number>(0);
     const [navValue, setNavValue] = useState<{
         id: string,
-        href: string
+        href: string,
+        list: {
+            id: string,
+            href: string
+        }[] | undefined
     }[] | undefined>(undefined);
 
     useEffect(() => {

@@ -1,13 +1,13 @@
 'use client';
 
-import Contact from "@/components/Contact";
+import Contact from "@/components/LandingPage/Contact";
 import HomeHeader from "@/components/common/HomeHeader";
 import PartnerList from "@/components/common/PartnerList";
 import ScrollAmount from "@/components/common/ScrollAmount";
 
 export default function Home() {
   return (
-    <main className="w-full flex min-h-screen flex-col items-center justify-between mb-[102px]">
+    <main className="w-full flex min-h-screen flex-col items-center justify-between">
       <HomeHeader />
       <article className="w-full flex min-h-screen flex-col items-center justify-between gap-24">
         <section className="w-full h-dvh relative">
@@ -46,7 +46,7 @@ export default function Home() {
         </div>
         <section className="w-full flex flex-col justify-center items-center gap-10">
           <h3 className="text-[32px] font-semibold">
-            Business
+            Our Business
           </h3>
           {/* <div className="w-[50px] h-[2px] bg-zefit-normal" /> */}
           <ul className="w-[calc(100dvw-17px)] h-[600px] flex justify-start items-center">
@@ -78,6 +78,11 @@ export default function Home() {
               </a>
             </li>
           </ul>
+        </section>
+        <section className="w-full flex flex-col justify-center items-center gap-10">
+          <h3 className="text-[32px] font-semibold">
+            Our Business
+          </h3>
         </section>
         <PartnerList />
         <Contact />

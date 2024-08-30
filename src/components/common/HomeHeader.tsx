@@ -10,10 +10,14 @@ export default function HomeHeader() {
     const navModalRef = useRef<HTMLUListElement>(null);
     const [isKorean, setIsKorean] = useState<boolean>(false);
     const [url, setUrl] = useState<string>('http://www.zefit.co.kr/theme/basic/assets/images/logo-dark.png');
-    const [scroll, setScroll] = useState<number>(0);
+    const [scroll, setScroll] = useState<number>(window.scrollY);
     const [navValue, setNavValue] = useState<{
         id: string,
-        href: string
+        href: string,
+        list: {
+            id: string,
+            href: string
+        }[] | undefined
     }[] | undefined>(undefined);
 
     useEffect(() => {
