@@ -79,10 +79,17 @@ export default function Home() {
             </li>
           </ul>
         </section>
-        <section className="w-full flex flex-col justify-center items-center gap-10">
-          <h3 className="text-[32px] font-semibold">
-            Our Business
-          </h3>
+        <section className="w-[1170px] h-[400px] flex justify-center items-center gap-32">
+          <div className="w-full h-full flex flex-col justify-center items-center gap-12">
+            <strong className="text-[28px] font-bold">제브라피쉬 모델</strong>
+            <p className="text-[22px]">
+              제브라피쉬에 대한 긴 설명글
+            </p>
+          </div>
+          <img
+            src="http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img2.jpg"
+            alt="제브라피쉬"
+            className="object-cover object-center min-w-[550px] h-[370px]" />
         </section>
         <PartnerList />
         <Contact />

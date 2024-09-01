@@ -3,13 +3,15 @@
 import { useEffect, useRef, useState } from "react"
 import NavModal from "./NavModal";
 import { aboutNavList, businessNavList, communityNavList } from "@/data/navData";
+import TestNavModal from "./TestNavModal";
 
-export default function PageHeader() {
+export default function HomeHeader() {
 
     const headerRef = useRef<HTMLHeadElement>(null);
     const navModalRef = useRef<HTMLUListElement>(null);
     const [isKorean, setIsKorean] = useState<boolean>(false);
-    const [scroll, setScroll] = useState<number>(0);
+    const [url, setUrl] = useState<string>('http://www.zefit.co.kr/theme/basic/assets/images/logo-dark.png');
+    const [scroll, setScroll] = useState<number>(window.scrollY);
     const [navValue, setNavValue] = useState<{
         id: string,
         href: string,
@@ -27,8 +29,18 @@ export default function PageHeader() {
 
             if (scrolly !== 0) {
                 headerRef.current.style.height = '60px';
+                headerRef.current.style.backgroundColor = '#FFFFFF';
+                headerRef.current.style.color = '#444444';
+                headerRef.current.style.boxShadow = '0px 2px 8px rgba(139, 139, 139, 0.186)';
+
+                setUrl('http://www.zefit.co.kr/theme/basic/assets/images/logo.png');
             } else {
                 headerRef.current.style.height = '100px';
+                headerRef.current.style.backgroundColor = 'transparent';
+                headerRef.current.style.color = '#FFFFFF';
+                headerRef.current.style.boxShadow = 'none';
+
+                setUrl('http://www.zefit.co.kr/theme/basic/assets/images/logo-dark.png');
             };
         };
 
@@ -42,17 +54,17 @@ export default function PageHeader() {
     return (
         <header
             ref={headerRef}
-            className="transition-all ease-in-out duration-300 flex justify-center items-center bg-white shadow-custom
-                text-[#444444] fixed top-0 left-0 w-full h-[100px] z-20">
+            className="transition-all ease-in-out duration-300 flex justify-center items-center text-white
+                fixed top-0 left-0 w-full h-[100px] z-20">
             <nav className="web:w-[1170px] w-[94%] h-full flex items-center justify-between">
                 <a
                     className={(scroll === 0)
                         ? 'w-auto h-full flex items-center justify-center cursor-pointer'
                         : 'w-auto h-[95%] flex items-center justify-center cursor-pointer'}
                     href="/">
-                    <img src="http://www.zefit.co.kr/theme/basic/assets/images/logo.png" alt="로고 이미지" className="w-full h-full" />
+                    <img src={url} alt="로고 이미지" className="w-full h-full" />
                 </a>
-                <ul className="h-full flex justify-center items-center text-[16px] font-medium gap-[103px]">
+                <ul className="h-full flex justify-center items-center text-[16px] font-medium text-shadow-sm gap-[103px]">
                     <li
                         className="h-full flex justify-center items-center relative"
                         onMouseOver={() => setNavValue(aboutNavList)}
@@ -60,7 +72,7 @@ export default function PageHeader() {
                         <a className="cursor-pointer" href="/content/company">
                             회사소개
                         </a>
-                        {(navValue && (navValue[0].id === "회사개요")) && <NavModal navModalRef={navModalRef} navValue={navValue} />}
+                        {(navValue && (navValue[0].id === "회사개요")) && <TestNavModal navModalRef={navModalRef} navValue={navValue} />}
                     </li>
                     <li
                         className="h-full flex justify-center items-center relative"
@@ -69,7 +81,7 @@ export default function PageHeader() {
                         <a className="cursor-pointer" href="/content/zebrafish">
                             사업소개
                         </a>
-                        {(navValue && (navValue[0].id === "모델")) && <NavModal navModalRef={navModalRef} navValue={navValue} />}
+                        {(navValue && (navValue[0].id === "모델")) && <TestNavModal navModalRef={navModalRef} navValue={navValue} />}
                     </li>
                     <li
                         className="h-full flex justify-center items-center relative"
@@ -78,7 +90,7 @@ export default function PageHeader() {
                         <a className="cursor-pointer" href="/notice">
                             커뮤니티
                         </a>
-                        {(navValue && (navValue[0].id === "공지사항")) && <NavModal navModalRef={navModalRef} navValue={navValue} />}
+                        {(navValue && (navValue[0].id === "공지사항")) && <TestNavModal navModalRef={navModalRef} navValue={navValue} />}
                     </li>
                 </ul>
                 <ul className="w-fit h-full flex justify-center items-center text-[16px] font-semibold gap-6">
@@ -99,8 +111,7 @@ export default function PageHeader() {
                         </button>
                     </li>
                     <li>
-                        <a href="/contact" className="transition-all py-[6px] px-[16px] border border-solid rounded-3xl
-                            font-medium hover:bg-zefit-heavy hover:border-zefit-heavy hover:text-white">
+                        <a href="/contact" className="transition-all py-[6px] px-[16px] border border-solid rounded-3xl font-medium hover:bg-zefit-normal hover:border-zefit-normal">
                             문의하기
                         </a>
                     </li>

@@ -31,6 +31,9 @@ const config: Config = {
         'zefit-normal': '#0190D6',
         'zefit-neutral': '#00AEEF'
       },
+      boxShadow: {
+        'custom': '0px 2px 8px rgba(139, 139, 139, 0.186)'
+      },
       textShadow: {
         'sm': '1px 1px 2px rgba(0, 0, 0, 0.2)',
         'md': '2px 2px 4px rgba(0, 0, 0, 0.2)',

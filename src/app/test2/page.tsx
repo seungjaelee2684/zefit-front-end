@@ -1,11 +1,13 @@
 'use client';
 
+import ContactButton from "@/components/common/ContactButton";
 import HomeHeader from "@/components/common/HomeHeader";
+import TestHeader from "@/components/common/TestHeader";
 
 export default function TestHome2() {
     return (
         <main className="w-full flex min-h-screen flex-col items-center justify-between">
-            <HomeHeader />
+            <TestHeader />
             <article className="w-full flex min-h-screen flex-col items-center justify-between gap-24">
                 <section className="w-full h-dvh relative">
                     <img
@@ -58,6 +60,7 @@ export default function TestHome2() {
                         </li>
                     </ul>
                 </section>
+                <ContactButton />
             </article>
         </main>
     );

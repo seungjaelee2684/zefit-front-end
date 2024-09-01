@@ -20,22 +20,28 @@ export default function NavModal({ navModalRef, navValue }: NavModalProps) {
     }[] | undefined>(undefined);
 
     return (
-        <ul ref={navModalRef} className="w-[160px] h-fit absolute top-[60px] left-0 z-20 bg-white animate-custom-fade-in">
+        <ul ref={navModalRef} className="w-[160px] h-fit absolute top-[60px] left-0 z-20 bg-white animate-custom-fade-in shadow-md">
             {navValue?.map((item: any, index: number) =>
                 <li
                     key={index}
                     onMouseOver={() => setNavHover(item?.list)}
                     onMouseLeave={() => setNavHover(undefined)}
-                    className="w-full h-[40px] flex justify-between items-center text-gray-400 box-border pl-4 pr-4 text-[14px] cursor-pointer text-shadow-none
+                    className="w-full h-[40px] flex justify-between items-center text-gray-400 box-border pl-4 pr-2 text-[14px] cursor-pointer text-shadow-none
                     hover:bg-gray-200 hover:text-[#444444] hover:pl-5 transition-all relative">
-                    <a href={item?.href}>{item?.id}</a>
-                    {(item?.list === navHover)
-                        && navHover?.map((value: any, idx: number) =>
-                            <ul className="absolute top-0 right-[-160px] bg-white w-[160px] h-fit flex justify-start items-center">
-                                <li className="w-full h-[40px]"></li>
-                            </ul>)}
+                    <a href={item?.href} className="w-full flex justify-between">{item?.id}</a>
+                    {(item?.list === navHover && navHover)
+                        && <ul className="animate-custom-fade-in absolute top-0 right-[-160px] bg-white w-[160px] h-fit flex flex-col justify-start items-center shadow-md">
+                            {navHover?.map((value: any, idx: number) =>
+                                <li 
+                                    key={idx}
+                                    className="w-full h-[40px] flex justify-start items-center pl-4 pr-2 text-[14px] cursor-pointer text-gray-400 box-border
+                                        hover:bg-gray-200 hover:text-[#444444] hover:pl-5 transition-all">
+                                    <a href={value?.href}>{value.id}</a>
+                                </li>)}
+                        </ul>}
+                    {(item?.list) && <div className="text-[8px]">{"〉"}</div>}
                 </li>
-            )}   
+            )}
         </ul>
     )
 };
