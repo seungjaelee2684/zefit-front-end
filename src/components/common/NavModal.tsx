@@ -19,8 +19,27 @@ export default function NavModal({ navModalRef, navValue }: NavModalProps) {
         href: string
     }[] | undefined>(undefined);
 
+    const [scroll, setScroll] = useState<number>(window.scrollY);
+
+    useEffect(() => {
+        const scrollEvent = () => {
+            const scrolly = window.scrollY;
+            setScroll(scrolly);
+        };
+
+        document.addEventListener('scroll', scrollEvent);
+
+        return () => {
+            document.removeEventListener('scroll', scrollEvent);
+        }
+    }, []);
+
     return (
-        <ul ref={navModalRef} className="w-[160px] h-fit absolute top-[60px] left-0 z-20 bg-white animate-custom-fade-in shadow-md">
+        <ul
+            ref={navModalRef}
+            className={(scroll === 0)
+                ? "w-[160px] h-fit absolute top-[100px] left-0 z-20 bg-white animate-custom-fade-in shadow-md font-medium"
+                : "w-[160px] h-fit absolute top-[60px] left-0 z-20 bg-white animate-custom-fade-in shadow-md font-medium"}>
             {navValue?.map((item: any, index: number) =>
                 <li
                     key={index}

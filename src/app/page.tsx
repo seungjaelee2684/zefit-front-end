@@ -15,7 +15,7 @@ export default function Home() {
             src="http://www.zefit.co.kr/data/slider/3551210086_0f617416_20811665.png"
             alt="상단 배너 이미지"
             className="w-full h-full absolute top-0 left-0 z-10 object-cover object-center" />
-          <div className="w-full h-full bg-black opacity-30 absolute top-0 left-0 z-[11]" />
+          <div className="w-full h-full bg-black opacity-40 absolute top-0 left-0 z-[11]" />
           {/* <div className="w-[300px] h-[400px] absolute bottom-0 left-0 bg-blue-800 bg-opacity-60 z-[12]" /> */}
           <div className="web:w-[1170px] w-full h-full flex flex-col justify-center items-start gap-4 absolute top-0 left-[calc(50%-585px)] text-white z-[13]">
             <h1 className="text-[64px] font-bold">
@@ -27,29 +27,35 @@ export default function Home() {
           </div>
         </section>
         <div className="w-[94%] web:w-[1170px] flex flex-col justify-center items-center gap-20">
-          <section className="w-[60%] flex flex-col justify-center items-center gap-10">
-            <h3 className="text-[32px] font-semibold">
-              Company
-            </h3>
-            {/* <div className="w-[50px] h-[2px] bg-zefit-normal" /> */}
-            <p className="w-full text-[24px] font-normal text-center">
-              <span className="font-bold">
-                제핏은 제브라피쉬 전문 CRO로 혁신적인 진단장비
-              </span>
-              를 활용하여 전임상단계의 신약후보물질의 발굴을 돕는&nbsp;
-              <span className="font-bold">
-                비임상 CRO 회사입니다.
-              </span>
-            </p>
-            <div className="w-full h-[300px] bg-gray-500"></div>
+          <section className="w-[100%] flex justify-center items-center gap-20">
+            <div className="w-[100%] flex flex-col justify-center items-start gap-10">
+              <h3 className="text-[32px] font-semibold">
+                Company
+              </h3>
+              {/* <div className="w-[50px] h-[2px] bg-zefit-normal" /> */}
+              <p className="w-full text-[24px] font-normal text-start">
+                <span className="font-bold">
+                  제핏은 제브라피쉬 전문 CRO로 혁신적인 진단장비
+                </span>
+                를 활용하여 전임상단계의 신약후보물질의 발굴을 돕는&nbsp;
+                <span className="font-bold">
+                  비임상 CRO 회사입니다.
+                </span>
+              </p>
+              <a className="px-[32px] py-[10px] bg-transparent border border-[#444444] text-[20px] text-[#444444] rounded-full cursor-pointer
+                 hover:text-zefit-heavy hover:border-zefit-heavy transition-all">
+                자세히 보기
+              </a>
+            </div>
+            <div className="min-w-[500px] h-[300px] bg-gray-500 flex justify-center items-end py-10"></div>
           </section>
         </div>
         <section className="w-full flex flex-col justify-center items-center gap-10">
-          <h3 className="text-[32px] font-semibold">
+          <h3 className="w-[1170px] text-[32px] font-semibold">
             Our Business
           </h3>
           {/* <div className="w-[50px] h-[2px] bg-zefit-normal" /> */}
-          <ul className="w-[calc(100dvw-17px)] h-[600px] flex justify-start items-center">
+          <ul className="w-[calc(100dvw-17px)] h-[500px] flex justify-start items-center">
             <li className="w-full h-full bg-gray-300 flex flex-col justify-center items-center gap-4 text-white">
               <div className="w-[30px] h-[1px] bg-white"></div>
               <strong className="text-[32px] font-semibold">모델</strong>
@@ -79,11 +85,11 @@ export default function Home() {
             </li>
           </ul>
         </section>
-        <section className="w-[1170px] h-[400px] flex justify-center items-center gap-32">
-          <div className="w-full h-full flex flex-col justify-center items-center gap-12">
-            <strong className="text-[28px] font-bold">제브라피쉬 모델</strong>
+        <section className="w-[1170px] h-[400px] flex justify-center items-center gap-12">
+          <div className="w-full h-full flex flex-col justify-center items-start gap-12">
+            <strong className="text-[28px] font-bold">Zebrafish Model</strong>
             <p className="text-[22px]">
-              제브라피쉬에 대한 긴 설명글
+              제브라피쉬에 대한 긴 설명글 제브라피쉬에 대한 긴 설명글 제브라피쉬에 대한 긴 설명글 제브라피쉬에 대한 긴 설명글 제브라피쉬에 대한 긴 설명글 제브라피쉬에 대한 긴 설명글
             </p>
           </div>
           <img
@@ -93,7 +99,6 @@ export default function Home() {
         </section>
         <PartnerList />
         <Contact />
-        <ScrollAmount />
       </article>
     </main>
   );
