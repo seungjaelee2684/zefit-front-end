@@ -19,12 +19,14 @@ const config: Config = {
       backgroundColor: {
         'zefit-heavy': '#1D5BA2',
         'zefit-normal': '#0190D6',
-        'zefit-neutral': '#00AEEF'
+        'zefit-neutral': '#00AEEF',
+        'zefit-hover': '#1265A8'
       },
       borderColor: {
         'zefit-heavy': '#1D5BA2',
         'zefit-normal': '#0190D6',
-        'zefit-neutral': '#00AEEF'
+        'zefit-neutral': '#00AEEF',
+        'zefit-hover': '#1265A8'
       },
       textColor: {
         'zefit-heavy': '#1D5BA2',

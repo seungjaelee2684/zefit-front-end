@@ -43,7 +43,7 @@ export default function Home() {
                 </span>
               </p>
               <a className="px-[32px] py-[10px] bg-transparent border border-[#444444] text-[20px] text-[#444444] rounded-full cursor-pointer
-                 hover:text-zefit-heavy hover:border-zefit-heavy transition-all">
+                 hover:text-white hover:border-zefit-hover hover:bg-zefit-hover transition-all">
                 자세히 보기
               </a>
             </div>
@@ -91,6 +91,10 @@ export default function Home() {
             <p className="text-[22px]">
               제브라피쉬에 대한 긴 설명글 제브라피쉬에 대한 긴 설명글 제브라피쉬에 대한 긴 설명글 제브라피쉬에 대한 긴 설명글 제브라피쉬에 대한 긴 설명글 제브라피쉬에 대한 긴 설명글
             </p>
+            <a className="px-[32px] py-[10px] bg-transparent border border-[#444444] text-[20px] text-[#444444] rounded-full cursor-pointer
+              hover:text-white hover:border-zefit-hover hover:bg-zefit-hover transition-all">
+              자세히 보기
+            </a>
           </div>
           <img
             src="http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img2.jpg"
