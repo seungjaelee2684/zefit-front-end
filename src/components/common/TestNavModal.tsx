@@ -16,6 +16,23 @@ interface TestNavModalProps {
 export default function TestNavModal({ navModalRef, navValue }: TestNavModalProps) {
 
     const [scroll, setScroll] = useState<number>(window.scrollY);
+    const [nav, setNav] = useState<{
+        service: boolean,
+        pharmaceutical: boolean
+    }>({
+        service: false,
+        pharmaceutical: false
+    });
+    const { service, pharmaceutical } = nav;
+
+    const onClickNavOpenHandler = (item: any) => {
+        if (!item?.list) return;
+        if (item?.id === '서비스') {
+            setNav({ ...nav, service: !service });
+        } else if (item?.id === '신약개발') {
+            setNav({ ...nav, pharmaceutical: !pharmaceutical });
+        }
+    };
 
     useEffect(() => {
         const scrollEvent = () => {
@@ -32,30 +49,55 @@ export default function TestNavModal({ navModalRef, navValue }: TestNavModalProp
 
     return (
         <div className={(scroll === 0)
-                ? "animate-custom-fade-in fixed top-[100px] left-0 z-20 bg-white bg-opacity-90 shadow-md w-[100%] h-fit flex justify-between items-start cursor-default"
-                : "animate-custom-fade-in fixed top-[60px] left-0 z-20 bg-white shadow-md w-[100%] h-fit border-t box-border flex justify-between items-start cursor-default"}>
+            ? "animate-custom-fade-in fixed top-[100px] left-0 z-20 bg-white bg-opacity-90 shadow-md w-[100%] h-fit flex justify-between items-start cursor-default"
+            : "animate-custom-fade-in fixed top-[60px] left-0 z-20 bg-white shadow-md w-[100%] h-fit border-t box-border flex justify-between items-start cursor-default"}>
             <div className="w-[126px] h-[1px]" />
-            <ul className="min-w-[400px] h-full flex justify-start items-start font-medium text-[14px] text-[#444444]">
-                <li className="min-w-[168px] h-full flex flex-col justify-start items-start">
+            <ul className="max-w-[400px] h-fit flex justify-start items-start font-medium text-[14px] text-[#444444]">
+                <li className="min-w-[169px] h-fit flex flex-col justify-start items-start">
                     {aboutNavList?.map((item: any, index: number) =>
-                        <a key={index} className="w-[100%] h-[50px] flex justify-start items-center transition-all box-border cursor-pointer hover:pl-[4px] hover:text-zefit-heavy">
+                        <a key={index} className="w-[100%] h-[50px] flex justify-between items-center pr-[40px] transition-all box-border cursor-pointer hover:pl-[4px] hover:text-zefit-heavy">
                             {item.id}
                         </a>
-                    )} 
+                    )}
                 </li>
-                <li className="min-w-[168px] h-full flex flex-col justify-start items-start">
+                <li className="min-w-[169px] h-fit flex flex-col justify-start items-start">
                     {businessNavList?.map((item: any, index: number) =>
-                        <a key={index} className="w-[100%] h-[50px] flex justify-start items-center transition-all box-border cursor-pointer hover:pl-[4px] hover:text-zefit-heavy">
-                            {item.id}
-                        </a>
-                    )} 
+                        <div key={index} className="w-full min-h-[50px] flex flex-col">
+                            <a
+                                onClick={() => onClickNavOpenHandler(item)}
+                                className="w-[100%] h-[50px] flex justify-between items-center pr-[40px] transition-all box-border cursor-pointer hover:pl-[4px] hover:text-zefit-heavy">
+                                {item.id}
+                                {(item.list) && <span className="text-[8px]">▼</span>}
+                            </a>
+                            {(item.id === "서비스" && service)
+                                && <ul className="w-full h-fit flex flex-col">
+                                    {item.list.map((list: any, idx: number) =>
+                                        <li key={idx}>
+                                            <a>
+                                                {list.id}
+                                            </a>
+                                        </li>
+                                    )}
+                                </ul>}
+                            {(item.id === "신약개발" && pharmaceutical)
+                                && <ul className="w-full h-fit flex flex-col">
+                                    {item.list.map((list: any, idx: number) =>
+                                        <li key={idx}>
+                                            <a>
+                                                {list.id}
+                                            </a>
+                                        </li>
+                                    )}
+                                </ul>}
+                        </div>
+                    )}
                 </li>
-                <li className="min-w-[170==68px] h-full flex flex-col justify-start items-start">
+                <li className="min-w-[169px] h-fit flex flex-col justify-start items-start">
                     {communityNavList?.map((item: any, index: number) =>
-                        <a key={index} className="w-[100%] h-[50px] flex justify-start items-center transition-all box-border cursor-pointer hover:pl-[4px] hover:text-zefit-heavy">
+                        <a key={index} className="w-[100%] h-[50px] flex justify-between items-center pr-[40px] transition-all box-border cursor-pointer hover:pl-[4px] hover:text-zefit-heavy">
                             {item.id}
                         </a>
-                    )} 
+                    )}
                 </li>
             </ul>
             <div className="w-[217px] h-[1px]" />

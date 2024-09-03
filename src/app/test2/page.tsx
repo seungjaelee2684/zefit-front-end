@@ -63,7 +63,7 @@ export default function TestHome2() {
                         </li>
                     </ul>
                 </section>
-                <PartnerList />
+                <PartnerList isOne={false} />
                 <Contact />
                 <ScrollAmount />
             </article>

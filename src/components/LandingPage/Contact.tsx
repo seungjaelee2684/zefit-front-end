@@ -3,7 +3,7 @@ export default function Contact() {
         <section className="w-full h-[400px] bg-gray-300 relative
             bg-[url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_bg.jpg')] bg-no-repeat bg-cover">
             <div className="w-full h-full bg-black bg-opacity-30" />
-            <div className="w-full h-full flex flex-col justify-center items-center absolute top-0 left-0 gap-10">
+            <div className="w-full h-full flex flex-col justify-center items-center absolute top-0 left-0">
                 <div className="w-full flex flex-col justify-center items-center gap-6">
                     <h3 className="text-white text-[40px] font-bold">문의하기</h3>
                     <div className="text-white text-[28px] font-semibold">
