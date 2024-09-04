@@ -28,7 +28,7 @@ export default function Home() {
         </section>
         <section className="w-[94%] web:w-[1170px] flex flex-col justify-center items-center gap-20">
           <h3 className="w-full text-[32px] font-semibold">
-            Company
+            COMPANY
           </h3>
           <div className="w-[100%] flex justify-center items-center gap-10">
             <div className="w-[100%] flex flex-col justify-center items-start gap-10">
@@ -42,7 +42,9 @@ export default function Home() {
                   비임상 CRO 회사입니다.
                 </span>
               </p>
-              <a className="px-[32px] py-[10px] bg-transparent border border-[#444444] text-[20px] text-[#444444] rounded-full cursor-pointer
+              <a
+                href="/content/company"
+                className="px-[32px] py-[10px] bg-transparent border border-[#444444] text-[20px] text-[#444444] rounded-full cursor-pointer
                  hover:text-white hover:border-zefit-hover hover:bg-zefit-hover transition-all">
                 자세히 보기
               </a>
@@ -50,7 +52,7 @@ export default function Home() {
             <div className="min-w-[500px] h-[300px] bg-gray-500 flex justify-center items-end py-10"></div>
           </div>
         </section>
-        <section className="w-[94%] web:w-[1170px] flex flex-col justify-center items-center gap-20">
+        <section className="w-[94%] web:w-[1170px] flex flex-col justify-center items-center gap-20 mt-10">
           <div className="w-[100%] flex justify-center items-center gap-10">
             <div className="min-w-[500px] h-[300px] bg-gray-500 flex justify-center items-end py-10"></div>
             <div className="w-[100%] flex flex-col justify-center items-end gap-10">
@@ -60,18 +62,20 @@ export default function Home() {
                 제브라피쉬를 활용하여 새로운 화합물의
                 안전성, 유효성 및 의학적 연관성을 분석하여 제공하고 있습니다.
               </p>
-              <a className="px-[32px] py-[10px] bg-transparent border border-[#444444] text-[20px] text-[#444444] rounded-full cursor-pointer
+              <a 
+                href="/content/company"
+                className="px-[32px] py-[10px] bg-transparent border border-[#444444] text-[20px] text-[#444444] rounded-full cursor-pointer
                  hover:text-white hover:border-zefit-hover hover:bg-zefit-hover transition-all">
                 자세히 보기
               </a>
             </div>
           </div>
         </section>
-        <section className="w-full h-[500px] flex flex-col justify-center items-center gap-10 relative">
-          <div className="w-full h-[300px] absolute bottom-[-80px] left-0 bg-gray-600" />
+        <section className="w-full h-[500px] flex flex-col justify-center items-center gap-10 relative mb-[40px]">
+          <div className="w-full h-[300px] absolute bottom-[-60px] left-0 bg-gray-600" />
           <div className="w-full flex flex-col justify-center items-center gap-10 absolute bottom-0 left-0 z-[2]">
             <h3 className="w-[1170px] text-[32px] font-semibold">
-              Our Business
+              OUR BUISNESS
             </h3>
             {/* <div className="w-[50px] h-[2px] bg-zefit-normal" /> */}
             <ul className="w-[94%] web:w-[1170px] h-[380px] flex justify-start items-center gap-10">
@@ -79,7 +83,9 @@ export default function Home() {
                 <div className="w-[30px] h-[1px] bg-white"></div>
                 <strong className="text-[32px] font-semibold">모델</strong>
                 <p className="text-[24px] font-medium">제브라피쉬에 관련된 한줄글</p>
-                <a className="px-[32px] py-[10px] bg-transparent border border-white mt-[30px] text-[20px] rounded-full cursor-pointer
+                <a
+                  href="/content/zebrafish"
+                  className="px-[32px] py-[10px] bg-transparent border border-white mt-[30px] text-[20px] rounded-full cursor-pointer
                 hover:bg-white hover:text-gray-700 hover:border-gray-300 transition-all">
                   자세히 보기
                 </a>
@@ -88,7 +94,9 @@ export default function Home() {
                 <div className="w-[30px] h-[1px] bg-white"></div>
                 <strong className="text-[32px] font-semibold">서비스</strong>
                 <p className="text-[24px] font-medium">서비스에 관련된 한줄글</p>
-                <a className="px-[32px] py-[10px] bg-transparent border border-white mt-[30px] text-[20px] rounded-full cursor-pointer
+                <a
+                  href="/content/CNS_FIT"
+                  className="px-[32px] py-[10px] bg-transparent border border-white mt-[30px] text-[20px] rounded-full cursor-pointer
                 hover:bg-white hover:text-gray-700 hover:border-gray-300 transition-all">
                   자세히 보기
                 </a>
@@ -97,7 +105,9 @@ export default function Home() {
                 <div className="w-[30px] h-[1px] bg-white"></div>
                 <strong className="text-[32px] font-semibold">신약개발</strong>
                 <p className="text-[24px] font-medium">신약개발에 관련된 한줄글</p>
-                <a className="px-[32px] py-[10px] bg-transparent border border-white mt-[30px] text-[20px] rounded-full cursor-pointer
+                <a
+                  href="/content/pharmaceuticals"
+                  className="px-[32px] py-[10px] bg-transparent border border-white mt-[30px] text-[20px] rounded-full cursor-pointer
                 hover:bg-white hover:text-gray-700 hover:border-gray-300 transition-all">
                   자세히 보기
                 </a>
@@ -105,8 +115,8 @@ export default function Home() {
             </ul>
           </div>
         </section>
-        <PartnerList />
         <Contact />
+        <PartnerList />
       </article>
     </main>
   );

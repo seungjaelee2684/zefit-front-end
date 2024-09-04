@@ -16,15 +16,14 @@ export default function ScrollAmount() {
                     ☎
                 </div>
                 <li className="w-full h-[70px] flex justify-center items-center bg-zefit-normal">
-                    <a href="/contact" className="w-[60px] h-full flex flex-col justify-center items-center text-white text-[14px] font-semibold">
-                        <span>☎</span>
+                    <a href="/contact" className="w-[60px] h-full flex flex-col justify-center items-center text-white text-[18px] font-semibold">
                         문의
                     </a>
                 </li>
                 <li className="w-full h-[70px] flex justify-center items-center">
                     <button
                         className="w-[60px] h-full flex-col flex justify-center items-center text-[14px] font-semibold"
-                        onClick={() => window.scrollTo({ top: 0 })}>
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                         <span>△</span>
                         TOP
                     </button>

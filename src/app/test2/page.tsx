@@ -27,8 +27,8 @@ export default function TestHome2() {
                         </p>
                     </div>
                 </section>
-                <div className="w-[94%] web:w-[1170px] flex flex-col justify-center items-center gap-20">
-                    <section className="w-[60%] flex flex-col justify-center items-center gap-10">
+                <section className="w-[94%] web:w-[1170px] flex flex-col justify-center items-center gap-20">
+                    <div className="w-[60%] flex flex-col justify-center items-center gap-10">
                         <h3 className="text-[32px] font-semibold">
                             Company
                         </h3>
@@ -43,8 +43,24 @@ export default function TestHome2() {
                             </span>
                         </p>
                         <div className="w-full h-[300px] bg-gray-500"></div>
-                    </section>
-                </div>
+                        <ul className="w-full flex justify-center items-center gap-8">
+                            <li className="w-[300px] flex justify-center items-start gap-10 border-r">
+                                <div className="flex flex-col justify-center items-start">
+                                    <strong className="text-[18px] font-semibold">회사개요</strong>
+                                    <p>회사개요 설명글</p>
+                                </div>
+                                <a href="/content/company" className="cursor-pointer hover:translate-x-1 transition-all">→</a>
+                            </li>
+                            <li className="w-[300px] flex justify-center items-start gap-10">
+                                <div className="flex flex-col justify-center items-start">
+                                    <strong className="text-[18px] font-semibold">연혁</strong>
+                                    <p>회사연혁 설명글</p>
+                                </div>
+                                <a href="/content/history" className="cursor-pointer hover:translate-x-1 transition-all">→</a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
                 <section className="w-full flex flex-col justify-center items-center gap-16 py-14
                     bg-[url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img4.jpg')] bg-no-repeat bg-cover bg-fixed">
                     <h3 className="text-[32px] font-semibold text-white">
@@ -52,14 +68,26 @@ export default function TestHome2() {
                     </h3>
                     {/* <div className="w-[50px] h-[2px] bg-zefit-normal" /> */}
                     <ul className="w-full flex justify-center items-center gap-32">
-                        <li className="w-[200px] h-[200px] flex flex-col justify-center items-center bg-red-400 bg-opacity-90 text-white">
-                            Model
+                        <li>
+                            <a
+                                href="/content/zebrafish"
+                                className="w-[200px] h-[200px] flex flex-col justify-center items-center bg-red-400 bg-opacity-90 text-white">
+                                Model
+                            </a>
                         </li>
-                        <li className="w-[200px] h-[200px] flex flex-col justify-center items-center bg-blue-400 bg-opacity-90 text-white">
-                            Service
+                        <li>
+                            <a
+                                href="/content/CNS_FIT"
+                                className="w-[200px] h-[200px] flex flex-col justify-center items-center bg-blue-400 bg-opacity-90 text-white">
+                                Service
+                            </a>
                         </li>
-                        <li className="w-[200px] h-[200px] flex flex-col justify-center items-center bg-green-400 bg-opacity-90 text-white">
-                            pharmaceuticals
+                        <li>
+                            <a
+                                href="/content/pharmaceuticals"
+                                className="w-[200px] h-[200px] flex flex-col justify-center items-center bg-green-400 bg-opacity-90 text-white">
+                                pharmaceuticals
+                            </a>
                         </li>
                     </ul>
                 </section>

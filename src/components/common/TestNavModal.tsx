@@ -70,20 +70,24 @@ export default function TestNavModal({ navModalRef, navValue }: TestNavModalProp
                                 {(item.list) && <span className="text-[8px]">▼</span>}
                             </a>
                             {(item.id === "서비스" && service)
-                                && <ul className="w-full h-fit flex flex-col">
+                                && <ul className="w-full h-fit flex flex-col border-y">
                                     {item.list.map((list: any, idx: number) =>
-                                        <li key={idx}>
-                                            <a>
+                                        <li
+                                            key={idx}
+                                            className="w-[100%] h-[30px] text-[12px] flex justify-start items-center pl-[10px] pr-[40px] transition-all box-border cursor-pointer hover:text-zefit-heavy">
+                                            <a href={list.href}>
                                                 {list.id}
                                             </a>
                                         </li>
                                     )}
                                 </ul>}
                             {(item.id === "신약개발" && pharmaceutical)
-                                && <ul className="w-full h-fit flex flex-col">
+                                && <ul className="w-full h-fit flex flex-col border-y">
                                     {item.list.map((list: any, idx: number) =>
-                                        <li key={idx}>
-                                            <a>
+                                        <li
+                                            key={idx}
+                                            className="w-[100%] h-[30px] text-[12px] flex justify-start items-center pl-[10px] pr-[40px] transition-all box-border cursor-pointer hover:text-zefit-heavy">
+                                            <a href={list.href}>
                                                 {list.id}
                                             </a>
                                         </li>
