@@ -10,31 +10,31 @@ export default function PartnerList({ isOne = true }: PartnerListProps) {
             </h3>
             <div className="w-full h-[150px] py-4 overflow-x-hidden">
                 <ul className="w-fit h-full flex justify-start items-center gap-12 animate-custom-slide-left">
-                    <li className="min-w-[180px] h-[80px] bg-gray-300 flex justify-center items-center">
+                    <li className="min-w-[300px] h-[120px] bg-gray-300 flex justify-center items-center">
                         계명대학교
                     </li>
-                    <li className="min-w-[180px] h-[80px] bg-gray-400 flex justify-center items-center">
+                    <li className="min-w-[300px] h-[120px] bg-gray-400 flex justify-center items-center">
                         영남대학교
                     </li>
-                    <li className="min-w-[180px] h-[80px] bg-gray-500 flex justify-center items-center">
+                    <li className="min-w-[300px] h-[120px] bg-gray-500 flex justify-center items-center">
                         경북대학교
                     </li>
-                    <li className="min-w-[180px] h-[80px] bg-gray-300 flex justify-center items-center">
+                    <li className="min-w-[300px] h-[120px] bg-gray-300 flex justify-center items-center">
                         대구대학교
                     </li>
-                    <li className="min-w-[180px] h-[80px] bg-gray-400 flex justify-center items-center">
+                    <li className="min-w-[300px] h-[120px] bg-gray-400 flex justify-center items-center">
                         대구가톨릭
                     </li>
-                    <li className="min-w-[180px] h-[80px] bg-gray-500 flex justify-center items-center">
+                    <li className="min-w-[300px] h-[120px] bg-gray-500 flex justify-center items-center">
                         영진전문대학
                     </li>
-                    <li className="min-w-[180px] h-[80px] bg-gray-300 flex justify-center items-center">
+                    <li className="min-w-[300px] h-[120px] bg-gray-300 flex justify-center items-center">
                         폴리텍
                     </li>
-                    <li className="min-w-[180px] h-[80px] bg-gray-400 flex justify-center items-center">
+                    <li className="min-w-[300px] h-[120px] bg-gray-400 flex justify-center items-center">
                         영남대학교
                     </li>
-                    <li className="min-w-[180px] h-[80px] bg-gray-500 flex justify-center items-center">
+                    <li className="min-w-[300px] h-[120px] bg-gray-500 flex justify-center items-center">
                         경북대학교
                     </li>
                 </ul>

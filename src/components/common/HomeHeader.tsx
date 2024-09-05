@@ -92,29 +92,22 @@ export default function HomeHeader() {
                         {(navValue && (navValue[0].id === "공지사항")) && <NavModal navModalRef={navModalRef} navValue={navValue} />}
                     </li>
                 </ul>
-                <ul className="w-[217px] h-full flex justify-between items-center text-[16px] font-semibold gap-6">
-                    <li className="h-[80%] flex justify-center items-center">
-                        <button
-                            onClick={() => setIsKorean(false)}
-                            className={(!isKorean)
-                                ? `font-bold bg-white text-[#444444] outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tl-full rounded-bl-full border border-white`
-                                : `font-light bg-transparent outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tl-full rounded-bl-full border border-white border-l-0`}>
-                            ENG
-                        </button>
-                        <button
-                            onClick={() => setIsKorean(true)}
-                            className={(isKorean)
-                                ? "font-bold bg-white text-[#444444] outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tr-full rounded-br-full border border-white"
-                                : "font-light bg-transparent outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tr-full rounded-br-full border border-white border-l-0"}>
-                            KOR
-                        </button>
-                    </li>
-                    <li>
-                        <a href="/contact" className="transition-all py-[6px] px-[16px] border border-solid rounded-3xl font-medium hover:bg-zefit-normal hover:border-zefit-normal">
-                            문의하기
-                        </a>
-                    </li>
-                </ul>
+                <div className="w-[100px] h-full flex justify-end items-center text-[16px] font-semibold">
+                    <button
+                        onClick={() => setIsKorean(false)}
+                        className={(!isKorean)
+                            ? `font-bold bg-white text-[#444444] outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tl-full rounded-bl-full border border-white`
+                            : `font-light bg-transparent outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tl-full rounded-bl-full border border-white border-l-0`}>
+                        ENG
+                    </button>
+                    <button
+                        onClick={() => setIsKorean(true)}
+                        className={(isKorean)
+                            ? "font-bold bg-white text-[#444444] outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tr-full rounded-br-full border border-white"
+                            : "font-light bg-transparent outline-none text-[14px] cursor-pointer w-[50px] h-[24px] rounded-tr-full rounded-br-full border border-white border-l-0"}>
+                        KOR
+                    </button>
+                </div>
             </nav>
         </header>
     )
