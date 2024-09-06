@@ -38,20 +38,20 @@ export default function PageTap({ value }: PageTapProps) {
 
     return (
         <section ref={tapRef} className="w-full top-[60px] left-0 z-[19] bg-white flex justify-center items-center">
-            <ul className="w-[94%] web:w-[1170px] flex items-center h-[70px]">
+            <ul className="w-[94%] web:w-[1170px] flex items-center h-[50px]">
                 {businessNavList[value].list?.map((item: any, index: number) =>
                     <li key={index} className="w-full h-full">
                         {(pathname === item.href)
                             ? <a
                                 href={item.href}
-                                className="w-full h-full text-[18px] font-semibold border
+                                className="w-full h-full text-[16px] font-semibold border
                                             bg-zefit-hover text-white border-zefit-hover flex justify-center items-center">
                                 {item.id}
                             </a>
                             : <a
                                 href={item.href}
-                                className="w-full h-full text-[18px] font-semibold border
-                                            hover:bg-zefit-hover hover:text-white hover:border-zefit-hover active:bg-zefit-heavy flex justify-center items-center">
+                                className="w-full h-full text-[16px] font-semibold border transition-all
+                                            hover:border-b-zefit-normal hover:border-b-2 active:bg-zefit-heavy flex justify-center items-center">
                                 {item.id}
                             </a>}
                     </li>
