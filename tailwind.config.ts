@@ -46,6 +46,7 @@ const config: Config = {
       },
       animation: {
         'custom-fade-in': 'custom-fade-in 0.5s forwards',
+        'custom-fade-out': 'custom-fade-out 0.5s forwards',
         'custom-slide-left': 'custom-slide-left 25s linear infinite forwards',
         'custom-slide-right': 'custom-slide-right 25s linear infinite forwards'
       },
@@ -53,6 +54,10 @@ const config: Config = {
         'custom-fade-in': {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' }
+        },
+        'custom-fade-out': {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' }
         },
         'custom-slide-left': {
           '0%': { transform: 'translateX(0%)' },

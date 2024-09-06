@@ -3,17 +3,10 @@ import { useEffect, useState } from "react";
 
 interface TestNavModalProps {
     navModalRef: React.RefObject<HTMLUListElement>;
-    navValue: {
-        id: string,
-        href: string,
-        list: {
-            id: string,
-            href: string
-        }[] | undefined
-    }[] | undefined;
+    navOpen: boolean;
 };
 
-export default function TestNavModal({ navModalRef, navValue }: TestNavModalProps) {
+export default function TestNavModal({ navModalRef, navOpen }: TestNavModalProps) {
 
     const [scroll, setScroll] = useState<number>(window.scrollY);
     const [nav, setNav] = useState<{
@@ -34,6 +27,14 @@ export default function TestNavModal({ navModalRef, navValue }: TestNavModalProp
         }
     };
 
+    const modalStyle = () => {
+        if (scroll === 0) {
+            return "animate-custom-fade-in fixed top-[100px] left-0 z-20 bg-white bg-opacity-90 shadow-md w-[100%] h-fit flex justify-between items-start cursor-default";      
+        } else {
+            return "animate-custom-fade-in fixed top-[60px] left-0 z-20 bg-white shadow-md w-[100%] h-fit border-t box-border flex justify-between items-start cursor-default";
+        };
+    };
+
     useEffect(() => {
         const scrollEvent = () => {
             const scrolly = window.scrollY;
@@ -48,9 +49,7 @@ export default function TestNavModal({ navModalRef, navValue }: TestNavModalProp
     }, []);
 
     return (
-        <div className={(scroll === 0)
-            ? "animate-custom-fade-in fixed top-[100px] left-0 z-20 bg-white bg-opacity-90 shadow-md w-[100%] h-fit flex justify-between items-start cursor-default"
-            : "animate-custom-fade-in fixed top-[60px] left-0 z-20 bg-white shadow-md w-[100%] h-fit border-t box-border flex justify-between items-start cursor-default"}>
+        <div className={modalStyle()}>
             <div className="w-[126px] h-[1px]" />
             <ul className="max-w-[400px] h-fit flex justify-start items-start font-medium text-[14px] text-[#444444]">
                 <li className="min-w-[169px] h-fit flex flex-col justify-start items-start">

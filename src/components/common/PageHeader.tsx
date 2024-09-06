@@ -11,14 +11,7 @@ export default function PageHeader() {
     const navModalRef = useRef<HTMLUListElement>(null);
     const [isKorean, setIsKorean] = useState<boolean>(false);
     const [scroll, setScroll] = useState<number>(0);
-    const [navValue, setNavValue] = useState<{
-        id: string,
-        href: string,
-        list: {
-            id: string,
-            href: string
-        }[] | undefined
-    }[] | undefined>(undefined);
+    const [navOpen, setNavOpen] = useState<boolean>(false);
 
     useEffect(() => {
         const scrollEvent = async () => {
@@ -54,30 +47,39 @@ export default function PageHeader() {
                 <ul className="h-full flex justify-center items-center text-[16px] font-medium gap-[103px]">
                     <li
                         className="h-full flex justify-center items-center relative cursor-pointer"
-                        onMouseOver={() => setNavValue(aboutNavList)}
-                        onMouseLeave={() => setNavValue(undefined)}>
+                        onMouseOver={() => setNavOpen(true)}
+                        onMouseLeave={() => setNavOpen(false)}>
                         <a href="/content/company">
                             회사소개
                         </a>
-                        {(navValue && (navValue[0].id === "회사개요")) && <TestNavModal navModalRef={navModalRef} navValue={navValue} />}
+                        {(navOpen)
+                            && <NavModal
+                                navModalRef={navModalRef}
+                                navOpen={navOpen} />}
                     </li>
                     <li
                         className="h-full flex justify-center items-center relative cursor-pointer"
-                        onMouseOver={() => setNavValue(businessNavList)}
-                        onMouseLeave={() => setNavValue(undefined)}>
+                        onMouseOver={() => setNavOpen(true)}
+                        onMouseLeave={() => setNavOpen(false)}>
                         <a href="/content/zebrafish">
                             사업소개
                         </a>
-                        {(navValue && (navValue[0].id === "모델")) && <TestNavModal navModalRef={navModalRef} navValue={navValue} />}
+                        {(navOpen)
+                            && <NavModal
+                                navModalRef={navModalRef}
+                                navOpen={navOpen} />}
                     </li>
                     <li
                         className="h-full flex justify-center items-center relative cursor-pointer"
-                        onMouseOver={() => setNavValue(communityNavList)}
-                        onMouseLeave={() => setNavValue(undefined)}>
+                        onMouseOver={() => setNavOpen(true)}
+                        onMouseLeave={() => setNavOpen(false)}>
                         <a href="/notice">
                             커뮤니티
                         </a>
-                        {(navValue && (navValue[0].id === "공지사항")) && <TestNavModal navModalRef={navModalRef} navValue={navValue} />}
+                        {(navOpen)
+                            && <NavModal
+                                navModalRef={navModalRef}
+                                navOpen={navOpen} />}
                     </li>
                 </ul>
                 <div className="w-[100px] h-full flex justify-end items-center text-[16px] font-semibold">

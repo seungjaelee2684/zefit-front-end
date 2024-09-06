@@ -10,7 +10,7 @@ export default function ContactButton() {
     }, []);
 
     return (
-        <section className="w-[70px] h-fit flex flex-col fixed bottom-10 right-0 z-20 bg-white shadow-custom-rounded rounded-sm">
+        <section className="w-[70px] h-fit flex flex-col fixed bottom-10 right-4 z-20 bg-white shadow-custom-rounded rounded-sm overflow-hidden">
            <ul className="w-full h-fit flex flex-col cursor-pointer relative">
                 <li className="w-full h-[70px] flex justify-center items-center bg-zefit-normal">
                     <a href="/contact" className="w-[60px] h-full flex flex-col justify-center items-center text-white text-[18px] font-semibold">
