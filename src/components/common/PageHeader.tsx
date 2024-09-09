@@ -44,7 +44,7 @@ export default function PageHeader() {
                     href="/">
                     <img src="http://www.zefit.co.kr/theme/basic/assets/images/logo.png" alt="로고 이미지" className="w-auto h-full object-cover" />
                 </a>
-                <ul className="h-full flex justify-center items-center text-[16px] font-medium gap-[103px]">
+                <ul className="w-[460px] h-full flex justify-between items-center text-[17px] font-semibold">
                     <li
                         className="h-full flex justify-center items-center relative cursor-pointer"
                         onMouseOver={() => setNavOpen(true)}

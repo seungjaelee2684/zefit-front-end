@@ -14,6 +14,31 @@ export default function HomeHeader() {
     const [navOpen, setNavOpen] = useState<boolean>(false);
 
     useEffect(() => {
+        if (!headerRef.current) return;
+
+        if (navOpen) {
+            headerRef.current.style.backgroundColor = '#FFFFFF'
+            headerRef.current.style.color = '#444444';
+            headerRef.current.style.boxShadow = '0px 2px 8px rgba(139, 139, 139, 0.186)';
+            headerRef.current.style.borderBottom = 'none';
+
+            setUrl('http://www.zefit.co.kr/theme/basic/assets/images/logo.png');
+        } else if (scroll !== 0) {
+            headerRef.current.style.backgroundColor = '#FFFFFF'
+            headerRef.current.style.color = '#444444';
+            headerRef.current.style.boxShadow = '0px 2px 8px rgba(139, 139, 139, 0.186)';
+            headerRef.current.style.borderBottom = 'none';
+
+            setUrl('http://www.zefit.co.kr/theme/basic/assets/images/logo.png');
+        } else {
+            headerRef.current.style.backgroundColor = 'transparent';
+            headerRef.current.style.color = '#FFFFFF';
+            headerRef.current.style.boxShadow = 'none';
+            headerRef.current.style.borderBottom = '1px solid #bdbdbdad';
+
+            setUrl('http://www.zefit.co.kr/theme/basic/assets/images/logo-dark.png');
+        };
+
         const scrollEvent = async () => {
             if (!headerRef.current) return;
             const scrolly = window.scrollY;
@@ -43,7 +68,7 @@ export default function HomeHeader() {
         return () => {
             document.removeEventListener('scroll', scrollEvent);
         };
-    }, []);
+    }, [navOpen]);
 
     return (
         <header
@@ -56,7 +81,7 @@ export default function HomeHeader() {
                     href="/">
                     <img src={url} alt="로고 이미지" className="w-auto h-full object-cover" />
                 </a>
-                <ul className="w-[400px] h-full flex justify-between items-center text-[17px] font-semibold">
+                <ul className="w-[460px] h-full flex justify-between items-center text-[17px] font-semibold">
                     <li
                         className="h-full flex justify-center items-center relative cursor-pointer"
                         onMouseOver={() => setNavOpen(true)}

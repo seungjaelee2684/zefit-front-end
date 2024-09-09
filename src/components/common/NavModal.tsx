@@ -51,8 +51,8 @@ export default function TestNavModal({ navModalRef, navOpen }: TestNavModalProps
     return (
         <div className={modalStyle()}>
             <div className="w-[126px] h-[1px]" />
-            <ul className="max-w-[400px] h-fit flex justify-start items-start font-medium text-[14px] text-[#444444]">
-                <li className="min-w-[169px] h-fit flex flex-col justify-start items-start">
+            <ul className="max-w-[460px] h-fit flex justify-start items-start font-medium text-[14px] text-[#444444]">
+                <li className="min-w-[200px] h-fit flex flex-col justify-start items-start">
                     {aboutNavList?.map((item: any, index: number) =>
                         <a
                             key={index}
@@ -62,7 +62,7 @@ export default function TestNavModal({ navModalRef, navOpen }: TestNavModalProps
                         </a>
                     )}
                 </li>
-                <li className="min-w-[169px] h-fit flex flex-col justify-start items-start">
+                <li className="min-w-[200px] h-fit flex flex-col justify-start items-start">
                     {businessNavList?.map((item: any, index: number) =>
                         <div key={index} className="w-full min-h-[50px] flex flex-col">
                             <a
@@ -101,7 +101,7 @@ export default function TestNavModal({ navModalRef, navOpen }: TestNavModalProps
                         </div>
                     )}
                 </li>
-                <li className="min-w-[169px] h-fit flex flex-col justify-start items-start">
+                <li className="min-w-[200px] h-fit flex flex-col justify-start items-start">
                     {communityNavList?.map((item: any, index: number) =>
                         <a key={index} className="w-[100%] h-[50px] flex justify-between items-center pr-[40px] transition-all box-border cursor-pointer hover:pl-[4px] hover:text-zefit-heavy">
                             {item.id}

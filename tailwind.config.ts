@@ -47,8 +47,10 @@ const config: Config = {
       animation: {
         'custom-fade-in': 'custom-fade-in 0.5s forwards',
         'custom-fade-out': 'custom-fade-out 0.5s forwards',
-        'custom-slide-left': 'custom-slide-left 30s linear infinite forwards',
-        'custom-slide-right': 'custom-slide-right 30s linear infinite forwards'
+        'custom-slide-left': 'custom-slide-left 60s linear infinite forwards',
+        'custom-slide-right': 'custom-slide-right 60s linear infinite forwards',
+        'custom-wave-move': 'custom-wave-move 10s linear infinite',
+        'custom-wave-move-transparent': 'custom-wave-move-transparent 10s linear infinite'
       },
       keyframes: {
         'custom-fade-in': {
@@ -66,6 +68,14 @@ const config: Config = {
         'custom-slide-right': {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(100%)' }
+        },
+        'custom-wave-move': {
+          '0%': { backgroundPosition: '2061px' },
+          '100%': { backgroundPosition: '0' }
+        },
+        'custom-wave-move-transparent': {
+          '0%': { backgroundPosition: '2461px' },
+          '100%': { backgroundPosition: '400px' }
         }
       }
     }

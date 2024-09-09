@@ -9,7 +9,7 @@ export default function Home() {
     return (
         <main className="w-full flex min-h-screen flex-col items-center justify-between">
             <HomeHeader />
-            <article className="w-full flex min-h-screen flex-col items-center justify-between gap-24">
+            <article className="w-full flex min-h-screen flex-col items-center justify-between">
                 <section className="w-full h-dvh relative">
                     <img
                         src="http://www.zefit.co.kr/data/slider/3551210086_0f617416_20811665.png"
@@ -25,9 +25,9 @@ export default function Home() {
                         </p>
                     </div>
                 </section>
-                <section className="w-[94%] web:w-[1170px] flex flex-col justify-center items-center gap-20">
+                <section className="w-[94%] web:w-[1170px] flex flex-col justify-center items-center gap-20 my-16">
                     <div className="w-[60%] flex flex-col justify-center items-center gap-10">
-                        <h3 className="text-[32px] font-semibold">
+                        <h3 className="text-[32px] font-semibold text-zefit-normal">
                             Company
                         </h3>
                         {/* <div className="w-[50px] h-[2px] bg-zefit-normal" /> */}
@@ -40,58 +40,88 @@ export default function Home() {
                                 비임상 CRO 회사입니다.
                             </span>
                         </p>
-                        <div className="w-full h-[300px] bg-gray-500"></div>
+                        <img src="http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img1.jpg" alt="company" className="w-full h-[380px] object-cover" />
                         <ul className="w-full flex justify-center items-center gap-8">
-                            <li className="w-[300px] flex justify-center items-start gap-10 border-r">
-                                <div className="flex flex-col justify-center items-start">
-                                    <strong className="text-[18px] font-semibold">회사개요</strong>
-                                    <p>회사개요 설명글</p>
-                                </div>
-                                <a href="/content/company" className="cursor-pointer hover:translate-x-1 transition-all">→</a>
+                            <li>
+                                <a href="/content/company" className="w-[300px] flex justify-center items-start gap-10 border-r group">
+                                    <div className="flex flex-col justify-center items-start group-hover:text-zefit-heavy">
+                                        <strong className="text-[20px] font-semibold">회사개요</strong>
+                                        <p>회사개요 설명글</p>
+                                    </div>
+                                    <div className="cursor-pointer group-hover:translate-x-1 group-hover:text-zefit-heavy transition-all ease-in-out">→</div>
+                                </a>
                             </li>
-                            <li className="w-[300px] flex justify-center items-start gap-10">
-                                <div className="flex flex-col justify-center items-start">
-                                    <strong className="text-[18px] font-semibold">연혁</strong>
-                                    <p>회사연혁 설명글</p>
-                                </div>
-                                <a href="/content/history" className="cursor-pointer hover:translate-x-1 transition-all">→</a>
+                            <li>
+                                <a href="/content/history" className="w-[300px] flex justify-center items-start gap-10 group">
+                                    <div className="flex flex-col justify-center items-start group-hover:text-zefit-heavy">
+                                        <strong className="text-[20px] font-semibold">연혁</strong>
+                                        <p>회사연혁 설명글</p>
+                                    </div>
+                                    <div className="cursor-pointer group-hover:translate-x-1 group-hover:text-zefit-heavy transition-all ease-in-out">→</div>
+                                </a>
                             </li>
                         </ul>
                     </div>
                 </section>
-                <section className="w-full flex flex-col justify-center items-center gap-16 py-14
+                <section className="w-full h-[580px] mt-16 relative
                     bg-[url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img4.jpg')] bg-no-repeat bg-cover bg-fixed">
-                    <h3 className="text-[32px] font-semibold text-white">
-                        Business
-                    </h3>
-                    {/* <div className="w-[50px] h-[2px] bg-zefit-normal" /> */}
-                    <ul className="w-full flex justify-center items-center gap-32">
-                        <li>
-                            <a
-                                href="/content/zebrafish"
-                                className="w-[200px] h-[200px] flex flex-col justify-center items-center bg-red-400 bg-opacity-90 text-white">
-                                Model
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="/content/CNS_FIT"
-                                className="w-[200px] h-[200px] flex flex-col justify-center items-center bg-blue-400 bg-opacity-90 text-white">
-                                Service
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="/content/pharmaceuticals"
-                                className="w-[200px] h-[200px] flex flex-col justify-center items-center bg-green-400 bg-opacity-90 text-white">
-                                pharmaceuticals
-                            </a>
-                        </li>
-                    </ul>
+                    <div className="w-full h-full absolute top-0 left-0 bg-black bg-opacity-30" />
+                    <div className="w-full h-full flex flex-col justify-between items-center absolute top-0 left-0 z-[1] py-12">
+                        <h3 className="text-[32px] font-semibold text-white text-shadow-md">
+                            Business
+                        </h3>
+                        {/* <div className="w-[50px] h-[2px] bg-zefit-normal" /> */}
+                        <ul className="w-full flex justify-center items-center gap-16">
+                            <li>
+                                <a
+                                    href="/content/zebrafish"
+                                    className="w-[300px] h-[340px] flex flex-col justify-start items-center transition-all shadow-custom-rounded
+                                        bg-white bg-opacity-50 text-black overflow-hidden hover:bg-zefit-neutral hover:text-white">
+                                    <img
+                                        src="http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img2.jpg"
+                                        alt="모델 이미지"
+                                        className="w-full min-h-[200px] object-cover" />
+                                    <div className="w-full h-full flex flex-col justify-start items-start gap-4 p-4">
+                                        <strong className="text-[24px] font-bold">Model</strong>
+                                        <p>제브라피쉬에 대한 설명글</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/content/CNS_FIT"
+                                    className="w-[300px] h-[340px] flex flex-col justify-start items-center transition-all shadow-custom-rounded
+                                        bg-white bg-opacity-50 text-black overflow-hidden hover:bg-zefit-neutral hover:text-white">
+                                    <img
+                                        src="http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img3.jpg"
+                                        alt="서비스 이미지"
+                                        className="w-full min-h-[200px] object-cover" />
+                                    <div className="w-full h-full flex flex-col justify-start items-start gap-4 p-4">
+                                        <strong className="text-[24px] font-bold">Service</strong>
+                                        <p>서비스에 대한 설명글</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a
+                                    href="/content/pharmaceuticals"
+                                    className="w-[300px] h-[340px] flex flex-col justify-start items-center transition-all shadow-custom-rounded
+                                        bg-white bg-opacity-50 text-black overflow-hidden hover:bg-zefit-neutral hover:text-white">
+                                    <img
+                                        src="http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img10.jpg"
+                                        alt="신약개발 이미지"
+                                        className="w-full min-h-[200px] object-cover" />
+                                    <div className="w-full h-full flex flex-col justify-start items-start gap-4 p-4">
+                                        <strong className="text-[24px] font-bold">Pharmaceuticals</strong>
+                                        <p>신약개발에 대한 설명글</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </section>
-                <PartnerList isOne={false} />
+                <PartnerList />
                 <Contact />
-                <ContactButton />
             </article>
         </main>
     );
