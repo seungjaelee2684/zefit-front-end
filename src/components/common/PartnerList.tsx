@@ -1,6 +1,7 @@
 export default function PartnerList() {
     return (
-        <section className="w-full h-fit flex flex-col justify-center items-center mb-16">
+        <section className="w-full h-fit flex flex-col justify-center items-center my-16 gap-10">
+            <h3 className="text-[28px] font-medium text-zefit-normal">THE PARTNER</h3>
             <div className="w-[94%] web:w-[1170px] h-[150px] overflow-x-hidden flex justify-start items-center relative">
                 <ul className="w-fit h-full flex justify-start items-center gap-8 animate-custom-slide-left pr-8">
                     <li className="min-w-[280px] h-[120px] flex justify-center items-center">
@@ -88,7 +89,7 @@ export default function PartnerList() {
                             className="w-full h-full object-contain" />
                     </li>
                 </ul>
-                <ul className="w-fit h-full flex justify-start items-center gap-12 animate-custom-slide-left pr-12">
+                <ul className="w-fit h-full flex justify-start items-center gap-8 animate-custom-slide-left pr-8">
                     <li className="min-w-[280px] h-[120px] flex justify-center items-center">
                         <img
                             src="http://www.zefit.co.kr/data/file/status/thumb-3034731228_LuJzeRmd_b6d4f5a98e0f9f52f522050be8fc90bf7b9f6dca_500x.jpg"

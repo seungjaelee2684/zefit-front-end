@@ -49,7 +49,7 @@ const config: Config = {
         'custom-fade-out': 'custom-fade-out 0.5s forwards',
         'custom-slide-left': 'custom-slide-left 60s linear infinite forwards',
         'custom-slide-right': 'custom-slide-right 60s linear infinite forwards',
-        'custom-wave-move': 'custom-wave-move 10s linear infinite',
+        'custom-wave-move': 'custom-wave-move 20s linear infinite',
         'custom-wave-move-transparent': 'custom-wave-move-transparent 10s linear infinite'
       },
       keyframes: {
@@ -74,8 +74,8 @@ const config: Config = {
           '100%': { backgroundPosition: '0' }
         },
         'custom-wave-move-transparent': {
-          '0%': { backgroundPosition: '2461px' },
-          '100%': { backgroundPosition: '400px' }
+          '0%': { backgroundPosition: '0' },
+          '100%': { backgroundPosition: '2061px' }
         }
       }
     }

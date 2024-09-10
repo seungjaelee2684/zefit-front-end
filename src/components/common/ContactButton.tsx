@@ -16,6 +16,7 @@ export default function ContactButton() {
            <ul className="w-full h-fit flex flex-col cursor-pointer relative">
                 <li className="w-full h-[70px] flex justify-center items-center bg-zefit-normal">
                     <a href="/contact" className="w-[60px] h-full flex flex-col justify-center items-center text-white text-[18px] font-semibold">
+                        <div className="icon_message"></div>
                         문의
                     </a>
                 </li>
