@@ -1,7 +1,7 @@
 export default function Contact() {
     return (
         <section className="w-full h-[400px] bg-gray-300 relative mt-16 pb-16
-            bg-[url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_bg.jpg')] bg-no-repeat bg-cover">
+            bg-[url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/adult_eeg_system_bg.jpg')] bg-no-repeat bg-cover">
             <div className="w-full h-[calc(100%+64px)] bg-black bg-opacity-40" />
             <div className="w-full h-full flex flex-col justify-center items-center absolute top-0 left-0 gap-10">
                 <div className="flex flex-col justify-center items-center gap-6 text-white">

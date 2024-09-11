@@ -11,10 +11,10 @@ export default function Home() {
             <HomeHeader />
             <article className="w-full flex min-h-screen flex-col items-center justify-between">
                 <section className="w-full h-dvh relative bg-cover bg-no-repeat bg-fixed
-                    bg-[url('http://www.zefit.co.kr/data/slider/3551210086_0f617416_20811665.png')]">
+                    bg-[url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_bg.jpg')]">
                     <div className="w-full h-full bg-black opacity-40 absolute top-0 left-0 z-[11]" />
                     <div className="w-[94%] web:w-[1170px] h-full absolute top-0 left-[calc(50%-585px)] flex justify-end items-center z-[13]">
-                        <div className="w-[460px] h-[480px] flex flex-col justify-center items-start gap-6 text-white bg-zefit-normal bg-opacity-80 p-8">
+                        <div className="w-[460px] h-[480px] flex flex-col justify-center items-start gap-6 text-white bg-[#09349F] bg-opacity-60 p-8">
                             <h1 className="text-[54px] font-bold">
                                 Greater Value For Your Life
                             </h1>

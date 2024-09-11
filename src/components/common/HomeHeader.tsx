@@ -34,7 +34,7 @@ export default function HomeHeader() {
             headerRef.current.style.backgroundColor = 'transparent';
             headerRef.current.style.color = '#FFFFFF';
             headerRef.current.style.boxShadow = 'none';
-            headerRef.current.style.borderBottom = '1px solid #bdbdbdad';
+            // headerRef.current.style.borderBottom = '1px solid #bdbdbdad';
 
             setUrl('http://www.zefit.co.kr/theme/basic/assets/images/logo-dark.png');
         };
@@ -57,7 +57,7 @@ export default function HomeHeader() {
                 headerRef.current.style.backgroundColor = 'transparent';
                 headerRef.current.style.color = '#FFFFFF';
                 headerRef.current.style.boxShadow = 'none';
-                headerRef.current.style.borderBottom = '1px solid #bdbdbdad';
+                // headerRef.current.style.borderBottom = '1px solid #bdbdbdad';
 
                 setUrl('http://www.zefit.co.kr/theme/basic/assets/images/logo-dark.png');
             };
