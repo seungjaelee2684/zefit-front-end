@@ -1,0 +1,68 @@
+.landing_top_banner {
+    width: 100%;
+    height: 100dvh;
+    background-image: url('http://www.zefit.co.kr/data/slider/3551210086_0f617416_20811665.png');
+    background-position: center center;
+    background-size: 150%;
+    background-repeat: no-repeat;
+    position: relative;
+    animation: banner_fade_in 3s ease-in-out forwards;
+}
+
+.landing_top_banner::after {
+    content: '';
+    background-color: rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.top_banner_text_box {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 575px);
+    z-index: 1;
+    width: 1170px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    color: white;
+}
+
+.top_banner_title {
+    font-size: 64px;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+}
+
+.top_banner_caption {
+    font-size: 24px;
+    font-weight: 300;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.top_banner_scroll_guide {
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    left: calc(50% - 46px);
+    bottom: 0;
+    z-index: 2;
+}
+
+@keyframes banner_fade_in {
+    to {
+        background-size: 130%;
+    }
+}

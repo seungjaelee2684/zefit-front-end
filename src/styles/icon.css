@@ -1,8 +1,0 @@
-.icon_message {
-
-}
-
-.icon_message:before {
-    content: '\e603';
-    font-family: 'FontAwesome';
-}
