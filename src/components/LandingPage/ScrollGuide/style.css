@@ -1,0 +1,17 @@
+/*랜딩 페이지 스크롤 가이드 css style*/
+
+/*상단 배너 스크롤 가이드*/
+.top_banner_scroll_guide {
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    left: calc(50% - 46px);
+    bottom: 0;
+    z-index: 2;
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Noto_Sans_KR } from "next/font/google";
-import "../styles/common/globals.css";
+import "../styles/globals.css";
+import Footer from "@/components/common/Footer";
 
 const notoSansKr = Noto_Sans_KR({
   // preload: true, 기본값
@@ -42,6 +43,7 @@ export default function RootLayout({
         <main>
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

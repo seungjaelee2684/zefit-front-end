@@ -1,0 +1,9 @@
+/*영문 랜딩 페이지 css style*/
+
+/*회사 소개 부제목*/
+.company_sub_title_en {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    white-space: pre-line;
+}

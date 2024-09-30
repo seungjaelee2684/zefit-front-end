@@ -1,4 +1,4 @@
-import '../../styles/common/adm_header.css';
+import './style.css';
 
 export default function AdmHeader() {
     return (
