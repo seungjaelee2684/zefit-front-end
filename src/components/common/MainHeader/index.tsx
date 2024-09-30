@@ -1,6 +1,6 @@
 'use client';
 
-import '../../styles/common/main_header.css';
+import './style.css';
 import { usePathname } from 'next/navigation';
 
 export default function MainHeader() {

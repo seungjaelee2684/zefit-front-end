@@ -1,7 +1,7 @@
 'use client';
 
 import ScrollGuide from '@/components/LandingPage/ScrollGuide';
-import '../styles/landing.css';
+import './style.css';
 import MainHeader from '@/components/common/MainHeader';
 import { useEffect, useState } from 'react';
 
@@ -51,7 +51,9 @@ export default function Home() {
                         alt='회사소개 이미지' />
                     <ul className='company_link_button_wrapper'>
                         <li className='company_link_button_box'>
-                            <a className='company_link_button'>
+                            <a 
+                                href='/content/company'
+                                className='company_link_button'>
                                 <div className='link_button_text_wrapper'>
                                     <strong className='link_button_title'>
                                         회사 개요
@@ -65,8 +67,11 @@ export default function Home() {
                                 </span>
                             </a>
                         </li>
+                        <div className='company_link_center_bar' />
                         <li className='company_link_button_box'>
-                            <a className='company_link_button'>
+                            <a
+                                href='/content/history'
+                                className='company_link_button'>
                                 <div className='link_button_text_wrapper'>
                                     <strong className='link_button_title'>
                                         회사 연혁
@@ -159,10 +164,29 @@ export default function Home() {
                         )}
                     </ul>
                 </section>
+                <section className='landing_contact_container'>
+                    <div className='landing_contact_content_wrapper'>
+                        <h2 className='contact_title'>
+                            CONTACT US
+                        </h2>
+                        <p className='contact_content'>
+                            혁신을 향한 끊임없는 발전, ZEFIT과 함께하세요
+                        </p>
+                        <a className='contact_button'>
+                            <svg className='contact_button_svg' viewBox="0 0 182 56" preserveAspectRatio="none">
+                                <rect className='contact_button_svg_child' x="1" y="1" width="180" height="54" />
+                            </svg>
+                            <span className='contact_button_text'>
+                                문의하기
+                                <img
+                                    className='contact_button_arrow'
+                                    src='/icons/arrow.png'
+                                    alt='화살표' />
+                            </span>
+                        </a>
+                    </div>
+                </section>
             </div>
-            {/* <svg className='test1' viewBox="0 0 202 42" preserveAspectRatio="none">
-                <rect className='testChild' x="1" y="1" width="200" height="40"></rect>
-            </svg> */}
-        </article>     
+        </article>
     );
 };

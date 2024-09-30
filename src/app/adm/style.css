@@ -1,10 +1,14 @@
-.adm_layout { /*관리자 페이지 레이아웃*/
+/*관리자 페이지 css style*/
+
+/*관리자 페이지 레이아웃*/
+.adm_layout {
     width: 100%;
     min-height: 100dvh;
     position: relative;
 }
 
-.adm_content_wrapper { /*관리자 페이지 컨텐츠 컨테이너*/
+/*관리자 페이지 컨텐츠 컨테이너*/
+.adm_content_wrapper {
     width: calc(100% - 240px);
     max-width: calc(100% - 240px);
     min-height: 100dvh;
@@ -15,7 +19,8 @@
     right: 0;
 }
 
-.adm_content_box { /*관리자 페이지 컨텐츠 내부 박스*/
+/*관리자 페이지 컨텐츠 내부 박스*/
+.adm_content_box {
     width: 100%;
     height: 100%;
     display: flex;
@@ -27,7 +32,8 @@
     padding: 20px;
 }
 
-.adm_content_part_warpper { /*컨텐츠 파트별 컨테이너*/
+/*컨텐츠 파트별 컨테이너*/
+.adm_content_part_warpper {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -36,23 +42,27 @@
     gap: 16px;
 }
 
-.adm_content_part_title { /*컨텐츠 파트별 제목*/
+/*컨텐츠 파트별 제목*/
+.adm_content_part_title {
     font-size: 14px;
     font-weight: 600;
 }
 
-.adm_table_container { /*관리자 페이지 테이블 컨테이너*/
+/*관리자 페이지 테이블 컨테이너*/
+.adm_table_container {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.adm_table_header_container { /*테이블 헤더*/
+/*테이블 헤더*/
+.adm_table_header_container {
     width: 100%;
     background-color: #36404c;
 }
 
-.table_header_text { /*테이블 헤더 텍스트*/
+/*테이블 헤더 텍스트*/
+.table_header_text {
     color: white;
     width: fit-content;
     padding: 12px 30px;
@@ -60,19 +70,22 @@
     font-size: 13px;
 }
 
-.table_body_container { /*테이블 바디 컨테이너*/
+/*테이블 바디 컨테이너*/
+.table_body_container {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.table_body_lane { /*테이블 바디 컨테이너 라인*/
+/*테이블 바디 컨테이너 라인*/
+.table_body_lane {
     width: 100%;
     display: flex;
     align-items: center;
 }
 
-.table_body { /*테이블 바디*/
+/*테이블 바디*/
+.table_body {
     width: fit-content;
     padding: 8px 5px;
     border: 1px solid #E7E7E7;
@@ -80,7 +93,8 @@
     color: #797979;
 }
 
-.adm_scroll_top_button { /*관리자 페이지 스크롤 top 버튼*/
+/*관리자 페이지 스크롤 top 버튼*/
+.adm_scroll_top_button {
     width: 50px;
     height: 50px;
     background-color: #0000001a;
@@ -100,6 +114,7 @@
     text-transform: uppercase;
 }
 
-.adm_top_arrow { /*스크롤 top 화살표*/
+/*스크롤 top 화살표*/
+.adm_top_arrow {
     font-size: 8px;
 }
