@@ -4,11 +4,17 @@ import ScrollGuide from '@/components/LandingPage/ScrollGuide';
 import './style.css';
 import MainHeader from '@/components/common/MainHeader';
 import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 export default function Home() {
 
+    // 뷰포트 반응형
+    const isMobile = useMediaQuery({ maxWidth: 1170 });
+
+    // 파트너 리스트 state
     const [partner, setPartner] = useState<any[]>([]);
 
+    // 마운트했을 때 api통신을 통해 파트너 리스트 데이터 가져오기
     useEffect(() => {
         fetch('/api/inquiry/partner')
             .then((response) => {
@@ -23,8 +29,13 @@ export default function Home() {
 
     return (
         <article>
+
+            {/* 메인 페이지 헤더 */}
             <MainHeader />
-            <section className='landing_top_banner'>
+
+            {/* 상단 배너 */}
+            <section className='landing_top_banner_container'>
+                <div className='landing_top_banner' />
                 <div className='top_banner_text_box'>
                     <h1 className='top_banner_title'>
                         Greater Value For Your Life
@@ -35,7 +46,11 @@ export default function Home() {
                 </div>
                 <ScrollGuide />
             </section>
+
+            {/* 랜딩 페이지 컨텐츠 */}
             <div className='landing_content_wrapper'>
+
+                {/* 회사 소개 섹션 */}
                 <section className='landing_company_intro_wrapper'>
                     <h2 className='company_title'>
                         ABOUT COMPANY
@@ -87,13 +102,15 @@ export default function Home() {
                         </li>
                     </ul>
                 </section>
+
+                {/* 비즈니스 소개 섹션 */}
                 <section className='landing_business_content'>
                     <div className='business_content_wrapper'>
                         <h2 className='business_title'>
                             OUR BUSINESS
                         </h2>
                         <ul className='business_card_wrapper'>
-                            <li>
+                            <li className='business_card_out_wrapper'>
                                 <a className='business_card_box'>
                                     <div
                                         className='business_card_image'
@@ -110,7 +127,7 @@ export default function Home() {
                                     </div>
                                 </a>
                             </li>
-                            <li>
+                            <li className='business_card_out_wrapper'>
                                 <a className='business_card_box'>
                                     <div
                                         className='business_card_image'
@@ -127,7 +144,7 @@ export default function Home() {
                                     </div>
                                 </a>
                             </li>
-                            <li>
+                            <li className='business_card_out_wrapper'>
                                 <a className='business_card_box'>
                                     <div
                                         className='business_card_image'
@@ -147,6 +164,8 @@ export default function Home() {
                         </ul>
                     </div>
                 </section>
+
+                {/* 파트너 리스트 섹션 */}
                 <section className='landing_partner_content'>
                     <h2 className='partner_title'>
                         THE PARTNER
@@ -164,6 +183,8 @@ export default function Home() {
                         )}
                     </ul>
                 </section>
+
+                {/* 문의하기 섹션 */}
                 <section className='landing_contact_container'>
                     <div className='landing_contact_content_wrapper'>
                         <h2 className='contact_title'>

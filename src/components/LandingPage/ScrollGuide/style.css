@@ -1,8 +1,9 @@
-/*랜딩 페이지 스크롤 가이드 css style*/
+/* 랜딩 페이지 스크롤 가이드 css style */
 
-/*상단 배너 스크롤 가이드*/
+/* 상단 배너 스크롤 가이드 */
 .top_banner_scroll_guide {
     font-size: 16px;
+    background-color: transparent;
     color: white;
     font-weight: 500;
     display: flex;
