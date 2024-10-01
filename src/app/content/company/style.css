@@ -1,8 +1,9 @@
-/*회사 개요 페이지 css style*/
+/* 회사 개요 페이지 css style */
 
-/*회사 개요 페이지 레이아웃*/
+/* 회사 개요 페이지 레이아웃 */
 .company_layout {
     width: 100%;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
 }
