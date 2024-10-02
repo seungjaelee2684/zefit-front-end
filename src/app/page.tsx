@@ -56,9 +56,9 @@ export default function Home() {
                         ABOUT COMPANY
                     </h2>
                     <h3 className='company_sub_title'>
-                        <span className='company_bold_text'>제핏은 제브라피쉬 전문 CRO로 혁신적인 진단장비</span>
+                        <b className='company_bold_text'>제핏은 제브라피쉬 전문 CRO로 혁신적인 진단장비</b>
                         {`를 활용하여 전\n임상단계의 신약후보물질의 발굴을 돕는 `}
-                        <span className='company_bold_text'>비임상 CRO 회사입니다.</span>
+                        <b className='company_bold_text'>비임상 CRO 회사입니다.</b>
                     </h3>
                     <img
                         className='company_image'
