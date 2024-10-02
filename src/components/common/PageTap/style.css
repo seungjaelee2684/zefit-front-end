@@ -5,6 +5,80 @@
     width: 100%;
     height: 50px;
     display: flex;
+    justify-content: center;
     align-items: center;
+    border-bottom: 1px solid #d9d9d9;
     background: linear-gradient(to right, #1D5BA2 50%, transparent 50%);
+}
+
+/* 페이지 탭 내부 컨테이너 */
+.page_tap_out_wrapper {
+    width: 1170px;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+/* 홈 버튼 */
+.home_button_tap {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1D5BA2;
+    font-size: 24px;
+}
+
+/* 홈 아이콘 */
+.home_icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+/* 페이지 탭 리스트 */
+.page_tap_in_wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+/* 페이지 탭 버튼 */
+.page_tap_button {
+    width: fit-content;
+    height: 50px;
+    padding: 0px 30px;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #d9d9d9;
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+/* 페이지 탭 버튼 HOVER효과 */
+.page_tap_button:hover {
+    font-weight: 500;
+    color: #1D5BA2;
+}
+
+/* 페이지 탭 버튼 click시 */
+.page_tap_click_button {
+    width: fit-content;
+    height: 50px;
+    padding: 0px 30px;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #d9d9d9;
+    border-bottom: 3px solid #1D5BA2;
+    font-size: 16px;
+    color: #1D5BA2;
+    font-weight: 700;
+    transition: all 0.2s;
+    cursor: pointer;
 }
