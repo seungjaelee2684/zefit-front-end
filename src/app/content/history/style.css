@@ -1,0 +1,120 @@
+/* 회사 연혁 페이지 css style */
+
+/* 연혁 페이지 컨테이너 */
+.history_page_container {
+    width: 1170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 140px;
+    padding: 90px 0px;
+}
+
+/* 연혁 페이지 제목 컨테이너 */
+.history_page_title_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 12px;
+}
+
+/* 연혁 페이지 제목 */
+.history_page_title {
+    font-size: 24px;
+    color: #1D5BA2;
+}
+
+/* 연혁 페이지 부제목 */
+.history_page_sub_title {
+    font-size: 24px;
+    font-weight: 500;
+    white-space: pre-line;
+    text-align: start;
+}
+
+/* 연혁 내용 컨테이너 */
+.history_wrapper {
+    width: 970px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 100px;
+    position: relative;
+}
+
+/* 타임라인 한 줄 컨테이너 */
+.timeline_lane_container {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 32px;
+}
+
+/* 타임라인 년도 */
+.timeline_year {
+    min-width: fit-content;
+    font-size: 38px;
+    font-weight: 600;
+    color: #00AEEF;
+}
+
+/* 타임라인 포인트 */
+.timeline_point {
+    min-width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    border: 3px solid #00AEEF;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 2;
+    margin-right: 32px;
+    margin-top: 23px;
+    /* background-color: #00AEEF; */
+}
+
+/* 타임라인 연결선 */
+.timeline_connected_line {
+    width: 2px;
+    height: calc(100% - 40px);
+    background-color: #00AEEF;
+    position: absolute;
+    top: 24px;
+    left: 127px;
+    z-index: 1;
+}
+
+/* 타임라인 월별 리스트 */
+.timeline_month_list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    margin-top: 12px;
+    gap: 40px;
+}
+
+/* 타임라인 월별 라인 */
+.timeline_month_lane {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 32px;
+}
+
+/* 타임라인 월 표시 */
+.timeline_month {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* 타임라인 월별 내용 */
+.timeline_month_content {
+    font-size: 24px;
+}

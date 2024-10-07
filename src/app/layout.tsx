@@ -44,6 +44,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <script type="text/javascript" src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&libraries=services&autoload=false`}></script>
       </body>
     </html>
   );
