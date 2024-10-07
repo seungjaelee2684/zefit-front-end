@@ -1,0 +1,52 @@
+/* 인증 및 파트너 현황(status) 페이지 css style */
+
+/* status 페이지 컨테이너 */
+.status_page_container {
+    width: 1170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 40px;
+    padding: 90px 0px;
+}
+
+/* status 페이지 제목 컨테이너 */
+.status_page_title_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    font-size: 32px;
+    font-weight: 600;
+    color: #1D5BA2;
+}
+
+/* status 페이지 목록 컨테이너 */
+.status_page_content_list {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* status 페이지 이미지 카드 */
+.status_image_wrapper {
+    width: 270px;
+    height: 354px;
+    border: 1px solid #00000020;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* status 페이지 이미지 */
+.status_image {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+}

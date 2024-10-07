@@ -1,14 +1,5 @@
 /* 회사 개요 페이지 css style */
 
-/* 회사 개요 페이지 레이아웃 */
-.company_layout {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-}
-
 /* 회사 개요 페이지 소개글 컨테이너 */
 .company_introduce_container {
     width: 1170px;

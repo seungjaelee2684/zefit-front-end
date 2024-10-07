@@ -15,7 +15,7 @@ export default function Company() {
             <PageTap />
 
             {/* 회사 개요 페이지 레이아웃 */}
-            <div className='company_layout'>
+            <div className='page_layout'>
                 <section className='company_introduce_container'>
                     <h2 className='company_introduce_title'>
                         About Us
