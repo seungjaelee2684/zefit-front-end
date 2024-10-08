@@ -109,20 +109,117 @@ export default function ContactMap() {
                             <ul className='location_info_wrapper'>
                                 <li className='location_info_lane_wrapper'>
                                     <strong className='location_info_category'>
+                                        <div className='category_under_bar' />
                                         Address
                                     </strong>
                                     <div className='location_info_content_wrapper'>
                                         <span className='info_sub_title'>
-                                            사무실
+                                            사무실.
                                         </span>
                                         <p className='info_text'>
-                                            사무실
+                                            대구광역시 서구 와룡로 307 디센터1976 지식산업센터 422호
+                                        </p>
+                                        <span
+                                            style={{ marginTop: '24px' }}
+                                            className='info_sub_title'>
+                                            기업부설연구소.
+                                        </span>
+                                        <p className='info_text'>
+                                            대구광역시 서구 와룡로 307 디센터1976 지식산업센터 424호
                                         </p>
                                     </div>
+                                </li>
+                                <li className='location_info_lane_wrapper'>
+                                    <strong className='location_info_category'>
+                                        <div className='category_under_bar' />
+                                        Call Number
+                                    </strong>
+                                    <p className='info_text'>
+                                        053-716-0816
+                                    </p>
+                                </li>
+                                <li className='location_info_lane_wrapper'>
+                                    <strong className='location_info_category'>
+                                        <div className='category_under_bar' />
+                                        E-mail
+                                    </strong>
+                                    <p className='info_text'>
+                                        info@zefit.co.kr
+                                    </p>
                                 </li>
                             </ul>
                         </div>
                     </div>
+                    <ul className='come_way_wrapper'>
+                        <li className='come_way_columns_lane'>
+                            <h3
+                                style={{ backgroundColor: '#fb5852' }}
+                                className='come_way_columns_lane_title'>
+                                버스로 오시는 경우
+                            </h3>
+                            <div className='come_way_columns_lane_content_wrapper'>
+                                <p className='come_way_columns_lane_content'>
+                                    대구의료원라파엘웰빙센터
+                                </p>
+                                <p className='come_way_content_plus'>
+                                    <b style={{ color: '#3cc344', fontWeight: '700' }}>
+                                        서구1
+                                    </b>&nbsp;
+                                    <b style={{ color: '#fb5852', fontWeight: '700' }}>
+                                        급행1
+                                    </b>&nbsp;
+                                    <b style={{ color: '#fb5852', fontWeight: '700' }}>
+                                        급행8
+                                    </b>&nbsp;
+                                    탑승후 하차
+                                </p>
+                            </div>
+                            <div className='come_way_columns_lane_content_wrapper'>
+                                <p className='come_way_columns_lane_content'>
+                                    대구의료원라파엘웰빙센터건너
+                                </p>
+                                <p className='come_way_content_plus'>
+                                    <b style={{ color: '#3cc344', fontWeight: '700' }}>
+                                        서구1-1
+                                    </b>&nbsp;
+                                    <b style={{ color: '#fb5852', fontWeight: '700' }}>
+                                        급행1
+                                    </b>&nbsp;
+                                    <b style={{ color: '#fb5852', fontWeight: '700' }}>
+                                        급행8
+                                    </b>&nbsp;
+                                    탑승후 하차
+                                </p>
+                            </div>
+                        </li>
+                        <li className='come_way_columns_lane'>
+                            <h3
+                                style={{ backgroundColor: '#3cb44a' }}
+                                className='come_way_columns_lane_title'>
+                                지하철로 오시는 경우
+                            </h3>
+                            <div className='come_way_columns_lane_content_wrapper'>
+                                <p className='come_way_columns_lane_content'>
+                                    <b style={{ color: '#3cb44a', fontWeight: '800' }}>
+                                        죽전역(2호선)
+                                    </b>&nbsp;
+                                    하차 후 도보 17분 거리
+                                </p>
+                            </div>
+                        </li>
+                        <li className='come_way_columns_lane'>
+                            <h3
+                                style={{ backgroundColor: '#EB9A28' }}
+                                className='come_way_columns_lane_title'>
+                                차로 오시는 경우
+                            </h3>
+                            <div className='come_way_columns_lane_content_wrapper'>
+                                <p className='come_way_columns_lane_content'>
+                                    센터 내 주차 가능
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
                 </section>
             </div>
         </article>
