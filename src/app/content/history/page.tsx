@@ -27,7 +27,7 @@ export default function History() {
         <article>
             <PageHeader />
             <PageBanner pageTitle='연혁' />
-            <PageTap />
+            <PageTap tap='company' />
             <div className='page_layout'>
                 <section className='history_page_container'>
                     <div className='history_page_title_container'>

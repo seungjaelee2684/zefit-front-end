@@ -74,7 +74,7 @@ export default function ContactMap() {
         <article>
             <PageHeader />
             <PageBanner pageTitle='오시는길' />
-            <PageTap />
+            <PageTap tap='company' />
             <div
                 style={{ backgroundColor: '#F6F6F6' }}
                 className='page_layout'>

@@ -37,7 +37,7 @@ export default function Status() {
         <article>
             <PageHeader />
             <PageBanner pageTitle='인증 및 파트너 현황' />
-            <PageTap />
+            <PageTap tap='company' />
             <div className='page_layout'>
                 <section className='status_page_container'>
                     <h2 className='status_page_title_wrapper'>
