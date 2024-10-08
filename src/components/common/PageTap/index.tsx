@@ -1,10 +1,75 @@
-import { aboutNavList } from '@/data/navData';
+import { aboutNavList, businessNavList, communityNavList } from '@/data/navData';
 import './style.css';
 import { usePathname } from 'next/navigation';
 
-export default function PageTap() {
+interface PageTapProps {
+    tap: string;
+};
+
+export default function PageTap({ tap }: PageTapProps) {
 
     const path = usePathname();
+
+    const pageTapChanger = () => {
+        if (tap === 'company') {
+            return (
+                aboutNavList?.map((item: any, index: number) =>
+                    <li key={index}>
+                        <a
+                            href={(path !== item.href) && item.href}
+                            style={{
+                                cursor: (path === item.href) ? 'default' : 'pointer'
+                            }}
+                            className={
+                                (path === item.href)
+                                    ? 'page_tap_click_button'
+                                    : 'page_tap_button'
+                                }>
+                            {item.id}
+                        </a>
+                    </li>
+                )
+            )
+        } else if (tap === 'community') {
+            return (
+                communityNavList?.map((item: any, index: number) =>
+                    <li key={index}>
+                        <a
+                            href={(path !== item.href) && item.href}
+                            style={{
+                                cursor: (path === item.href) ? 'default' : 'pointer'
+                            }}
+                            className={
+                                (path === item.href)
+                                    ? 'page_tap_click_button'
+                                    : 'page_tap_button'
+                                }>
+                            {item.id}
+                        </a>
+                    </li>
+                )
+            )
+        } else if (tap === 'business') {
+            return (
+                businessNavList?.map((item: any, index: number) =>
+                    <li key={index}>
+                        <a
+                            href={(path !== item.href) && item.href}
+                            style={{
+                                cursor: (path === item.href) ? 'default' : 'pointer'
+                            }}
+                            className={
+                                (path === item.href)
+                                    ? 'page_tap_click_button'
+                                    : 'page_tap_button'
+                                }>
+                            {item.id}
+                        </a>
+                    </li>
+                )
+            )
+        };
+    };
     
     return (
         <section className='page_tap_container'>
@@ -16,22 +81,7 @@ export default function PageTap() {
                         className='home_icon' /> 
                 </a>
                 <ul className='page_tap_in_wrapper'>
-                    {aboutNavList?.map((item: any, index: number) =>
-                        <li key={index}>
-                            <a
-                                href={(path !== item.href) && item.href}
-                                style={{
-                                    cursor: (path === item.href) ? 'default' : 'pointer'
-                                }}
-                                className={
-                                    (path === item.href)
-                                        ? 'page_tap_click_button'
-                                        : 'page_tap_button'
-                                    }>
-                                {item.id}
-                            </a>
-                        </li>
-                    )}
+                    {pageTapChanger()}
                 </ul>
             </nav>
         </section>

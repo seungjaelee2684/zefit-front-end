@@ -12,7 +12,7 @@ export default function Company() {
         <article>
             <PageHeader />
             <PageBanner pageTitle='회사개요' />
-            <PageTap />
+            <PageTap tap='company' />
 
             {/* 회사 개요 페이지 레이아웃 */}
             <div className='page_layout'>
