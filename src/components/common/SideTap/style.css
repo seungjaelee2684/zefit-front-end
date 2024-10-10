@@ -1,0 +1,49 @@
+/* 서비스 페이지 사이드 탭 css style */
+
+/* 서비스 사이드 탭 컨테이너 */
+.service_side_tap_container {
+    position: fixed;
+    top: 470px;
+    right: 0;
+    z-index: 19;
+}
+
+/* 사이드 탭 리스트 컨테이너 */
+.side_tap_list_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 12px;
+}
+
+/* 사이드 탭 라인 컨테이너 */
+.side_tap_lane_wrapper {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* 사이드 탭 텍스트 */
+.side_tap_text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #5757574c;
+    transition: all 0.2s;
+}
+
+/* 사이드 탭 우측 바 컨테이너 */
+.side_tap_right_bar_wrapper {
+    width: 58px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+/* 사이드 탭 우측 바 */
+.side_tap_right_bar {
+    width: 30px;
+    height: 2px;
+    background-color: #5757574c;
+    transition: all 0.2s;
+}

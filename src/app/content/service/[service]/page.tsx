@@ -6,6 +6,7 @@ import PageTap from "@/components/common/PageTap";
 import './style.css';
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import SideTap from "@/components/common/SideTap";
 
 export default function Service() {
 
@@ -15,8 +16,11 @@ export default function Service() {
     const [serviceTap, setServiceTap] = useState<any>(null);
     console.log("🚀 ~ Service ~ serviceData:", serviceData);
 
+    const findData = serviceData?.find((item: any) => item?.service === service);
+    const sideTapData = serviceData?.map((item: any) => item?.service);
+
     const onClickTapHandler = (param: string) => {
-        const tapData = serviceData?.content.find((item: any) => item.name === param);
+        const tapData = findData?.content.find((item: any) => item.name === param);
         setServiceTap(tapData);
     };
 
@@ -30,8 +34,9 @@ export default function Service() {
                     return response.json();
                 })
                 .then((jsonData) => {
+                    const findData = jsonData?.find((item: any) => item?.service === service);
                     setServiceData(jsonData);
-                    setServiceTap(jsonData.content[0]);
+                    setServiceTap(findData.content[0]);
                 })
                 .catch((error) => console.error("Fetch error:", error));
         };
@@ -42,6 +47,7 @@ export default function Service() {
             <PageHeader />
             <PageBanner pageTitle='서비스' />
             <PageTap tap='business' />
+            <SideTap tap={sideTapData} content='service' />
             <div className='page_layout'>
                 <section className='service_page_container'>
                     <h2 className='service_page_title'>
@@ -51,9 +57,9 @@ export default function Service() {
                     <div className='service_page_info_wrapper'>
                         <div className='service_page_info_box'>
                             <h3 className='service_page_info_box_title'>
-                                {serviceData?.model}
+                                {findData?.model}
                             </h3>
-                            {serviceData?.introduce.map((item: string, index: number) =>
+                            {findData?.introduce.map((item: string, index: number) =>
                                 <p
                                     key={index}
                                     className='service_page_info_box_content'>
@@ -63,21 +69,22 @@ export default function Service() {
                         </div>
                         <img
                             className='service_info_image'
-                            src={serviceData?.thumbnail}
-                            alt={serviceData?.service} />
+                            src={findData?.thumbnail}
+                            alt={findData?.service} />
                         <div className='service_back_deco_box' />
                     </div>
                 </section>
                 <section className='service_page_detail_container'>
                     <div className='service_page_detail_wrapper'>
                         <ul className='detail_tap_wrapper'>
-                            {serviceData?.content.map((item: any, index: number) =>
+                            {findData?.content.map((item: any, index: number) =>
                                 <li
                                     key={index}
                                     className='detail_tap_button_list'>
                                     <button
                                         onClick={() => onClickTapHandler(item.name)}
                                         style={{
+                                            fontWeight: (item.name === serviceTap?.name) ? '700': '400',
                                             backgroundColor: (item.name === serviceTap.name) ? '#0055a7' : '#e9e9e9',
                                             color: (item.name === serviceTap?.name) ? '#ffffff' : '#6B6B6B'
                                         }}
@@ -94,7 +101,7 @@ export default function Service() {
                                     <img
                                         style={{
                                             width: (serviceTap?.image.length <= 1) ? '800px' : '500px',
-                                            height: (serviceTap?.image.length <= 1) ? '600px' : '350px'
+                                            height: (serviceTap?.image.length <= 1) ? '500px' : '350px'
                                         }}
                                         className='detail_tap_image'
                                         src={item}

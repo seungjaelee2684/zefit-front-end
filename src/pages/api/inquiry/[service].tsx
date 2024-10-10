@@ -14,10 +14,10 @@ export default async function getServiceApi(req: NextApiRequest, res: NextApiRes
 
         const parseData = JSON.parse(jsonData);
 
-        const findData = parseData?.find((item: any) => item?.service === service);
+        // const findData = parseData?.find((item: any) => item?.service === service);
 
         // JSON 데이터를 클라이언트에 반환
-        res.status(200).json(findData);
+        res.status(200).json(parseData);
     } catch (error) {
         console.error("Error reading file:", error);
         res.status(500).json({ message: "Internal server error" });
