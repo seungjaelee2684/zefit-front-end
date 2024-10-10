@@ -37,7 +37,7 @@
 /* 서비스 설명글 박스 */
 .service_page_info_box {
     width: 680px;
-    height: 400px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,7 +49,7 @@
     top: 0;
     left: 0;
     z-index: 3;
-    padding: 0px 90px;
+    padding: 40px 90px;
 }
 
 /* 서비스 설명글 박스 제목 */
@@ -88,7 +88,7 @@
     z-index: 1;
 }
 
-/* 서비스 세부 내용 전체컨테이너 */
+/* 서비스 세부 내용 전체 컨테이너 */
 .service_page_detail_container {
     width: 100%;
     display: flex;
@@ -99,13 +99,14 @@
     margin-top: 90px;
 }
 
+/* 서비스 세부 내용 컨테이너 */
 .service_page_detail_wrapper {
     width: 1170px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    gap: 54px;
+    gap: 24px;
 }
 
 /* 서비스 세부 탭 컨테이너 */
@@ -114,13 +115,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
     gap: 24px;
 }
 
 /* 서비스 세부 탭 리스트 */
 .detail_tap_button_list {
-    max-width: 260px;
-    width: 100%;
+    min-width: 260px;
     height: 60px;
 }
 
@@ -136,8 +137,9 @@
     color: #6B6B6B;
     font-size: 20px;
     background-color: #e9e9e9;
-    box-shadow: 4px 4px 4px 0px #e9e9e93f;
+    box-shadow: 4px 4px 4px 0px #0000003f;
     border-radius: 1000px;
+    padding: 18px 32px;
 }
 
 /* 서비스 세부 이미지 컨테이너 */
@@ -198,7 +200,7 @@
 
 /* 서비스 세부 텍스트 제목 */
 .detail_text_title {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 700;
 }
 
@@ -212,7 +214,7 @@
 
 /* 서비스 세부 텍스트 컨텐츠 */
 .detail_text_content {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 400;
     text-align: start;
     white-space: pre-line;

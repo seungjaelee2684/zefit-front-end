@@ -1,8 +1,10 @@
 type navListType = {
     id: string,
     href: string,
+    criteria?: string,
     list: {
         id: string,
+        en?: string,
         href: string
     }[] | undefined
 }[];
@@ -18,26 +20,29 @@ export const businessNavList: navListType = [
     {
         id: '모델',
         href: '/content/zebrafish',
+        criteria: '/content/zebrafish',
         list: undefined
     },
     {
         id: '서비스',
-        href: '/content/CNS_FIT',
+        href: '/content/service/CNS_FIT',
+        criteria: '/content/service',
         list: [
-            { id: 'CNS_FIT', href: '/content/CNS_FIT' },
-            { id: 'Meta_FIT', href: '/content/Meta_FIT' },
-            { id: 'Onco_FIT', href: '/content/Onco_FIT' },
-            { id: 'Gene_FIT', href: '/content/Gene_FIT' },
-            { id: 'Toxicology', href: '/content/Toxicology' }
+            { id: 'CNS_FIT', href: '/content/service/CNS_FIT' },
+            { id: 'Meta_FIT', href: '/content/service/Meta_FIT' },
+            { id: 'Onco_FIT', href: '/content/service/Onco_FIT' },
+            { id: 'Gene_FIT', href: '/content/service/Gene_FIT' },
+            { id: 'Toxicology', href: '/content/service/Toxicology' }
         ]
     },
     {
         id: '신약개발',
-        href: '/content/pharmaceuticals',
+        href: '/content/development/pharmaceuticals',
+        criteria: '/content/development',
         list: [
-            { id: '신약개발기술', href: '/content/pharmaceuticals' },
-            { id: '파이프라인', href: '/content/pipeline' },
-            { id: '오픈 이노베이션', href: '/content/open_innovation' }
+            { id: '신약개발기술', en: 'pharmaceuticals', href: '/content/development/pharmaceuticals' },
+            { id: '파이프라인', en: 'pipeline', href: '/content/development/pipeline' },
+            { id: '오픈 이노베이션', en: 'open_innovation', href: '/content/development/open_innovation' }
         ]
     },
 ];

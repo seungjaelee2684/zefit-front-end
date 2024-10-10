@@ -16,7 +16,7 @@ export default function PageTap({ tap }: PageTapProps) {
                 aboutNavList?.map((item: any, index: number) =>
                     <li key={index}>
                         <a
-                            href={(path !== item.href) && item.href}
+                            href={(path !== item.href) ? item.href : null}
                             style={{
                                 cursor: (path === item.href) ? 'default' : 'pointer'
                             }}
@@ -35,7 +35,7 @@ export default function PageTap({ tap }: PageTapProps) {
                 communityNavList?.map((item: any, index: number) =>
                     <li key={index}>
                         <a
-                            href={(path !== item.href) && item.href}
+                            href={(path !== item.href) ? item.href : null}
                             style={{
                                 cursor: (path === item.href) ? 'default' : 'pointer'
                             }}
@@ -54,12 +54,12 @@ export default function PageTap({ tap }: PageTapProps) {
                 businessNavList?.map((item: any, index: number) =>
                     <li key={index}>
                         <a
-                            href={(path !== item.href) && item.href}
+                            href={(!path?.includes(item.criteria)) ? item.href : null}
                             style={{
-                                cursor: (path === item.href) ? 'default' : 'pointer'
+                                cursor: (path?.includes(item.criteria)) ? 'default' : 'pointer'
                             }}
                             className={
-                                (path === item.href)
+                                (path?.includes(item.criteria))
                                     ? 'page_tap_click_button'
                                     : 'page_tap_button'
                                 }>
