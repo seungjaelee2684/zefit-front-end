@@ -82,3 +82,15 @@
     transition: all 0.2s;
     cursor: pointer;
 }
+
+
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+    .page_tap_container {
+        height: 40px;
+    }
+
+    .page_tap_out_wrapper {
+        width: 100%;
+    }
+}

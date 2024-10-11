@@ -43,7 +43,7 @@
 /* 파이프라인 표 박스 */
 .table_box {
     width: 1170px;
-    height: 400px;
+    height: 340px;
     border-top: 2px solid;
     background-color: white;
     border-collapse: collapse;
@@ -52,8 +52,8 @@
 /* 표 헤더 */
 .table_header {
     width: 100%;
-    height: 80px;
-    min-height: 80px;
+    height: 60px;
+    min-height: 60px;
     background-color: #EBEDF3;
     border-bottom: 2px solid #b8b8b8;
 }
@@ -100,6 +100,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -143,7 +144,7 @@
 /* 표 바디칸 그래프 박스 */
 .graph_box {
     width: 87%;
-    height: 24px;
+    height: 20px;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -155,5 +156,47 @@
 /* 그래프 */
 .graph {
     height: 100%;
+    transition: all 3s ease-in-out;
     background: linear-gradient(to right, #00AEEF, #006489);
+}
+
+
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+    .pipeline_page_container {
+        width: 94%;
+        padding: 40px 0px;
+    }
+
+    .pipeline_page_title {
+        font-size: 14px;
+    }
+
+    .pipeline_table_container {
+        height: 400px;
+        padding-top: 30px;
+        gap: 32px;
+    }
+
+    .pipeline_table_label_title {
+        font-size: 12px;
+    }
+
+    .table_box {
+        width: 94%;
+        height: 240px;
+    }
+
+    .table_header {
+        height: 60px;
+    }
+
+    .table_header_room, .table_body_room_head,
+    .table_body_room_head_text, .table_body_room_sub_head {
+        font-size: 8px;
+    }
+
+    .graph_box {
+        height: 14px;
+    }
 }

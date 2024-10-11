@@ -220,3 +220,17 @@
     white-space: pre-line;
     padding-left: 26px;
 }
+
+
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+    .service_page_title {
+        font-size: 16px;
+        gap: 6px;
+    }
+
+    .service_page_side_bar {
+        width: 4px;
+        height: 18px;
+    }
+}
