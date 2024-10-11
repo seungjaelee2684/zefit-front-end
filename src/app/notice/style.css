@@ -1,0 +1,258 @@
+/* 공지사항 페이지 css style */
+
+/* 공지사항 페이지 컨테이너 */
+.notice_page_container {
+    width: 1170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 50px;
+    padding: 40px 0px;
+}
+
+/* 공지사항 페이지 제목 */
+.notice_page_title {
+    font-size: 24px;
+    color: #1D5BA2;
+}
+
+/* 공지사항 페이지 검색 바 컨테이너 */
+.notice_page_searh_bar_container {
+    width: 100%;
+    height: 80px;
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 0px 42px;
+}
+
+/* 검색 창 */
+.search_bar {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #E0E0E0;
+    background-color: white;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 16px 20px;
+    transition: all 0.3s;
+}
+
+/* 검색 창 FOCUS효과 */
+.search_bar:focus {
+    border: 1px solid #838383;
+}
+
+/* 검색 창 PLACEHOLDER효과 */
+.search_bar::placeholder {
+    color: #838383;
+    font-weight: 300;
+}
+
+/* 검색 버튼 */
+.search_button {
+    width: 140px;
+    height: 48px;
+    border-radius: 6px;
+    background-color: #00AEEF;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    transition: all 0.3s;
+}
+
+/* 검색 버튼 HOVER효과 */
+.search_button:hover {
+    background-color: #1073c9;
+}
+
+/* 검색 버튼 ACTIVE효과 */
+.search_button:active {
+    background-color: #101541;
+}
+
+/* 공지사항 목록 표 컨테이너 */
+.notice_table_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+/* 공지사항 목록 표 수치 */
+.notice_table_count {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    font-size: 14px;
+}
+
+/* 공지사항 목록 표 */
+.notice_table {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 공지사항 목록 표 헤더 컨테이너 */
+.notice_table_header_wrapper {
+    width: 100%;
+    height: 60px;
+    min-height: 60px;
+}
+
+/* 공지사항 목록 표 헤더 */
+.notice_table_header {
+    width: 100%;
+    height: 100%;
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    border-top: 2px solid #000000;
+    border-bottom: 2px solid #E2E2E2;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* 표 헤더 분류 칸 */
+.table_header_category_room {
+    min-width: 130px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 표 헤더 제목 칸 */
+.table_header_title_room {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 표 헤더 나머지 칸 */
+.table_header_etc_room {
+    min-width: 90px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 표 바디 컨테이너 */
+.notice_table_body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 표 바디 라인 컨테이너 */
+.table_body_lane_wrapper {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #E2E2E2;
+}
+
+/* 특별 공지 */
+.special_notice {
+    width: 64px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #1D5BA2;
+    color: #1D5BA2;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* 표 바디 제목 스페셜 칸 */
+.table_body_special_title_room {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-weight: 700;
+    padding-left: 40px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+/* 표 바디 제목 칸 */
+.table_body_title_room {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-weight: 400;
+    padding-left: 40px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+/* 표 바디 나머지 칸 */
+.table_body_etc_room {
+    min-width: 90px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+}
+
+/* 표 바디 특별 공지 및 일반 공지 제목 HOVER효과 */
+.table_body_special_title_room:hover, .table_body_title_room:hover {
+    opacity: 0.7;
+}
+
+/* 페이지 수 컨테이너 */
+.page_count_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 54px 0px 120px 0px;
+}
+
+/* 현 페이지 */
+.present_page {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    background-color: #00AEEF;
+    border-radius: 8px;
+    user-select: none;
+}
+
+/* 나머지 페이지 */
+.etc_page {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #5a5a5a;
+    user-select: none;
+}
