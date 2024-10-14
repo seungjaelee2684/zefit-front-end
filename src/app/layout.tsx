@@ -16,7 +16,7 @@ const notoSansKr = Noto_Sans_KR({
     "500",
     "600",
     "700",
-    "600",
+    "800",
     "900"], // 가변 폰트가 아닌 경우, 사용할 fontWeight 배열
 });
 

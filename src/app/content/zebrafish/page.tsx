@@ -4,10 +4,12 @@ import PageHeader from '@/components/common/PageHeader';
 import './style.css';
 import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
+import MetaTagTitle from '@/utils/MetaTagTitle';
 
 export default function ZebrafishModel() {
     return (
         <article>
+            <MetaTagTitle title='제브라피쉬' />
             <PageHeader />
             <PageBanner pageTitle='제브라피쉬' />
             <PageTap tap='business' />

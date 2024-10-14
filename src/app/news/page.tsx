@@ -7,6 +7,7 @@ import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
 import DropDown from '@/components/common/DropDown';
 import { useEffect, useState } from 'react';
+import MetaTagTitle from '@/utils/MetaTagTitle';
 
 export default function News() {
 
@@ -37,6 +38,7 @@ export default function News() {
 
     return (
         <article>
+            <MetaTagTitle title='보도자료' />
             <PageHeader />
             <PageBanner pageTitle='보도자료' />
             <PageTap tap='community' />

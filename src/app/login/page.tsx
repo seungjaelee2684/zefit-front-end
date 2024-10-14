@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import './style.css';
+import MetaTagTitle from '@/utils/MetaTagTitle';
 
 export default function Login() {
 
@@ -19,6 +20,7 @@ export default function Login() {
 
     return (
         <article className='login_layout'>
+            <MetaTagTitle title='로그인' />
             <a
                 href='/'
                 className='login_logo_box'>

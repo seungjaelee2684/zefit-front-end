@@ -6,6 +6,7 @@ import PageTap from "@/components/common/PageTap";
 import './style.css';
 import { checkArea } from "@/data/checkArea";
 import { useState } from "react";
+import MetaTagTitle from "@/utils/MetaTagTitle";
 
 export default function Requests() {
 
@@ -34,6 +35,7 @@ export default function Requests() {
 
     return (
         <article>
+            <MetaTagTitle title='문의하기' />
             <PageHeader />
             <PageBanner pageTitle='문의하기' />
             <PageTap tap='requests' />

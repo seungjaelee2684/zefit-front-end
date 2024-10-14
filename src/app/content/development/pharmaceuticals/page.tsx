@@ -8,6 +8,7 @@ import './style.css';
 import { useEffect, useState } from "react";
 import SideTap from "@/components/common/SideTap";
 import { businessNavList } from "@/data/navData";
+import MetaTagTitle from "@/utils/MetaTagTitle";
 
 export default function Pharmaceuticals() {
 
@@ -32,6 +33,7 @@ export default function Pharmaceuticals() {
 
     return (
         <article>
+            <MetaTagTitle title='신약개발기술' />
             <PageHeader />
             <PageBanner pageTitle='신약개발' />
             <PageTap tap='business' />

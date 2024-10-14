@@ -2,6 +2,7 @@
 
 import AdmHeader from '@/components/common/AdmHeader';
 import './style.css';
+import MetaTagTitle from '@/utils/MetaTagTitle';
 
 export default function Admin() {
 
@@ -14,6 +15,7 @@ export default function Admin() {
 
     return (
         <article className='adm_layout'>
+            <MetaTagTitle title='관리자모드' />
             <AdmHeader />
             <section className='adm_content_wrapper'>
                 <ul className='adm_content_box'>

@@ -7,6 +7,7 @@ import './style.css';
 import '../../notice/[noticeId]/style.css'
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import MetaTagTitle from "@/utils/MetaTagTitle";
 
 export default function NewsDetail() {
 
@@ -33,6 +34,7 @@ export default function NewsDetail() {
 
     return (
         <article>
+            <MetaTagTitle title='보도자료' />
             <PageHeader />
             <PageBanner pageTitle='보도자료' />
             <PageTap tap='community' />

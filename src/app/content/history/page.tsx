@@ -5,6 +5,7 @@ import './style.css';
 import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
 import { useEffect, useState } from 'react';
+import MetaTagTitle from '@/utils/MetaTagTitle';
 
 export default function History() {
 
@@ -25,6 +26,7 @@ export default function History() {
 
     return (
         <article>
+            <MetaTagTitle title='연혁' />
             <PageHeader />
             <PageBanner pageTitle='연혁' />
             <PageTap tap='company' />
