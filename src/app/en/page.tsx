@@ -27,7 +27,8 @@ export default function Home() {
         <article>
             <MetaTagTitle title='' ko={false} />
             <MainHeader />
-            <section className='landing_top_banner'>
+            <section className='landing_top_banner_container'>
+                <div className='landing_top_banner' />
                 <div className='top_banner_text_box'>
                     <h1 className='top_banner_title'>
                         Greater Value For Your Life
