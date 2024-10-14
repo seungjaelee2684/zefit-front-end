@@ -1,9 +1,17 @@
 'use client';
 
 import AdmHeader from '@/components/common/AdmHeader';
-import '../../styles/admin.css';
+import './style.css';
 
 export default function Admin() {
+
+    const onClickScrollTopHandler = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
     return (
         <article className='adm_layout'>
             <AdmHeader />
@@ -38,7 +46,9 @@ export default function Admin() {
                     </li>
                 </ul>
             </section>
-            <button className='adm_scroll_top_button'>
+            <button
+                onClick={onClickScrollTopHandler}
+                className='adm_scroll_top_button'>
                 <span className='adm_top_arrow'>
                     ▲
                 </span>

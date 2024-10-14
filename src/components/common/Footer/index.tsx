@@ -1,8 +1,16 @@
+'use client';
+
+import { usePathname } from 'next/navigation';
 import './style.css';
 
 export default function Footer() {
+
+    const path = usePathname();
+
     return (
-        <footer className='footer_container'>
+        <footer
+            style={{ display: (path === '/adm') ? 'none' : '' }}
+            className='footer_container'>
             <div className='wave' />
             <h4>
                 <nav>
