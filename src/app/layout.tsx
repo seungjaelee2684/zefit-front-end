@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Noto_Sans_KR } from "next/font/google";
 import "../styles/globals.css";
 import Footer from "@/components/common/Footer";
+import FloatingButton from "@/components/common/FloatingButton";
+import { usePathname } from "next/navigation";
 
 const notoSansKr = Noto_Sans_KR({
   // preload: true, 기본값
@@ -40,6 +42,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       </head>
       <body className={notoSansKr.className}>
+        <FloatingButton />
         <main>
           {children}
         </main>

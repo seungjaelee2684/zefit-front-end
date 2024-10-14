@@ -21,9 +21,11 @@ export default function AdmHeader() {
                         </li>
                         <div className='adm_header_right_wrapper'>
                             <li>
-                                <button className='adm_header_home_button'>
+                                <a 
+                                    href='/'
+                                    className='adm_header_home_button'>
                                     <span className='icon-home'></span>
-                                </button>
+                                </a>
                             </li>
                             <li>
                                 <button className='adm_header_profile_button'>
