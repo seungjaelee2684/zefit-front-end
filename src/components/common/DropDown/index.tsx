@@ -10,16 +10,21 @@ export default function DropDown({ dropdownValue, setDropdownValue }: DropDownPr
 
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
+    const onClickMenuOpenHandler = (e: any) => {
+        e.preventDefault();
+        setMenuOpen(!menuOpen)
+    };
+
     const handleItemClick = (event: any) => {
         const selectedText = event.target.textContent;
         setDropdownValue(selectedText);
         setMenuOpen(false);
-      };
+    };
 
     return (
         <button
             className='dropdown_button'
-            onClick={() => setMenuOpen(!menuOpen)}>
+            onClick={onClickMenuOpenHandler}>
             {dropdownValue}
             <div
                 style={{

@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function getNoticeApi(req: NextApiRequest, res: NextApiResponse) {
     try {
         // JSON 파일의 경로 설정
-        const filePath = path.join(process.cwd(), 'public', 'data', 'notice.json');
+        const filePath = path.join(process.cwd(), 'public', 'data', 'news.json');
 
         // 파일 읽기
         const jsonData = await fs.readFile(filePath, 'utf8');

@@ -48,6 +48,6 @@ export const businessNavList: navListType = [
 ];
 
 export const communityNavList: navListType = [
-    { id: '공지사항', href: '/notice', list: undefined },
-    { id: '보도자료', href: '/news', list: undefined },
+    { id: '공지사항', criteria: '/notice', href: '/notice', list: undefined },
+    { id: '보도자료', criteria: '/news', href: '/news', list: undefined },
 ];

@@ -183,6 +183,12 @@
 .table_body_special_title_room {
     width: 100%;
     height: 100%;
+}
+
+/* 표 바디 제목 스페셜 링크 */
+.special_link_title_room {
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: start;
     align-items: center;

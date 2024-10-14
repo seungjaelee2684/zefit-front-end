@@ -1,0 +1,41 @@
+/* 보도자료 페이지 css style */
+
+/* 보도자료 페이지 썸네일 이미지 */
+.news_page_thumbnail {
+    width: 110px;
+    height: 90px;
+    object-fit: cover;
+}
+
+/* 보도자료 표 제목 컨테이너 */
+.news_table_body_title_room {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 10px;
+    padding-top: 20px;
+    padding-left: 40px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+/* 보도자료 표 제목 */
+.news_table_body_title {
+    width: 80%;
+    font-weight: 400;
+}
+
+/* 보도자료 표 내용 */
+.news_table_body_title {
+    width: 90%;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}

@@ -26,7 +26,7 @@ export default function Service() {
 
     useEffect(() => {
         if (service) {
-            fetch(`/api/inquiry/${service}`)
+            fetch(`/api/inquiry/service/${service}`)
                 .then((response) => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
