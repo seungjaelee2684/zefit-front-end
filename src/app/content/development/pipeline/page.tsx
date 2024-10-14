@@ -8,6 +8,7 @@ import './style.css';
 import { useEffect, useRef, useState } from "react";
 import SideTap from "@/components/common/SideTap";
 import { businessNavList } from "@/data/navData";
+import MetaTagTitle from "@/utils/MetaTagTitle";
 
 export default function Pipeline() {
 
@@ -39,6 +40,7 @@ export default function Pipeline() {
 
     return (
         <article>
+            <MetaTagTitle title='파이프라인' />
             <PageHeader />
             <PageBanner pageTitle='신약개발' />
             <PageTap tap='business' />

@@ -5,6 +5,7 @@ import './style.css';
 import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
 import { useEffect } from 'react';
+import MetaTagTitle from '@/utils/MetaTagTitle';
 
 declare global {
     interface Window {
@@ -72,6 +73,7 @@ export default function ContactMap() {
 
     return (
         <article>
+            <MetaTagTitle title='오시는길' />
             <PageHeader />
             <PageBanner pageTitle='오시는길' />
             <PageTap tap='company' />

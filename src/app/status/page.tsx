@@ -5,6 +5,7 @@ import PageHeader from "@/components/common/PageHeader";
 import PageTap from "@/components/common/PageTap";
 import './style.css';
 import { useEffect, useState } from "react";
+import MetaTagTitle from "@/utils/MetaTagTitle";
 
 export default function Status() {
 
@@ -35,6 +36,7 @@ export default function Status() {
 
     return (
         <article>
+            <MetaTagTitle title='인증 및 파트너 현황' />
             <PageHeader />
             <PageBanner pageTitle='인증 및 파트너 현황' />
             <PageTap tap='company' />

@@ -6,6 +6,7 @@ import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
 import DropDown from '@/components/common/DropDown';
 import { useEffect, useState } from 'react';
+import MetaTagTitle from '@/utils/MetaTagTitle';
 
 export default function Notice() {
 
@@ -39,6 +40,7 @@ export default function Notice() {
 
     return (
         <article>
+            <MetaTagTitle title='공지사항' />
             <PageHeader />
             <PageBanner pageTitle='공지사항' />
             <PageTap tap='community' />

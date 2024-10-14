@@ -9,6 +9,7 @@ import './style.css';
 import { useEffect, useState } from "react";
 import { businessNavList } from "@/data/navData";
 import SideTap from "@/components/common/SideTap";
+import MetaTagTitle from "@/utils/MetaTagTitle";
 
 export default function OpenInnovation() {
 
@@ -33,6 +34,7 @@ export default function OpenInnovation() {
 
     return (
         <article>
+            <MetaTagTitle title='오픈 이노베이션' />
             <PageHeader />
             <PageBanner pageTitle='신약개발' />
             <PageTap tap='business' />

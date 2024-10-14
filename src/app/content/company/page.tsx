@@ -6,10 +6,12 @@ import PageHeader from "@/components/common/PageHeader";
 import PageTap from "@/components/common/PageTap";
 import './style.css';
 import { companyData } from "@/data/companyData";
+import MetaTagTitle from "@/utils/MetaTagTitle";
 
 export default function Company() {
     return (
         <article>
+            <MetaTagTitle title='회사개요' />
             <PageHeader />
             <PageBanner pageTitle='회사개요' />
             <PageTap tap='company' />

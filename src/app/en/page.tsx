@@ -5,6 +5,7 @@ import '../style.css';
 import './style.css'
 import MainHeader from '@/components/common/MainHeader';
 import { useEffect, useState } from 'react';
+import MetaTagTitle from '@/utils/MetaTagTitle';
 
 export default function Home() {
 
@@ -24,6 +25,7 @@ export default function Home() {
 
     return (
         <article>
+            <MetaTagTitle title='' ko={false} />
             <MainHeader />
             <section className='landing_top_banner'>
                 <div className='top_banner_text_box'>

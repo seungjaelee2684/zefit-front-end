@@ -6,6 +6,7 @@ import PageTap from "@/components/common/PageTap";
 import './style.css';
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import MetaTagTitle from "@/utils/MetaTagTitle";
 
 export default function NoticeDetail() {
 
@@ -32,6 +33,7 @@ export default function NoticeDetail() {
 
     return (
         <article>
+            <MetaTagTitle title='공지사항' />
             <PageHeader />
             <PageBanner pageTitle='공지사항' />
             <PageTap tap='community' />

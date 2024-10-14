@@ -7,6 +7,7 @@ import './style.css';
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import SideTap from "@/components/common/SideTap";
+import MetaTagTitle from "@/utils/MetaTagTitle";
 
 export default function Service() {
 
@@ -44,6 +45,7 @@ export default function Service() {
 
     return (
         <article>
+            <MetaTagTitle title='서비스' />
             <PageHeader />
             <PageBanner pageTitle='서비스' />
             <PageTap tap='business' />
