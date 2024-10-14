@@ -2,29 +2,27 @@
 
 import PageHeader from '@/components/common/PageHeader';
 import './style.css';
+import '../notice/style.css';
 import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
 import DropDown from '@/components/common/DropDown';
 import { useEffect, useState } from 'react';
 
-export default function Notice() {
+export default function News() {
 
     const [dropdownValue, setDropdownValue] = useState<string>('제목');
-    const [noticeData, setNoticeData] = useState<any>(null);
+    const [newsData, setNewsData] = useState<any>(null);
     const [page, setPage] = useState<number>(1);
-    console.log("🚀 ~ Notice ~ noticeData:", noticeData)
+    console.log("🚀 ~ News ~ newsData:", newsData)
 
     const pageList = [1, 2, 3, 4, 5];
-
-    const specialNotice = noticeData?.filter((item: any) => item.status === 'special');
-    const normalNotice = noticeData?.filter((item: any) => item.status !== 'special');
 
     const onSubmitSearchHandler = (e: any) => {
         e.preventDefault();
     };
 
     useEffect(() => {
-        fetch(`/api/inquiry/notice`)
+        fetch(`/api/inquiry/news`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -32,7 +30,7 @@ export default function Notice() {
                 return response.json();
             })
             .then((jsonData) => {
-                setNoticeData(jsonData);
+                setNewsData(jsonData);
             })
             .catch((error) => console.error("Fetch error:", error));
     }, []);
@@ -40,12 +38,12 @@ export default function Notice() {
     return (
         <article>
             <PageHeader />
-            <PageBanner pageTitle='공지사항' />
+            <PageBanner pageTitle='보도자료' />
             <PageTap tap='community' />
             <section className='page_layout'>
                 <div className='notice_page_container'>
                     <h2 className='notice_page_title'>
-                        Notice
+                        News
                     </h2>
                     <form className='notice_page_searh_bar_container'>
                         <DropDown
@@ -62,13 +60,13 @@ export default function Notice() {
                     </form>
                     <div className='notice_table_wrapper'>
                         <p className='notice_table_count'>
-                            전체 {noticeData?.length}건 / 1 페이지
+                            전체 {newsData?.length}건 / 1 페이지
                         </p>
                         <table className='notice_table'>
                             <thead className='notice_table_header_wrapper'>
                                 <tr className='notice_table_header'>
                                     <th className='table_header_category_room'>
-                                        분류
+                                        이미지
                                     </th>
                                     <th className='table_header_title_room'>
                                         제목
@@ -85,45 +83,26 @@ export default function Notice() {
                                 </tr>
                             </thead>
                             <tbody className='notice_table_body'>
-                                {specialNotice?.map((item: any, index: number) =>
+                                {newsData?.map((item: any, index: number) =>
                                     <tr
                                         key={index}
                                         className='table_body_lane_wrapper'>
                                         <th className='table_header_category_room'>
-                                            <div className='special_notice'>
-                                                공지
-                                            </div>
+                                            <img
+                                                className='news_page_thumbnail'
+                                                src={item?.content.image[0]}
+                                                alt={`보도자료 썸네일 ${index}`} />
                                         </th>
                                         <td className='table_body_special_title_room'>
                                             <a
-                                                href={`/notice/${item?.id}`}
-                                                className='special_link_title_room'>
-                                                {item?.title}
-                                            </a>
-                                        </td>
-                                        <td className='table_body_etc_room'>
-                                            {item?.writer}
-                                        </td>
-                                        <td className='table_body_etc_room'>
-                                            {item?.date}
-                                        </td>
-                                        <td className='table_body_etc_room'>
-                                            {item?.watching}
-                                        </td>
-                                    </tr>
-                                )}
-                                {normalNotice?.map((item: any, index: number) =>
-                                    <tr
-                                        key={index}
-                                        className='table_body_lane_wrapper'>
-                                        <th className='table_header_category_room'>
-                                            {index + 1}
-                                        </th>
-                                        <td className='table_body_special_title_room'>
-                                            <a
-                                                href={`/notice/${item?.id}`}
-                                                className='table_body_title_room'>
-                                                {item?.title}
+                                                href={`/news/${item?.id}`}
+                                                className='news_table_body_title_room'>
+                                                <strong className='news_table_body_title'>
+                                                    {item?.title}
+                                                </strong>
+                                                <p className='news_table_body_title'>
+                                                    {item?.content.text}
+                                                </p>
                                             </a>
                                         </td>
                                         <td className='table_body_etc_room'>
@@ -145,10 +124,10 @@ export default function Notice() {
                                     key={index}
                                     onClick={() => setPage(item)}
                                     className={
-                                    (index + 1 === page)
-                                        ? 'present_page'
-                                        : 'etc_page'
-                                }>
+                                        (index + 1 === page)
+                                            ? 'present_page'
+                                            : 'etc_page'
+                                    }>
                                     {item}
                                 </div>
                             )}
