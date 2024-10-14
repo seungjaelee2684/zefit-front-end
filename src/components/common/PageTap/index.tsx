@@ -24,7 +24,7 @@ export default function PageTap({ tap }: PageTapProps) {
                                 (path === item.href)
                                     ? 'page_tap_click_button'
                                     : 'page_tap_button'
-                                }>
+                            }>
                             {item.id}
                         </a>
                     </li>
@@ -43,7 +43,7 @@ export default function PageTap({ tap }: PageTapProps) {
                                 (path?.includes(item.criteria))
                                     ? 'page_tap_click_button'
                                     : 'page_tap_button'
-                                }>
+                            }>
                             {item.id}
                         </a>
                     </li>
@@ -62,23 +62,43 @@ export default function PageTap({ tap }: PageTapProps) {
                                 (path?.includes(item.criteria))
                                     ? 'page_tap_click_button'
                                     : 'page_tap_button'
-                                }>
+                            }>
                             {item.id}
                         </a>
                     </li>
                 )
             )
+        } else if (tap === 'requests') {
+            return (
+                <li>
+                    <a
+                        style={{
+                            cursor: (path?.includes('requests')) ? 'default' : 'pointer'
+                        }}
+                        className={
+                            (path?.includes('requests'))
+                                ? 'page_tap_click_button'
+                                : 'page_tap_button'
+                        }>
+                        문의하기
+                    </a>
+                </li>
+            )
         };
     };
-    
+
     return (
-        <section className='page_tap_container'>
+        <section
+            style={{
+                borderBottom: (path?.includes('requests')) ? 'none' : '1px solid #d9d9d9'
+            }}
+            className='page_tap_container'>
             <nav className='page_tap_out_wrapper'>
                 <a href='/' className='home_button_tap'>
-                   <img
+                    <img
                         src='/icons/home.png'
                         alt='홈 아이콘'
-                        className='home_icon' /> 
+                        className='home_icon' />
                 </a>
                 <ul className='page_tap_in_wrapper'>
                     {pageTapChanger()}
