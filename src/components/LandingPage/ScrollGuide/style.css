@@ -2,7 +2,7 @@
 
 /* 상단 배너 스크롤 가이드 */
 .top_banner_scroll_guide {
-    font-size: 16px;
+    font-size: 12px;
     background-color: transparent;
     color: white;
     font-weight: 500;
@@ -10,9 +10,36 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 30px;
     position: absolute;
     left: calc(50% - 46px);
-    bottom: 0;
+    bottom: 10px;
     z-index: 2;
+}
+
+/* 스크롤 가이드 화살표 박스 */
+.scroll_guide_arrow_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: -8px;
+    font-size: 10px;
+    animation: scroll_guide_move 1.5s linear infinite forwards;
+}
+
+
+/* 애니메이션 */
+
+/* 스크롤 가이드 애니메이션 */
+@keyframes scroll_guide_move {
+    from {
+        opacity: 1;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(0px);
+    }
 }
