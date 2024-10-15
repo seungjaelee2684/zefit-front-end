@@ -3,7 +3,7 @@
 /* 서비스 사이드 탭 컨테이너 */
 .service_side_tap_container {
     position: fixed;
-    top: 470px;
+    bottom: calc(2% + 200px);
     right: 0;
     z-index: 19;
 }

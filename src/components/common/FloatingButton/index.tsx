@@ -2,10 +2,12 @@
 
 import { usePathname } from 'next/navigation';
 import './style.css';
+import { useMediaQuery } from 'react-responsive';
 
 export default function FloatingButton() {
 
     const path = usePathname();
+    const isMobile = useMediaQuery({ maxWidth: 1170 });
 
     const onClickScrollTopHandler = () => {
         window.scrollTo({
@@ -16,7 +18,7 @@ export default function FloatingButton() {
 
     return (
         <div
-            style={{ display: (path === '/adm' ? 'none' : '') }}
+            style={{ display: ((path === '/adm') || isMobile) ? 'none' : 'flex' }}
             className='floating_button_container'>
             <a
                 href='/requests'
