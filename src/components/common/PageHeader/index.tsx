@@ -54,7 +54,10 @@ export default function PageHeader() {
                         <a
                             href={(path?.includes('/en')) ? '/en/content/company' : '/content/company'}
                             className='page_header_nav_button'
-                            onMouseOver={() => setNavOpen(null)}>
+                            onMouseOver={() => setNavOpen('about')}
+                            style={{
+                                borderBottom: (navOpen === 'about') ? '4px solid #0190D6' : '4px solid #ffffff00'
+                            }}>
                             회사소개
                         </a>
                     </li>
@@ -62,7 +65,10 @@ export default function PageHeader() {
                         <a
                             href={(path?.includes('/en')) ? '/en/content/zebrafish' : '/content/zebrafish'}
                             className='page_header_nav_button'
-                            onMouseOver={() => setNavOpen(null)}>
+                            onMouseOver={() => setNavOpen('business')}
+                            style={{
+                                borderBottom: (navOpen === 'business') ? '4px solid #0190D6' : '4px solid #ffffff00'
+                            }}>
                             사업소개
                         </a>
                     </li>
@@ -70,7 +76,10 @@ export default function PageHeader() {
                         <a
                             href={(path?.includes('/en')) ? '/en/notice' : '/notice'}
                             className='page_header_nav_button'
-                            onMouseOver={() => setNavOpen(null)}>
+                            onMouseOver={() => setNavOpen('community')}
+                            style={{
+                                borderBottom: (navOpen === 'community') ? '4px solid #0190D6' : '4px solid #ffffff00'
+                            }}>
                             커뮤니티
                         </a>
                     </li>

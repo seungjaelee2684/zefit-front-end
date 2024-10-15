@@ -1,4 +1,4 @@
-"use client"; // 클라이언트 컴포넌트로 설정
+"use client";
 
 import { ReactNode } from 'react';
 import { RecoilRoot } from 'recoil';
