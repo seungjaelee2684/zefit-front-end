@@ -34,6 +34,7 @@ export default function SideTap({ tap, content }: SideTapProps) {
                                     color: (path === linkControl(item)) ? '#0190D6' : '#57575780',
                                     fontSize: (path === linkControl(item)) ? '18px' : '16px',
                                     fontWeight: (path === linkControl(item)) ? '700' : '500',
+                                    textShadow: (path === linkControl(item)) ? '2px 2px 4px #0190D63f 2px 2px 4px #ffffff3f' : ''
                                 }}
                                 className='side_tap_text'>
                                 {item}
@@ -43,7 +44,8 @@ export default function SideTap({ tap, content }: SideTapProps) {
                                     style={{
                                         backgroundColor: (path === linkControl(item)) ? '#0190D6' : '#57575780',
                                         width: (path === linkControl(item)) ? '40px' : '30px',
-                                        height: (path === linkControl(item)) ? '4px' : '2px'
+                                        height: (path === linkControl(item)) ? '4px' : '2px',
+                                        boxShadow: (path === linkControl(item)) ? '2px 2px 4px 0px #0190D63f' : ''
                                     }}
                                     className='side_tap_right_bar' />
                             </div>

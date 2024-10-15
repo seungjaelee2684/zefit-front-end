@@ -4,6 +4,9 @@ import "../styles/globals.css";
 import Footer from "@/components/common/Footer";
 import FloatingButton from "@/components/common/FloatingButton";
 import { usePathname } from "next/navigation";
+import { RecoilRoot } from "recoil";
+import ClientProvider from "./clientProvider";
+import NavModal from "@/components/common/NavModal";
 
 const notoSansKr = Noto_Sans_KR({
   // preload: true, 기본값
@@ -35,19 +38,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
       </head>
       <body className={notoSansKr.className}>
-        <FloatingButton />
-        <main>
-          {children}
-        </main>
-        <Footer />
-        <script type="text/javascript" src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&libraries=services&autoload=false`}></script>
+        <ClientProvider>
+          <FloatingButton />
+          <main>
+            {children}
+          </main>
+          <Footer />
+          <script type="text/javascript" src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&libraries=services&autoload=false`}></script>
+        </ClientProvider>
       </body>
     </html>
   );

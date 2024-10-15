@@ -5,8 +5,13 @@ import './style.css';
 import MainHeader from '@/components/common/MainHeader';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { usePathname } from 'next/navigation';
+import MobileHeader from '@/components/common/MobileHeader';
 
 export default function Home() {
+
+    // 현 페이지 url주소
+    const path = usePathname();
 
     // 뷰포트 반응형
     const isMobile = useMediaQuery({ maxWidth: 1170 });
@@ -31,7 +36,7 @@ export default function Home() {
         <article>
 
             {/* 메인 페이지 헤더 */}
-            <MainHeader />
+            {(isMobile) ? <MobileHeader /> : <MainHeader />}
 
             {/* 상단 배너 */}
             <section className='landing_top_banner_container'>
@@ -193,7 +198,9 @@ export default function Home() {
                         <p className='contact_content'>
                             혁신을 향한 끊임없는 발전, ZEFIT과 함께하세요
                         </p>
-                        <a className='contact_button'>
+                        <a
+                            href={path?.includes('/en') ? '/en/requests' : '/requests'}
+                            className='contact_button'>
                             <svg className='contact_button_svg' viewBox="0 0 182 56" preserveAspectRatio="none">
                                 <rect className='contact_button_svg_child' x="1" y="1" width="180" height="54" />
                             </svg>

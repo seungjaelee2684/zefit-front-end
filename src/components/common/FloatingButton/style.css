@@ -8,6 +8,7 @@
     bottom: 2%;
     right: 1%;
     z-index: 19;
+    box-shadow: 2px 0px 4px 0px #00000080;
 }
 
 /* 플로팅 문의 버튼 */
@@ -22,7 +23,6 @@
     font-size: 14px;
     color: white;
     background-color: #0190D6;
-    box-shadow: 2px 0px 4px 0px #00000080;
     cursor: pointer;
 }
 
@@ -35,7 +35,6 @@
     justify-content: center;
     align-items: center;
     font-size: 14px;
-    box-shadow: 2px 0px 4px 0px #00000080;
     background-color: white;
 }
 

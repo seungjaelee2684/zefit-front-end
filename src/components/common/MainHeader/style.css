@@ -9,6 +9,7 @@
     left: 0;
     right: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;
@@ -69,9 +70,9 @@
 }
 
 /* 내비게이션 버튼 HOVER효과 */
-.nav_button:hover {
+/* .nav_button:hover {
     opacity: 0.5;
-}
+} */
 
 /* 번역 버튼 컨테이너 */
 .translate_button_wrapper {
