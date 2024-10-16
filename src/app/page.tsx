@@ -16,11 +16,20 @@ export default function Home() {
     // 뷰포트 반응형
     const isMobile = useMediaQuery({ maxWidth: 1170 });
 
-    // 파트너 리스트 state
-    const [partner, setPartner] = useState<any[]>([]);
+    const [serviceHref, setServiceHref] = useState<any>(null); // 서비스 첫번째 데이터 state
+    const [partner, setPartner] = useState<any[]>([]); // 파트너 리스트 state
 
-    // 마운트했을 때 api통신을 통해 파트너 리스트 데이터 가져오기
+    // 마운트했을 때 api통신을 통해 파트너 리스트와 서비스 데이터 가져오기
     useEffect(() => {
+        fetch('/api/inquiry/landing/service')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((jsonData) => setServiceHref(jsonData))
+            .catch((error) => console.error("Fetch error:", error));
         fetch('/api/inquiry/partner')
             .then((response) => {
                 if (!response.ok) {
@@ -71,7 +80,7 @@ export default function Home() {
                         alt='회사소개 이미지' />
                     <ul className='company_link_button_wrapper'>
                         <li className='company_link_button_box'>
-                            <a 
+                            <a
                                 href='/content/company'
                                 className='company_link_button'>
                                 <div className='link_button_text_wrapper'>
@@ -116,7 +125,9 @@ export default function Home() {
                         </h2>
                         <ul className='business_card_wrapper'>
                             <li className='business_card_out_wrapper'>
-                                <a className='business_card_box'>
+                                <a
+                                    href='/content/zebrafish'
+                                    className='business_card_box'>
                                     <div
                                         className='business_card_image'
                                         style={{
@@ -133,7 +144,9 @@ export default function Home() {
                                 </a>
                             </li>
                             <li className='business_card_out_wrapper'>
-                                <a className='business_card_box'>
+                                <a
+                                    href={`/content/service/${serviceHref?.service}`}
+                                    className='business_card_box'>
                                     <div
                                         className='business_card_image'
                                         style={{
@@ -150,7 +163,9 @@ export default function Home() {
                                 </a>
                             </li>
                             <li className='business_card_out_wrapper'>
-                                <a className='business_card_box'>
+                                <a
+                                    href='/content/development/pharmaceuticals'
+                                    className='business_card_box'>
                                     <div
                                         className='business_card_image'
                                         style={{
@@ -199,7 +214,7 @@ export default function Home() {
                             혁신을 향한 끊임없는 발전, ZEFIT과 함께하세요
                         </p>
                         <a
-                            href={path?.includes('/en') ? '/en/requests' : '/requests'}
+                            href='/requests'
                             className='contact_button'>
                             <svg className='contact_button_svg' viewBox="0 0 182 56" preserveAspectRatio="none">
                                 <rect className='contact_button_svg_child' x="1" y="1" width="180" height="54" />

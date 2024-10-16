@@ -5,11 +5,13 @@ import PageHeader from "@/components/common/PageHeader";
 import PageTap from "@/components/common/PageTap";
 import './style.css';
 import { checkArea } from "@/data/checkArea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
 
 export default function Requests() {
 
+    const [provisionData, setProvisionData] = useState<any>(null);
+    console.log(provisionData?.private);
     const [check, setCheck] = useState<{
         personal: boolean,
         use: boolean
@@ -32,6 +34,20 @@ export default function Requests() {
     const onSubmitHandler = (e: any) => {
         e.preventDefault();
     };
+
+    useEffect(() => {
+        fetch('/api/inquiry/requests/provision')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((jsonData) => {
+                setProvisionData(jsonData);
+            })
+            .catch((error) => console.error("Fetch error:", error));
+    }, []);
 
     return (
         <article>
@@ -107,8 +123,8 @@ export default function Requests() {
                             </label>
                             <textarea
                                 readOnly
-                                className='check_textarea_box'>
-                                {checkArea?.private}
+                                className='check_textarea_box'
+                                value={provisionData?.private}>
                             </textarea>
                             <button
                                 style={{
@@ -133,8 +149,8 @@ export default function Requests() {
                             </label>
                             <textarea
                                 readOnly
-                                className='check_textarea_box'>
-                                {checkArea?.use}
+                                className='check_textarea_box'
+                                value={provisionData?.use}>
                             </textarea>
                             <button
                                 style={{
