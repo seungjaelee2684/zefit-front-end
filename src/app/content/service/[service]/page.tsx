@@ -86,7 +86,7 @@ export default function Service() {
                                     <button
                                         onClick={() => onClickTapHandler(item.name)}
                                         style={{
-                                            fontWeight: (item.name === serviceTap?.name) ? '700': '400',
+                                            fontWeight: (item.name === serviceTap?.name) ? '700' : '400',
                                             backgroundColor: (item.name === serviceTap.name) ? '#0055a7' : '#e9e9e9',
                                             color: (item.name === serviceTap?.name) ? '#ffffff' : '#6B6B6B'
                                         }}
@@ -112,25 +112,26 @@ export default function Service() {
                             )}
                         </ul>
                     </div>
-                    <div className='detail_text_wrapper'>
-                        <ul className='detail_text_box'>
-                            {serviceTap?.info.map((item: any, index: number) =>
-                                <li
-                                    key={index}
-                                    className='detail_text_lane_box'>
-                                    <div className='detail_text_title_box'>
-                                        <div className='detail_text_title_point' />
-                                        <strong className='detail_text_title'>
-                                            {item.title}
-                                        </strong>
-                                    </div>
-                                    <p className='detail_text_content'>
-                                        {item.text}
-                                    </p>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
+                    {(serviceTap?.info.length > 0)
+                        && <div className='detail_text_wrapper'>
+                            <ul className='detail_text_box'>
+                                {serviceTap?.info.map((item: any, index: number) =>
+                                    <li
+                                        key={index}
+                                        className='detail_text_lane_box'>
+                                        <div className='detail_text_title_box'>
+                                            <div className='detail_text_title_point' />
+                                            <strong className='detail_text_title'>
+                                                {item.title}
+                                            </strong>
+                                        </div>
+                                        <p className='detail_text_content'>
+                                            {item.text}
+                                        </p>
+                                    </li>
+                                )}
+                            </ul>
+                        </div>}
                 </section>
             </div>
         </article>

@@ -25,7 +25,7 @@
 /* 상단 배너 어두운 배경 */
 .landing_top_banner::after {
     content: '';
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
     position: absolute;
     top: 0;
     left: 0;
@@ -331,7 +331,7 @@
 /* 파트너 소개 링크 박스 */
 .partner_link_box {
     width: 270px;
-    height: 90px;
+    height: 100px;
     border-radius: 8px;
     background-color: white;
     box-shadow: 2px 2px 8px 0px #0000003f;
