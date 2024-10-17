@@ -2,11 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import './style.css';
 
 interface DropDownProps {
-    dropdownValue: string;
-    setDropdownValue: React.Dispatch<React.SetStateAction<string>>;
+    dropdownValue: {
+        title: string,
+        value: string
+    };
+    setDropdownValue: React.Dispatch<React.SetStateAction<{
+        title: string,
+        value: string
+    }>>;
+    isEnglish?: boolean;
 }
 
-export default function DropDown({ dropdownValue, setDropdownValue }: DropDownProps) {
+export default function DropDown({ dropdownValue, setDropdownValue, isEnglish = false }: DropDownProps) {
 
     const filterRef = useRef<HTMLButtonElement>(null);
 
@@ -14,12 +21,18 @@ export default function DropDown({ dropdownValue, setDropdownValue }: DropDownPr
 
     const onClickMenuOpenHandler = (e: any) => {
         e.preventDefault();
-        setMenuOpen(!menuOpen)
+        setMenuOpen(!menuOpen);
     };
 
-    const handleItemClick = (event: any) => {
+    const handleItemClick = (event: any, option: string) => {
         const selectedText = event.target.textContent;
-        setDropdownValue(selectedText);
+
+        if (isEnglish) {
+            setDropdownValue({ ...dropdownValue, title: selectedText, value: `${option}_en` });
+        } else {
+            setDropdownValue({ ...dropdownValue, title: selectedText, value: `${option}_kr` });
+        }
+
         setMenuOpen(false);
     };
 
@@ -40,7 +53,7 @@ export default function DropDown({ dropdownValue, setDropdownValue }: DropDownPr
             ref={filterRef}
             className='dropdown_button'
             onClick={onClickMenuOpenHandler}>
-            {dropdownValue}
+            {dropdownValue?.title}
             <div
                 style={{
                     transform: (menuOpen) ? 'rotate(0deg)' : 'rotate(180deg)'
@@ -48,13 +61,13 @@ export default function DropDown({ dropdownValue, setDropdownValue }: DropDownPr
                 className='triangle' />
             {(menuOpen)
                 && <ul className='option_wrapper'>
-                    <li onClick={handleItemClick} className='option_button'>
+                    <li onClick={(e) => handleItemClick(e, 'title')} className='option_button'>
                         제목
                     </li>
-                    <li onClick={handleItemClick} className='option_button'>
+                    <li onClick={(e) => handleItemClick(e, 'content')} className='option_button'>
                         내용
                     </li>
-                    <li onClick={handleItemClick} className='option_button'>
+                    <li onClick={(e) => handleItemClick(e, 'writer')} className='option_button'>
                         글쓴이
                     </li>
                 </ul>}

@@ -1,6 +1,16 @@
+'use client';
+
+import { useState } from 'react';
 import './style.css';
 
 export default function AdmHeader() {
+
+    const [openTap, setOpenTap] = useState<boolean>(false);
+
+    const onClickOpenTapHandler = () => {
+        setOpenTap(!openTap);
+    };
+
     return (
         <header className='adm_header'>
             <div className='adm_header_top_container'>
@@ -21,7 +31,7 @@ export default function AdmHeader() {
                         </li>
                         <div className='adm_header_right_wrapper'>
                             <li>
-                                <a 
+                                <a
                                     href='/'
                                     className='adm_header_home_button'>
                                     <span className='icon-home'></span>
@@ -49,13 +59,9 @@ export default function AdmHeader() {
                 </h1>
             </div>
             <ul className='adm_side_tap_container'>
-                <li className='adm_side_tap_lane'>
-                    <span className='adm_side_tap_lane_content_wrap'>
-                        <i className='icon-book-open'></i>
-                        게시판관리
-                    </span>
-                </li>
-                <li className='adm_side_tap_lane'>
+                <li
+                    onClick={onClickOpenTapHandler}
+                    className='adm_side_tap_lane'>
                     <span className='adm_side_tap_lane_content_wrap'>
                         <i className='icon-note'></i>
                         게시글관리
@@ -64,7 +70,32 @@ export default function AdmHeader() {
                         4
                     </span>
                 </li>
-                <li className='adm_side_tap_lane'>
+                {(openTap)
+                    && <ul className='adm_side_tap_nav'>
+                        <li className='adm_side_tap_nav_button'>
+                            <p className='adm_side_tap_nav_button_text'>
+                                연혁
+                            </p>
+                        </li>
+                        <li className='adm_side_tap_nav_button'>
+                            <p className='adm_side_tap_nav_button_text'>
+                                인증 및 파트너 현황
+                            </p>
+                        </li>
+                        <li className='adm_side_tap_nav_button'>
+                            <p className='adm_side_tap_nav_button_text'>
+                                공지사항
+                            </p>
+                        </li>
+                        <li className='adm_side_tap_nav_button'>
+                            <p className='adm_side_tap_nav_button_text'>
+                                보도자료
+                            </p>
+                        </li>
+                    </ul>}
+                <li
+
+                    className='adm_side_tap_lane'>
                     <span className='adm_side_tap_lane_content_wrap'>
                         <i className='icon-envelope'></i>
                         문의글관리

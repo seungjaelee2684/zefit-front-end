@@ -4,9 +4,10 @@ import "../styles/globals.css";
 import Footer from "@/components/common/Footer";
 import FloatingButton from "@/components/common/FloatingButton";
 import { usePathname } from "next/navigation";
-import { RecoilRoot } from "recoil";
+import { RecoilRoot, useRecoilValue } from "recoil";
 import ClientProvider from "./clientProvider";
 import NavModal from "@/components/common/NavModal";
+import Loading from "@/components/common/loading";
 
 const notoSansKr = Noto_Sans_KR({
   // preload: true, 기본값
