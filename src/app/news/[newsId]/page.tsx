@@ -8,6 +8,7 @@ import '../../notice/[noticeId]/style.css'
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
+import { supabase } from "@/utils/Superbase";
 
 export default function NewsDetail() {
 
@@ -16,19 +17,26 @@ export default function NewsDetail() {
     const [newsData, setNewsData] = useState<any>(null);
     console.log("🚀 ~ NewsDetail ~ newsData:", newsData)
 
+    const db_table_name = 'news';
+    const sql_query = '*';
+
     useEffect(() => {
         if (newsId) {
-            fetch(`/api/inquiry/news_detail/${newsId}`)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
+            const fetchData = async () => {
+                try {
+                    const { data, error } = await supabase
+                        .from(db_table_name)
+                        .select(sql_query)
+                        .eq('id', newsId);
+                    if (error) {
+                        throw error;
                     }
-                    return response.json();
-                })
-                .then((jsonData) => {
-                    setNewsData(jsonData);
-                })
-                .catch((error) => console.error("Fetch error:", error));
+                    setNewsData(data[0]);
+                } catch (error) {
+                    console.error("Error fetching data from Supabase:", error);
+                };
+            };
+            fetchData()
         };
     }, [newsId]);
 
@@ -43,28 +51,21 @@ export default function NewsDetail() {
                     <ul className='notice_detail_tap_wrapper'>
                         <li className='notice_detail_tap_content'>
                             <i className='icon-calendar'></i>
-                            {newsData?.date}
+                            {newsData?.created_at}
                         </li>
                         <li className='notice_detail_tap_content'>
                             /
                         </li>
                         <li className='notice_detail_tap_content'>
                             <i className='icon-user'></i>
-                            {newsData?.writer}
-                        </li>
-                        <li className='notice_detail_tap_content'>
-                            /
-                        </li>
-                        <li className='notice_detail_tap_content'>
-                            <i className='icon-emotsmile'></i>
-                            {newsData?.watching}
+                            {newsData?.writer_kr}
                         </li>
                         <li className='notice_detail_tap_content'>
                             /
                         </li>
                         <li>
                             <a
-                                href='/notice'
+                                href='/news'
                                 className='notice_detail_tap_button'>
                                 <i className='icon-menu'></i>
                                 목록
@@ -72,17 +73,17 @@ export default function NewsDetail() {
                         </li>
                     </ul>
                     <h2 className='notice_detail_title'>
-                        {newsData?.title}
+                        {newsData?.title_kr}
                     </h2>
-                    {newsData?.content.image.map((item: any, index: number) =>
-                        <img
-                            key={index}
-                            className='news_detail_Image'
-                            src={item}
-                            alt={`보도자료 이미지 ${index}`} />
-                    )}
+                    {/* {newsData?.image.map((item: any, index: number) => */}
+                    <img
+                        // key={index}
+                        className='news_detail_Image'
+                        src={newsData?.image}
+                        alt={`보도자료 이미지 ${newsData?.title_kr}`} />
+                    {/* )} */}
                     <p className='notice_detail_content'>
-                        {newsData?.content.text}
+                        {newsData?.content_kr}
                     </p>
                     <a
                         href={newsData?.link}

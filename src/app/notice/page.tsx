@@ -7,35 +7,109 @@ import PageTap from '@/components/common/PageTap';
 import DropDown from '@/components/common/DropDown';
 import { useEffect, useState } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
+import { supabase } from '@/utils/Superbase';
 
 export default function Notice() {
 
-    const [dropdownValue, setDropdownValue] = useState<string>('제목');
+    const [dropdownValue, setDropdownValue] = useState<{
+        title: string,
+        value: string
+    }>({
+        title: '제목',
+        value: 'title_kr'
+    });
     const [noticeData, setNoticeData] = useState<any>(null);
+    const [specialNotice, setSpecialNotice] = useState<any>(null);
     const [page, setPage] = useState<number>(1);
-    console.log("🚀 ~ Notice ~ noticeData:", noticeData)
+    const [search, setSearch] = useState<string>('');
+    const [totalCount, setTotalCount] = useState<any>(0);
 
-    const pageList = [1, 2, 3, 4, 5];
+    const start = (page - 1) * 10;
+    const end = start + 10 - 1;
 
-    const specialNotice = noticeData?.filter((item: any) => item.status === 'special');
-    const normalNotice = noticeData?.filter((item: any) => item.status !== 'special');
+    const dataCount = totalCount;
+    const division = Math.ceil(dataCount / 10);
+
+    let pageList: number[] = [1];
+
+    for (let i = 2; i <= division; i++) {
+        pageList.push(i);
+    }
 
     const onSubmitSearchHandler = (e: any) => {
         e.preventDefault();
+
+        const fetchDataHandler = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('notices')
+                    .select('*')
+                    .ilike(dropdownValue?.value, `%${search}%`)
+                    .range(start, end);
+                if (error) {
+                    throw error;
+                }
+                setNoticeData(data);
+                console.log(data);
+            } catch (error) {
+                console.error("Error fetching data from Supabase:", error);
+            };
+        };
+
+        fetchDataHandler();
     };
 
     useEffect(() => {
-        fetch(`/api/inquiry/notice`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        const specialData = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('notices')
+                    .select('*')
+                    .eq('is_special', true);
+                if (error) {
+                    throw error;
                 }
-                return response.json();
-            })
-            .then((jsonData) => {
-                setNoticeData(jsonData);
-            })
-            .catch((error) => console.error("Fetch error:", error));
+                setSpecialNotice(data);
+                console.log(data);
+            } catch (error) {
+                console.error("Error fetching paginated data from Supabase:", error);
+            }
+        };
+
+        const fetchData = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('notices')
+                    .select('*')
+                    .eq('is_special', false)
+                    .range(start, end);
+                if (error) {
+                    throw error;
+                }
+                setNoticeData(data);
+                console.log(start, end, data)
+            } catch (error) {
+                console.error("Error fetching paginated data from Supabase:", error);
+            }
+        };
+
+        const fetchTotalCount = async () => {
+            try {
+                const { count, error } = await supabase
+                    .from('news')
+                    .select('*', { count: 'exact' });
+                if (error) {
+                    throw error;
+                }
+                setTotalCount(count);
+            } catch (error) {
+                console.error("Error fetching total count from Supabase:", error);
+            }
+        };
+
+        specialData();
+        fetchData();
+        fetchTotalCount();
     }, []);
 
     return (
@@ -55,7 +129,9 @@ export default function Notice() {
                             setDropdownValue={setDropdownValue} />
                         <input
                             className='search_bar'
-                            placeholder='검색어를 입력해주세요.' />
+                            placeholder='검색어를 입력해주세요.'
+                            value={search}
+                            onChange={(e: any) => setSearch(e.target.value)} />
                         <button
                             onClick={onSubmitSearchHandler}
                             className='search_button'>
@@ -64,7 +140,7 @@ export default function Notice() {
                     </form>
                     <div className='notice_table_wrapper'>
                         <p className='notice_table_count'>
-                            전체 {noticeData?.length}건 / 1 페이지
+                            전체 {totalCount}건 / {(division) ? division : 0} 페이지
                         </p>
                         <table className='notice_table'>
                             <thead className='notice_table_header_wrapper'>
@@ -80,9 +156,6 @@ export default function Notice() {
                                     </th>
                                     <th className='table_header_etc_room'>
                                         등록일
-                                    </th>
-                                    <th className='table_header_etc_room'>
-                                        조회수
                                     </th>
                                 </tr>
                             </thead>
@@ -100,21 +173,18 @@ export default function Notice() {
                                             <a
                                                 href={`/notice/${item?.id}`}
                                                 className='special_link_title_room'>
-                                                {item?.title}
+                                                {item?.title_kr}
                                             </a>
                                         </td>
                                         <td className='table_body_etc_room'>
-                                            {item?.writer}
+                                            {item?.writer_kr}
                                         </td>
                                         <td className='table_body_etc_room'>
-                                            {item?.date}
-                                        </td>
-                                        <td className='table_body_etc_room'>
-                                            {item?.watching}
+                                            {item?.created_at}
                                         </td>
                                     </tr>
                                 )}
-                                {normalNotice?.map((item: any, index: number) =>
+                                {noticeData?.map((item: any, index: number) =>
                                     <tr
                                         key={index}
                                         className='table_body_lane_wrapper'>
@@ -125,17 +195,14 @@ export default function Notice() {
                                             <a
                                                 href={`/notice/${item?.id}`}
                                                 className='table_body_title_room'>
-                                                {item?.title}
+                                                {item?.title_kr}
                                             </a>
                                         </td>
                                         <td className='table_body_etc_room'>
-                                            {item?.writer}
+                                            {item?.writer_kr}
                                         </td>
                                         <td className='table_body_etc_room'>
-                                            {item?.date}
-                                        </td>
-                                        <td className='table_body_etc_room'>
-                                            {item?.watching}
+                                            {item?.created_at}
                                         </td>
                                     </tr>
                                 )}
@@ -147,10 +214,10 @@ export default function Notice() {
                                     key={index}
                                     onClick={() => setPage(item)}
                                     className={
-                                    (index + 1 === page)
-                                        ? 'present_page'
-                                        : 'etc_page'
-                                }>
+                                        (index + 1 === page)
+                                            ? 'present_page'
+                                            : 'etc_page'
+                                    }>
                                     {item}
                                 </div>
                             )}

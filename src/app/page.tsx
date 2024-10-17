@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { usePathname } from 'next/navigation';
 import MobileHeader from '@/components/common/MobileHeader';
+import { supabase } from '@/utils/Superbase';
 
 export default function Home() {
 
@@ -30,15 +31,24 @@ export default function Home() {
             })
             .then((jsonData) => setServiceHref(jsonData))
             .catch((error) => console.error("Fetch error:", error));
-        fetch('/api/inquiry/partner')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+
+        const fetchData = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('partners')
+                    .select('*')
+                    .eq('state', 'partner');
+                if (error) {
+                    throw error;
                 }
-                return response.json();
-            })
-            .then((jsonData) => setPartner(jsonData))
-            .catch((error) => console.error("Fetch error:", error));
+                setPartner(data);
+                console.log(data);
+            } catch (error) {
+                console.error("Error fetching paginated data from Supabase:", error);
+            }
+        };
+
+        fetchData();
     }, []);
 
     return (
@@ -196,7 +206,7 @@ export default function Home() {
                                 <a href='/adm' className='partner_link'>
                                     <img
                                         className='partner_link_logo'
-                                        src={item.src}
+                                        src={item.image}
                                         alt={item.title} />
                                 </a>
                             </li>
