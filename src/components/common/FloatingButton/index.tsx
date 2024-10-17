@@ -18,7 +18,7 @@ export default function FloatingButton() {
 
     return (
         <div
-            style={{ display: ((path === '/adm') || isMobile) ? 'none' : 'flex' }}
+            style={{ display: ((path?.includes('/adm')) || isMobile) ? 'none' : 'flex' }}
             className='floating_button_container'>
             <a
                 href='/requests'

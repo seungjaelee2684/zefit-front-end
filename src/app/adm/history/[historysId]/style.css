@@ -1,0 +1,42 @@
+/* 관리자 연혁 상세 페이지 css style */
+
+/* 입력 테이블 컨테이너 */
+.input_table_container {
+    width: 100%;
+    
+}
+
+/* 입력 테이블 바디 */
+.input_table_body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 입력 테이블 바디 라인 */
+.input_table_body_lane {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* 테이블 바디 헤더 */
+.input_table_body_head {
+    min-width: 140px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #36404c;
+}
+
+/* 테이블 바디 칸 */
+.input_table_body_room {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: white;
+}

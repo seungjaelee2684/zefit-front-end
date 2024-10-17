@@ -9,7 +9,7 @@ export default function Footer() {
 
     return (
         <footer
-            style={{ display: (path === '/adm') ? 'none' : '' }}
+            style={{ display: (path?.includes('/adm')) ? 'none' : '' }}
             className='footer_container'>
             <div className='wave' />
             <h4>
