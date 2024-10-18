@@ -1,0 +1,27 @@
+/* 관리자 페이지 연혁 업데이트 컴포넌트 css style */
+
+/* 업데이트 버튼 컨테이너 */
+.update_button_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 0px;
+}
+
+/* 업데이트 버튼 */
+.update_button {
+    width: fit-content;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    background-color: #36404c;
+    border-radius: 8px;
+    padding: 0px 30px;
+    cursor: pointer;
+}
