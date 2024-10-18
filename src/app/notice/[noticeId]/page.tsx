@@ -4,66 +4,68 @@ import PageBanner from "@/components/common/PageBanner";
 import PageHeader from "@/components/common/PageHeader";
 import PageTap from "@/components/common/PageTap";
 import './style.css';
+import '../../notice/[noticeId]/style.css'
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
+import { supabase } from "@/utils/Supabase";
 
 export default function NoticeDetail() {
 
     const { noticeId }: any = useParams();
 
     const [noticeData, setNoticeData] = useState<any>(null);
-    console.log("🚀 ~ NoticeDetail ~ noticeData:", noticeData)
+    console.log(noticeData);
+
+    const db_table_name = 'notices';
+    const sql_query = '*';
 
     useEffect(() => {
         if (noticeId) {
-            fetch(`/api/inquiry/notice_detail/${noticeId}`)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
+            const fetchData = async () => {
+                try {
+                    const { data, error } = await supabase
+                        .from(db_table_name)
+                        .select(sql_query)
+                        .eq('id', noticeId);
+                    if (error) {
+                        throw error;
                     }
-                    return response.json();
-                })
-                .then((jsonData) => {
-                    setNoticeData(jsonData);
-                })
-                .catch((error) => console.error("Fetch error:", error));
+                    setNoticeData(data[0]);
+                } catch (error) {
+                    console.error("Error fetching data from Supabase:", error);
+                };
+            };
+            fetchData()
         };
     }, [noticeId]);
 
     return (
         <article>
-            <MetaTagTitle title='공지사항' />
+            <MetaTagTitle title='보도자료' />
             <PageHeader />
-            <PageBanner pageTitle='공지사항' />
+            <PageBanner pageTitle='보도자료' />
             <PageTap tap='community' />
             <section className='page_layout'>
                 <div className='notice_detail_page_container'>
                     <ul className='notice_detail_tap_wrapper'>
                         <li className='notice_detail_tap_content'>
                             <i className='icon-calendar'></i>
-                            {noticeData?.date}
+                            {noticeData?.created_at}
                         </li>
                         <li className='notice_detail_tap_content'>
                             /
                         </li>
                         <li className='notice_detail_tap_content'>
                             <i className='icon-user'></i>
-                            {noticeData?.writer}
-                        </li>
-                        <li className='notice_detail_tap_content'>
-                            /
-                        </li>
-                        <li className='notice_detail_tap_content'>
-                            <i className='icon-emotsmile'></i>
-                            {noticeData?.watching}
+                            {noticeData?.writer_kr}
                         </li>
                         <li className='notice_detail_tap_content'>
                             /
                         </li>
                         <li>
                             <a
-                                href='/notice'
+                                href='/news'
                                 className='notice_detail_tap_button'>
                                 <i className='icon-menu'></i>
                                 목록
@@ -71,10 +73,18 @@ export default function NoticeDetail() {
                         </li>
                     </ul>
                     <h2 className='notice_detail_title'>
-                        {noticeData?.title}
+                        {noticeData?.title_kr}
                     </h2>
+                    {/* {newsData?.image.map((item: any, index: number) => */}
+                    {(noticeData?.image)
+                        && <img
+                            // key={index}
+                            className='news_detail_Image'
+                            src={noticeData?.image}
+                            alt={`보도자료 이미지 ${noticeData?.title_kr}`} />}
+                    {/* )} */}
                     <p className='notice_detail_content'>
-                        {noticeData?.content.text}
+                        {noticeData?.content_kr}
                     </p>
                 </div>
             </section>

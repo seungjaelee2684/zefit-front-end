@@ -1,0 +1,71 @@
+'use client'
+
+import './style.css';
+import '../../style.css';
+
+import AdmHeader from "@/components/common/AdmHeader";
+import MetaTagTitle from "@/utils/MetaTagTitle";
+import { useEffect, useState } from 'react';
+import { useParams, usePathname } from 'next/navigation';
+import { supabase } from '@/utils/Supabase';
+import CorrectHistory from '@/components/page/AdminPage/Update/History';
+import CorrectStatus from '@/components/page/AdminPage/Update/Status';
+import { correctContentConfig } from '@/data/contentConfig';
+import AdmScrollTop from '@/components/page/AdminPage/AdmScrollTop';
+
+export default function AdmHistoryDetail() {
+
+    const path = usePathname() as string;
+    const { contentsId } = useParams() as { contentsId: string };
+
+    const content = path?.split('/')[2];
+
+    const [admData, setAdmData] = useState<any>(null);
+    const [isClient, setIsClient] = useState(false);
+
+    const config = correctContentConfig[content] || { title: '관리자메인' };
+    const Component = config.component;
+
+    const componentsChanger = () => {
+        if (content === 'historys') return <CorrectHistory admData={admData} />
+        else if (content === 'partners') return <CorrectStatus admData={admData} />;
+    };
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from(content)
+                    .select('*')
+                    .eq('id', contentsId);
+                if (error) {
+                    throw error;
+                }
+                setAdmData(data[0]);
+            } catch (error) {
+                console.error("Error fetching data from Supabase:", error);
+            }
+        };
+
+        fetchData();
+    }, [path, contentsId]);
+
+    if (!isClient) {
+        return null; // 또는 로딩 표시
+    }
+
+    return (
+        <article className='adm_layout'>
+            <MetaTagTitle title={`수정 및 업데이트: ${config.title}`} />
+            <AdmHeader title={`수정 및 업데이트: ${config.title}`} />
+            <section className='adm_content_wrapper'>
+                {Component && <Component admData={admData} />}
+            </section>
+            <AdmScrollTop />
+        </article>
+    )
+};

@@ -1,6 +1,6 @@
 'use client';
 
-import ScrollGuide from '@/components/LandingPage/ScrollGuide';
+import ScrollGuide from '@/components/page/LandingPage/ScrollGuide';
 import '../style.css';
 import './style.css'
 import MainHeader from '@/components/common/MainHeader';

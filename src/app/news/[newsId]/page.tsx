@@ -8,7 +8,7 @@ import '../../notice/[noticeId]/style.css'
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
-import { supabase } from "@/utils/Superbase";
+import { supabase } from "@/utils/Supabase";
 
 export default function NewsDetail() {
 
@@ -76,11 +76,12 @@ export default function NewsDetail() {
                         {newsData?.title_kr}
                     </h2>
                     {/* {newsData?.image.map((item: any, index: number) => */}
-                    <img
-                        // key={index}
-                        className='news_detail_Image'
-                        src={newsData?.image}
-                        alt={`보도자료 이미지 ${newsData?.title_kr}`} />
+                    {(newsData?.image)
+                        && <img
+                            // key={index}
+                            className='news_detail_Image'
+                            src={newsData?.image}
+                            alt={`보도자료 이미지 ${newsData?.title_kr}`} />}
                     {/* )} */}
                     <p className='notice_detail_content'>
                         {newsData?.content_kr}

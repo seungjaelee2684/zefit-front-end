@@ -7,7 +7,7 @@ import PageTap from '@/components/common/PageTap';
 import DropDown from '@/components/common/DropDown';
 import { useEffect, useState } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
-import { supabase } from '@/utils/Superbase';
+import { supabase } from '@/utils/Supabase';
 
 export default function Notice() {
 

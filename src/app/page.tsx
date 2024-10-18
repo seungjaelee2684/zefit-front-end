@@ -1,13 +1,13 @@
 'use client';
 
-import ScrollGuide from '@/components/LandingPage/ScrollGuide';
+import ScrollGuide from '@/components/page/LandingPage/ScrollGuide';
 import './style.css';
 import MainHeader from '@/components/common/MainHeader';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { usePathname } from 'next/navigation';
 import MobileHeader from '@/components/common/MobileHeader';
-import { supabase } from '@/utils/Superbase';
+import { supabase } from '@/utils/Supabase';
 
 export default function Home() {
 
