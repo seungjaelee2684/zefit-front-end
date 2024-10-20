@@ -2,7 +2,6 @@
 
 import './style.css';
 import '../../style.css';
-
 import AdmHeader from "@/components/common/AdmHeader";
 import MetaTagTitle from "@/utils/MetaTagTitle";
 import { useEffect, useState } from 'react';
@@ -21,37 +20,35 @@ export default function AdmHistoryDetail() {
     const content = path?.split('/')[2];
 
     const [admData, setAdmData] = useState<any>(null);
+    const [isUpload, setIsUpload] = useState<boolean>((contentsId === 'update') ? true : false);
     const [isClient, setIsClient] = useState(false);
 
     const config = correctContentConfig[content] || { title: '관리자메인' };
     const Component = config.component;
-
-    const componentsChanger = () => {
-        if (content === 'historys') return <CorrectHistory admData={admData} />
-        else if (content === 'partners') return <CorrectStatus admData={admData} />;
-    };
 
     useEffect(() => {
         setIsClient(true);
     }, []);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data, error } = await supabase
-                    .from(content)
-                    .select('*')
-                    .eq('id', contentsId);
-                if (error) {
-                    throw error;
+        if (!isUpload) {
+            const fetchData = async () => {
+                try {
+                    const { data, error } = await supabase
+                        .from(content)
+                        .select('*')
+                        .eq('id', contentsId);
+                    if (error) {
+                        throw error;
+                    }
+                    setAdmData(data[0]);
+                } catch (error) {
+                    console.error("Error fetching data from Supabase:", error);
                 }
-                setAdmData(data[0]);
-            } catch (error) {
-                console.error("Error fetching data from Supabase:", error);
-            }
-        };
+            };
 
-        fetchData();
+            fetchData();
+        }
     }, [path, contentsId]);
 
     if (!isClient) {
@@ -63,7 +60,7 @@ export default function AdmHistoryDetail() {
             <MetaTagTitle title={`수정 및 업데이트: ${config.title}`} />
             <AdmHeader title={`수정 및 업데이트: ${config.title}`} />
             <section className='adm_content_wrapper'>
-                {Component && <Component admData={admData} />}
+                {Component && <Component admData={admData} isUpload={isUpload} setIsUpload={setIsUpload} />}
             </section>
             <AdmScrollTop />
         </article>

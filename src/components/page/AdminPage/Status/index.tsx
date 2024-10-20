@@ -6,6 +6,10 @@ import './style.css';
 export default function Status(admData: any) {
 
     const statusList = admData?.admData;
+    const stateObj: { [key: string]: string } = {
+        partner: '파트너',
+        certification: '인증'
+    }
 
     console.log(admData);
 
@@ -16,6 +20,9 @@ export default function Status(admData: any) {
                     <tr className='adm_table_header_box'>
                         <th style={{ minWidth: '160px' }} className='table_header_text'>
                             이미지
+                        </th>
+                        <th style={{ minWidth: '120px' }} className='table_header_text'>
+                            분류
                         </th>
                         <th style={{ width: '100%' }} className='table_header_text'>
                             이름
@@ -41,6 +48,9 @@ export default function Status(admData: any) {
                                     className='partner_table_image'
                                     src={item?.image}
                                     alt={item?.title_kr} />
+                            </td>
+                            <td style={{ minWidth: '120px' }} className='table_body'>
+                                {stateObj[item?.state]}
                             </td>
                             <td style={{ width: '100%' }} className='table_body_content_room'>
                                 {item?.title_kr}

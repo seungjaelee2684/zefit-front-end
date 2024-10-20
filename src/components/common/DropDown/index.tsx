@@ -15,7 +15,7 @@ interface DropDownProps {
 
 export default function DropDown({ dropdownValue, setDropdownValue, isEnglish = false }: DropDownProps) {
 
-    const filterRef = useRef<HTMLButtonElement>(null);
+    const filterRef = useRef<HTMLDivElement>(null);
 
     const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
@@ -49,7 +49,7 @@ export default function DropDown({ dropdownValue, setDropdownValue, isEnglish = 
     }, []);
 
     return (
-        <button
+        <div
             ref={filterRef}
             className='dropdown_button'
             onClick={onClickMenuOpenHandler}>
@@ -71,6 +71,6 @@ export default function DropDown({ dropdownValue, setDropdownValue, isEnglish = 
                         글쓴이
                     </li>
                 </ul>}
-        </button>
+        </div>
     )
 };

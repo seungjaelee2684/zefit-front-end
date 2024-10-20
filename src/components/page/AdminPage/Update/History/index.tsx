@@ -4,21 +4,27 @@ import { useState } from 'react';
 import './style.css';
 import { supabase } from '@/utils/Supabase';
 
-export default function CorrectHistory(admData: any) {
+export interface CorrectProps {
+    admData: any;
+    isUpload: boolean;
+    setIsUpload: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-    const id = admData.admData?.id
-    const date = admData.admData?.created_at;
-    const contentKR = admData.admData?.content_kr;
-    const contentEN = admData.admData?.content_en;
+export default function CorrectHistory({ admData, isUpload, setIsUpload }: CorrectProps) {
+
+    const id = admData?.id
+    const date = admData?.created_at;
+    const contentKR = admData?.content_kr;
+    const contentEN = admData?.content_en;
 
     const [historyInput, setHistoryInput] = useState<any>({
-        created_at: date,
-        content_kr: contentKR,
-        content_en: contentEN
+        created_at: isUpload ? '' : date,
+        content_kr: isUpload ? '' : contentKR,
+        content_en: isUpload ? '' : contentEN
     });
     const { created_at, content_kr, content_en } = historyInput;
 
-    console.log(id);
+    console.log(admData);
 
     const onChangeInputHandler = (e: any) => {
         const { name, value } = e.target;
@@ -32,7 +38,7 @@ export default function CorrectHistory(admData: any) {
         e.preventDefault();
 
         // admData가 존재하는지 미리 체크
-        if (!admData || !admData.admData.id) {
+        if (!admData || !admData?.id) {
             console.error("admData or admData.id is missing.");
             return;
         }
@@ -43,8 +49,8 @@ export default function CorrectHistory(admData: any) {
                     .from('historys')
                     .delete()
                     .eq('id', id);
-                    
-                    if (error) throw error;
+
+                if (error) throw error;
 
                 window.location.pathname = '/adm/historys';
             } catch (error) {
@@ -100,13 +106,19 @@ export default function CorrectHistory(admData: any) {
                 </tr>
                 <tr className='update_button_container'>
                     <button className='update_button'>
-                        수정 완료
+                        {(isUpload) ? '추가하기' : '수정 완료'}
                     </button>
-                    <button
-                        onClick={onClickRemoveHandler}
-                        className='update_button'>
-                        삭제
-                    </button>
+                    {(!isUpload)
+                        && <button
+                            onClick={onClickRemoveHandler}
+                            className='update_button'>
+                            삭제
+                        </button>}
+                    {(!isUpload)
+                        && <button
+                            className='update_button'>
+                            추가하기
+                        </button>}
                     <a href='/adm/historys' className='update_button'>
                         전체 목록
                     </a>

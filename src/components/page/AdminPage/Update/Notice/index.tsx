@@ -5,18 +5,22 @@ import { CorrectProps } from '../History';
 import './style.css';
 import { supabase } from '@/utils/Supabase';
 
-export default function CorrectStatus({ admData, isUpload, setIsUpload }: CorrectProps) {
+export default function CorrectNotice({ admData, isUpload, setIsUpload }: CorrectProps) {
 
     const id = admData?.id;
 
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [inputImg, setInputImg] = useState<any>(null);
-    const [statusInput, setStatusInput] = useState<any>({
-        state: 'partner',
+    const [noticeInput, setNoticeInput] = useState<any>({
+        isSpecial: false,
         title_kr: '',
-        title_en: ''
+        title_en: '',
+        content_kr: '',
+        content_en: '',
+        writer_kr: '',
+        writer_en: ''
     });
-    const { state, title_kr, title_en } = statusInput;
+    const { isSpecial, title_kr, title_en, content_kr, content_en, writer_kr, writer_en } = noticeInput;
 
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -34,8 +38,8 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
 
     const onChangeInputHandler = (e: any) => {
         const { name, value } = e.target;
-        setStatusInput({
-            ...statusInput,
+        setNoticeInput({
+            ...noticeInput,
             [name]: value
         });
     };
@@ -52,13 +56,13 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
         const fetchRemove = async () => {
             try {
                 const { error } = await supabase
-                    .from('partners')
+                    .from('notices')
                     .delete()
                     .eq('id', id);
 
                 if (error) throw error;
 
-                window.location.pathname = '/adm/partners';
+                window.location.pathname = '/adm/notices';
             } catch (error) {
                 console.error("Error fetching paginated data from Supabase:", error);
             }
@@ -70,10 +74,14 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
     useEffect(() => {
         if (admData) {
             setPreviewUrl(isUpload ? null : admData?.image);
-            setStatusInput({
-                state: isUpload ? 'partner' : admData?.state,
+            setNoticeInput({
+                isSpecial: isUpload ? false :admData?.is_special,
                 title_kr: isUpload ? '' : admData?.title_kr,
-                title_en: isUpload ? '' : admData?.title_en
+                title_en: isUpload ? '' : admData?.title_en,
+                content_kr: isUpload ? '' : admData?.content_kr,
+                content_en: isUpload ? '' : admData?.content_en,
+                writer_kr: isUpload ? '' : admData?.writer_kr,
+                writer_en: isUpload ? '' : admData?.writer_en
             });
         }
     }, [admData, isUpload]);
@@ -119,33 +127,57 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                     <td className='input_table_body_room'>
                         <span
                             style={{
-                                color: (state === 'partner') ? '#333333' : '#757575',
-                                fontWeight: (state === 'partner') ? '700' : '400'
+                                color: (isSpecial) ? '#333333' : '#757575',
+                                fontWeight: (isSpecial) ? '700' : '400'
                             }}
-                            onClick={() => setStatusInput({ ...statusInput, state: 'partner' })}
+                            onClick={() => setNoticeInput({ ...noticeInput, isSpecial: true })}
                             className='radio_button_wrapper'>
                             <div className='radio_button_select'>
-                                {state === 'partner' && <div className='radio_button_point' />}
+                                {(isSpecial) && <div className='radio_button_point' />}
                             </div>
-                            파트너
+                            중요
                         </span>
                         <span
                             style={{
-                                color: (state === 'certification') ? '#333333' : '#757575',
-                                fontWeight: (state === 'certification') ? '700' : '400'
+                                color: (!isSpecial) ? '#333333' : '#757575',
+                                fontWeight: (!isSpecial) ? '700' : '400'
                             }}
-                            onClick={() => setStatusInput({ ...statusInput, state: 'certification' })}
+                            onClick={() => setNoticeInput({ ...noticeInput, isSpecial: false })}
                             className='radio_button_wrapper'>
                             <div className='radio_button_select'>
-                                {state === 'certification' && <div className='radio_button_point' />}
+                                {(!isSpecial) && <div className='radio_button_point' />}
                             </div>
-                            인증
+                            일반
                         </span>
                     </td>
                 </tr>
                 <tr style={{ height: '100px' }} className='input_table_body_lane'>
                     <th className='input_table_body_head'>
-                        이름
+                        작성자
+                    </th>
+                    <td className='input_table_body_room'>
+                        <input
+                            className='table_input'
+                            name='writer_kr'
+                            value={writer_kr}
+                            onChange={onChangeInputHandler} />
+                    </td>
+                </tr>
+                <tr style={{ height: '100px' }} className='input_table_body_lane'>
+                    <th className='input_table_body_head'>
+                        작성자(영문)
+                    </th>
+                    <td className='input_table_body_room'>
+                        <input
+                            className='table_input'
+                            name='writer_en'
+                            value={writer_en}
+                            onChange={onChangeInputHandler} />
+                    </td>
+                </tr>
+                <tr style={{ height: '100px' }} className='input_table_body_lane'>
+                    <th className='input_table_body_head'>
+                        제목
                     </th>
                     <td className='input_table_body_room'>
                         <input
@@ -157,13 +189,37 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                 </tr>
                 <tr style={{ height: '100px' }} className='input_table_body_lane'>
                     <th className='input_table_body_head'>
-                        이름(영문)
+                        제목(영문)
                     </th>
                     <td className='input_table_body_room'>
                         <input
                             className='table_input'
                             name='title_en'
                             value={title_en}
+                            onChange={onChangeInputHandler} />
+                    </td>
+                </tr>
+                <tr style={{ height: '200px' }} className='input_table_body_lane'>
+                    <th className='input_table_body_head'>
+                        내용
+                    </th>
+                    <td className='input_table_body_room'>
+                        <textarea
+                            className='table_input'
+                            name='content_kr'
+                            value={content_kr}
+                            onChange={onChangeInputHandler} />
+                    </td>
+                </tr>
+                <tr style={{ height: '200px' }} className='input_table_body_lane'>
+                    <th className='input_table_body_head'>
+                        내용(영문)
+                    </th>
+                    <td className='input_table_body_room'>
+                        <textarea
+                            className='table_input'
+                            name='content_en'
+                            value={content_en}
                             onChange={onChangeInputHandler} />
                     </td>
                 </tr>
