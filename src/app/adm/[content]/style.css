@@ -10,21 +10,29 @@
     gap: 16px;
 }
 
-/* 추가하기 버튼 */
+/* 추가하기 버튼 컨테이너 */
 .add_button_wrapper {
-    width: 120px;
-    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+/* 추가하기 버튼 */
+.add_button {
+    width: 100px;
+    height: 38px;
     border-radius: 10px;
     background-color: #36404c;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
-    position: fixed;
+    gap: 4px;
+    margin-bottom: 16px;
+    /* position: fixed;
     right: 70px;
     bottom: 10px;
-    z-index: 19;
+    z-index: 19; */
 }

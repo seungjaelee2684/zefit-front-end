@@ -89,7 +89,7 @@ export default function News(admData: any) {
                             </td>
                             <td style={{ minWidth: '100px' }} className='table_body'>
                                 <a
-                                    href={`/adm/notices/${item?.id}`}
+                                    href={`/adm/news/${item?.id}`}
                                     className='table_icon_box'>
                                     <i className='icon-pencil'></i>
                                 </a>

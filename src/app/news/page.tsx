@@ -23,6 +23,9 @@ export default function News() {
     const [page, setPage] = useState<number>(1);
     const [search, setSearch] = useState<string>('');
     const [totalCount, setTotalCount] = useState<any>(0);
+
+    const start = (page - 1) * 10;
+    const end = start + 10 - 1;
     const dataCount = totalCount;
     const division = Math.ceil(dataCount / 10);
 
@@ -42,7 +45,8 @@ export default function News() {
                 const { data, error } = await supabase
                     .from('news')
                     .select('*')
-                    .ilike(dropdownValue?.value, `%${search}%`);
+                    .ilike(dropdownValue?.value, `%${search}%`)
+                    .range(start, end);
                 if (error) {
                     throw error;
                 }
@@ -59,8 +63,6 @@ export default function News() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const start = (page - 1) * 10;
-                const end = start + 10 - 1;
                 const { data, error } = await supabase
                     .from('news')
                     .select('*')
