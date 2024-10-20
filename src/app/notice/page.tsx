@@ -20,6 +20,7 @@ export default function Notice() {
     });
     const [noticeData, setNoticeData] = useState<any>(null);
     const [specialNotice, setSpecialNotice] = useState<any>(null);
+    const [searchNotice, setSearchNotice] = useState<any>(null);
     const [page, setPage] = useState<number>(1);
     const [search, setSearch] = useState<string>('');
     const [totalCount, setTotalCount] = useState<any>(0);
@@ -49,14 +50,95 @@ export default function Notice() {
                 if (error) {
                     throw error;
                 }
-                setNoticeData(data);
-                console.log(data);
+                setSearchNotice(data);
             } catch (error) {
                 console.error("Error fetching data from Supabase:", error);
             };
         };
 
         fetchDataHandler();
+    };
+
+    const mapDataReturn = () => {
+        if (searchNotice) {
+            return (
+                <tbody className='notice_table_body'>
+                    {searchNotice?.map((item: any, index: number) =>
+                        <tr
+                            key={index}
+                            className='table_body_lane_wrapper'>
+                            <th className='table_header_category_room'>
+                                {index + 1}
+                            </th>
+                            <td className='table_body_special_title_room'>
+                                <a
+                                    href={`/notice/${item?.id}`}
+                                    className='table_body_title_room'>
+                                    {item?.title_kr}
+                                </a>
+                            </td>
+                            <td className='table_body_etc_room'>
+                                {item?.writer_kr}
+                            </td>
+                            <td className='table_body_etc_room'>
+                                {item?.created_at}
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            )
+        } else {
+            return (
+                <tbody className='notice_table_body'>
+                    {specialNotice?.map((item: any, index: number) =>
+                        <tr
+                            key={index}
+                            className='table_body_lane_wrapper'>
+                            <th className='table_header_category_room'>
+                                <div className='special_notice'>
+                                    공지
+                                </div>
+                            </th>
+                            <td className='table_body_special_title_room'>
+                                <a
+                                    href={`/notice/${item?.id}`}
+                                    className='special_link_title_room'>
+                                    {item?.title_kr}
+                                </a>
+                            </td>
+                            <td className='table_body_etc_room'>
+                                {item?.writer_kr}
+                            </td>
+                            <td className='table_body_etc_room'>
+                                {item?.created_at}
+                            </td>
+                        </tr>
+                    )}
+                    {noticeData?.map((item: any, index: number) =>
+                        <tr
+                            key={index}
+                            className='table_body_lane_wrapper'>
+                            <th className='table_header_category_room'>
+                                {index + 1}
+                            </th>
+                            <td className='table_body_special_title_room'>
+                                <a
+                                    href={`/notice/${item?.id}`}
+                                    className='table_body_title_room'>
+                                    {item?.title_kr}
+                                </a>
+                            </td>
+                            <td className='table_body_etc_room'>
+                                {item?.writer_kr}
+                            </td>
+                            <td className='table_body_etc_room'>
+                                {item?.created_at}
+                            </td>
+                        </tr>
+                    )}
+                </tbody>
+            )
+        }
     };
 
     useEffect(() => {
@@ -70,7 +152,6 @@ export default function Notice() {
                     throw error;
                 }
                 setSpecialNotice(data);
-                console.log(data);
             } catch (error) {
                 console.error("Error fetching paginated data from Supabase:", error);
             }
@@ -87,7 +168,6 @@ export default function Notice() {
                     throw error;
                 }
                 setNoticeData(data);
-                console.log(start, end, data)
             } catch (error) {
                 console.error("Error fetching paginated data from Supabase:", error);
             }
@@ -96,7 +176,7 @@ export default function Notice() {
         const fetchTotalCount = async () => {
             try {
                 const { count, error } = await supabase
-                    .from('news')
+                    .from('notices')
                     .select('*', { count: 'exact' });
                 if (error) {
                     throw error;
@@ -159,54 +239,7 @@ export default function Notice() {
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className='notice_table_body'>
-                                {specialNotice?.map((item: any, index: number) =>
-                                    <tr
-                                        key={index}
-                                        className='table_body_lane_wrapper'>
-                                        <th className='table_header_category_room'>
-                                            <div className='special_notice'>
-                                                공지
-                                            </div>
-                                        </th>
-                                        <td className='table_body_special_title_room'>
-                                            <a
-                                                href={`/notice/${item?.id}`}
-                                                className='special_link_title_room'>
-                                                {item?.title_kr}
-                                            </a>
-                                        </td>
-                                        <td className='table_body_etc_room'>
-                                            {item?.writer_kr}
-                                        </td>
-                                        <td className='table_body_etc_room'>
-                                            {item?.created_at}
-                                        </td>
-                                    </tr>
-                                )}
-                                {noticeData?.map((item: any, index: number) =>
-                                    <tr
-                                        key={index}
-                                        className='table_body_lane_wrapper'>
-                                        <th className='table_header_category_room'>
-                                            {index + 1}
-                                        </th>
-                                        <td className='table_body_special_title_room'>
-                                            <a
-                                                href={`/notice/${item?.id}`}
-                                                className='table_body_title_room'>
-                                                {item?.title_kr}
-                                            </a>
-                                        </td>
-                                        <td className='table_body_etc_room'>
-                                            {item?.writer_kr}
-                                        </td>
-                                        <td className='table_body_etc_room'>
-                                            {item?.created_at}
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
+                            {mapDataReturn()}
                         </table>
                         <div className='page_count_wrapper'>
                             {pageList.map((item: any, index: number) =>

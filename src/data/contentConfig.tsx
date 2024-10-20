@@ -4,6 +4,7 @@ import Notice from '@/components/page/AdminPage/Notice';
 import Requests from '@/components/page/AdminPage/Requests';
 import Status from '@/components/page/AdminPage/Status';
 import CorrectHistory from '@/components/page/AdminPage/Update/History';
+import CorrectNotice from '@/components/page/AdminPage/Update/Notice';
 import CorrectStatus from '@/components/page/AdminPage/Update/Status';
 
 export const contentConfig: {
@@ -22,12 +23,16 @@ export const contentConfig: {
 export const correctContentConfig: {
     [key: string]: {
         title: string,
-        component?: React.ComponentType<{ admData: any }>
+        component?: React.ComponentType<{
+            admData: any,
+            isUpload: boolean,
+            setIsUpload: React.Dispatch<React.SetStateAction<boolean>>
+        }>
     };
 } = {
     historys: { title: '연혁', component: CorrectHistory },
     partners: { title: '인증 및 파트너 현황', component: CorrectStatus },
-    notices: { title: '공지사항' },
+    notices: { title: '공지사항', component: CorrectNotice },
     news: { title: '보도자료' },
     inquirys: { title: '문의한 글' },
 };

@@ -198,7 +198,7 @@
     flex-wrap: wrap;
     text-align: start;
     white-space: pre-line;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
 }
 
@@ -254,6 +254,7 @@
 
 /* 미션 컨텐츠 내용 */
 .mission_content_text {
+    width: 50%;
     font-size: 18px;
     font-weight: 400;
     white-space: pre-line;
