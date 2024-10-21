@@ -5,14 +5,10 @@ import './style.css';
 import MainHeader from '@/components/common/MainHeader';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { usePathname } from 'next/navigation';
 import MobileHeader from '@/components/common/MobileHeader';
 import { supabase } from '@/utils/Supabase';
 
 export default function Home() {
-
-    // 현 페이지 url주소
-    const path = usePathname();
 
     // 뷰포트 반응형
     const isMobile = useMediaQuery({ maxWidth: 1170 });

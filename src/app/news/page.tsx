@@ -134,7 +134,7 @@ export default function News() {
                                         이미지
                                     </th>
                                     <th className='table_header_title_room'>
-                                        제목
+                                        제목 & 내용
                                     </th>
                                     <th className='table_header_etc_room'>
                                         작성자

@@ -62,13 +62,13 @@ export default function DropDown({ dropdownValue, setDropdownValue, isEnglish = 
             {(menuOpen)
                 && <ul className='option_wrapper'>
                     <li onClick={(e) => handleItemClick(e, 'title')} className='option_button'>
-                        제목
+                        {(isEnglish) ? 'Title' : '제목'}
                     </li>
                     <li onClick={(e) => handleItemClick(e, 'content')} className='option_button'>
-                        내용
+                        {(isEnglish) ? 'Content' : '내용'}
                     </li>
                     <li onClick={(e) => handleItemClick(e, 'writer')} className='option_button'>
-                        글쓴이
+                        {(isEnglish) ? 'Writer' : '글쓴이'}
                     </li>
                 </ul>}
         </div>
