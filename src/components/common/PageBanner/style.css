@@ -43,6 +43,7 @@
     font-size: 44px;
     font-weight: 700;
     color: white;
+    text-transform: uppercase;
 }
 
 /* 상단 배너 부제목 */
@@ -55,13 +56,13 @@
 /* 반응형 style */
 @media screen and (max-width: 1170px) {
     .page_top_banner_container {
-        height: 280px;
+        height: 260px;
     }
 
     .page_top_banner_text_box {
         width: 94%;
         left: 3%;
-        top: 40px;
+        top: 10px;
         gap: 4px;
     }
 

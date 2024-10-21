@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { CorrectProps } from '../History';
 import './style.css';
 import { supabase } from '@/utils/Supabase';
+import { handleImageChange, handleImageDelete } from '@/utils/HandleImage';
+import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
 
 export default function CorrectStatus({ admData, isUpload, setIsUpload }: CorrectProps) {
 
@@ -18,18 +20,6 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
     });
     const { state, title_kr, title_en } = statusInput;
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setInputImg(file);
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setPreviewUrl(reader.result as string);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
-
     console.log(admData, isUpload);
 
     const onChangeInputHandler = (e: any) => {
@@ -38,33 +28,6 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
             ...statusInput,
             [name]: value
         });
-    };
-
-    const onClickRemoveHandler = (e: any) => {
-        e.preventDefault();
-
-        // admData가 존재하는지 미리 체크
-        if (!admData || !admData?.id) {
-            console.error("admData or admData.id is missing.");
-            return;
-        }
-
-        const fetchRemove = async () => {
-            try {
-                const { error } = await supabase
-                    .from('partners')
-                    .delete()
-                    .eq('id', id);
-
-                if (error) throw error;
-
-                window.location.pathname = '/adm/partners';
-            } catch (error) {
-                console.error("Error fetching paginated data from Supabase:", error);
-            }
-        };
-
-        fetchRemove();
     };
 
     useEffect(() => {
@@ -92,9 +55,14 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                                 type='file'
                                 id='files'
                                 name='inputImg'
-                                onChange={handleImageChange} />    
+                                onChange={(e) => handleImageChange(e, setInputImg, setPreviewUrl)} />
                             {(previewUrl)
                                 ? <div className="image_preview_overlay">
+                                    <button
+                                        onClick={() => handleImageDelete(setInputImg, setPreviewUrl)}
+                                        className='image_delete_button'>
+                                        <i className='icon-close' />
+                                    </button>
                                     <img src={previewUrl} alt="Preview" className="image_preview" />
                                 </div>
                                 : <label htmlFor='files' className='image_input'>
@@ -103,12 +71,6 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                                         이미지 업로드
                                     </div>
                                 </label>}
-                            {(previewUrl)
-                                && <button
-                                    onClick={() => setPreviewUrl(null)}
-                                    className='image_delete_button'>
-                                    <i className='icon-close' />
-                                </button>}
                         </div>
                     </td>
                 </tr>
@@ -119,7 +81,7 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                     <td className='input_table_body_room'>
                         <span
                             style={{
-                                color: (state === 'partner') ? '#333333' : '#757575',
+                                color: (state === 'partner') ? '#64c5b1' : '#858585',
                                 fontWeight: (state === 'partner') ? '700' : '400'
                             }}
                             onClick={() => setStatusInput({ ...statusInput, state: 'partner' })}
@@ -131,7 +93,7 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                         </span>
                         <span
                             style={{
-                                color: (state === 'certification') ? '#333333' : '#757575',
+                                color: (state === 'certification') ? '#64c5b1' : '#858585',
                                 fontWeight: (state === 'certification') ? '700' : '400'
                             }}
                             onClick={() => setStatusInput({ ...statusInput, state: 'certification' })}
@@ -152,6 +114,7 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                             className='table_input'
                             name='title_kr'
                             value={title_kr}
+                            autoComplete='off'
                             onChange={onChangeInputHandler} />
                     </td>
                 </tr>
@@ -164,6 +127,7 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                             className='table_input'
                             name='title_en'
                             value={title_en}
+                            autoComplete='off'
                             onChange={onChangeInputHandler} />
                     </td>
                 </tr>
@@ -174,7 +138,7 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                         </button>
                         {(!isUpload)
                             && <button
-                                onClick={onClickRemoveHandler}
+                            onClick={(e) => onClickRemoveHandler(e, admData, id, 'partners')}
                                 className='update_button'>
                                 삭제
                             </button>}

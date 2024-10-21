@@ -1,5 +1,6 @@
 'use client';
 
+import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
 import '../History/style.css';
 import './style.css';
 
@@ -67,9 +68,11 @@ export default function Status(admData: any) {
                                     className='table_icon_box'>
                                     <i className='icon-pencil'></i>
                                 </a>
-                                <a className='table_icon_box'>
+                                <button
+                                    className='table_icon_box'
+                                    onClick={(e) => onClickRemoveHandler(e, admData, item?.id, 'partners')}>
                                     <i className='icon-trash'></i>
-                                </a>
+                                </button>
                             </td>
                         </tr>
                     )}

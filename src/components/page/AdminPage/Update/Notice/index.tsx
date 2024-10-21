@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { CorrectProps } from '../History';
 import './style.css';
 import { supabase } from '@/utils/Supabase';
+import { handleImageChange, handleImageDelete } from '@/utils/HandleImage';
+import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
 
 export default function CorrectNotice({ admData, isUpload, setIsUpload }: CorrectProps) {
 
@@ -17,22 +19,10 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
         title_en: '',
         content_kr: '',
         content_en: '',
-        writer_kr: '',
-        writer_en: ''
+        writer_kr: '(주)제핏',
+        writer_en: 'Zefit Inc.'
     });
     const { isSpecial, title_kr, title_en, content_kr, content_en, writer_kr, writer_en } = noticeInput;
-
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setInputImg(file);
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setPreviewUrl(reader.result as string);
-            };
-            reader.readAsDataURL(file);
-        }
-    };
 
     console.log(admData, isUpload);
 
@@ -44,44 +34,17 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
         });
     };
 
-    const onClickRemoveHandler = (e: any) => {
-        e.preventDefault();
-
-        // admData가 존재하는지 미리 체크
-        if (!admData || !admData?.id) {
-            console.error("admData or admData.id is missing.");
-            return;
-        }
-
-        const fetchRemove = async () => {
-            try {
-                const { error } = await supabase
-                    .from('notices')
-                    .delete()
-                    .eq('id', id);
-
-                if (error) throw error;
-
-                window.location.pathname = '/adm/notices';
-            } catch (error) {
-                console.error("Error fetching paginated data from Supabase:", error);
-            }
-        };
-
-        fetchRemove();
-    };
-
     useEffect(() => {
         if (admData) {
             setPreviewUrl(isUpload ? null : admData?.image);
             setNoticeInput({
-                isSpecial: isUpload ? false :admData?.is_special,
+                isSpecial: isUpload ? false : admData?.is_special,
                 title_kr: isUpload ? '' : admData?.title_kr,
                 title_en: isUpload ? '' : admData?.title_en,
                 content_kr: isUpload ? '' : admData?.content_kr,
                 content_en: isUpload ? '' : admData?.content_en,
-                writer_kr: isUpload ? '' : admData?.writer_kr,
-                writer_en: isUpload ? '' : admData?.writer_en
+                writer_kr: isUpload ? '(주)제핏' : admData?.writer_kr,
+                writer_en: isUpload ? 'Zefit Inc.' : admData?.writer_en
             });
         }
     }, [admData, isUpload]);
@@ -100,9 +63,14 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                                 type='file'
                                 id='files'
                                 name='inputImg'
-                                onChange={handleImageChange} />    
+                                onChange={(e) => handleImageChange(e, setInputImg, setPreviewUrl)} />
                             {(previewUrl)
                                 ? <div className="image_preview_overlay">
+                                    <button
+                                        onClick={() => handleImageDelete(setInputImg, setPreviewUrl)}
+                                        className='image_delete_button'>
+                                        <i className='icon-close' />
+                                    </button>
                                     <img src={previewUrl} alt="Preview" className="image_preview" />
                                 </div>
                                 : <label htmlFor='files' className='image_input'>
@@ -111,12 +79,6 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                                         이미지 업로드
                                     </div>
                                 </label>}
-                            {(previewUrl)
-                                && <button
-                                    onClick={() => setPreviewUrl(null)}
-                                    className='image_delete_button'>
-                                    <i className='icon-close' />
-                                </button>}
                         </div>
                     </td>
                 </tr>
@@ -127,7 +89,7 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                     <td className='input_table_body_room'>
                         <span
                             style={{
-                                color: (isSpecial) ? '#333333' : '#757575',
+                                color: (isSpecial) ? '#64c5b1' : '#858585',
                                 fontWeight: (isSpecial) ? '700' : '400'
                             }}
                             onClick={() => setNoticeInput({ ...noticeInput, isSpecial: true })}
@@ -139,7 +101,7 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                         </span>
                         <span
                             style={{
-                                color: (!isSpecial) ? '#333333' : '#757575',
+                                color: (!isSpecial) ? '#64c5b1' : '#858585',
                                 fontWeight: (!isSpecial) ? '700' : '400'
                             }}
                             onClick={() => setNoticeInput({ ...noticeInput, isSpecial: false })}
@@ -160,6 +122,7 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                             className='table_input'
                             name='writer_kr'
                             value={writer_kr}
+                            autoComplete='off'
                             onChange={onChangeInputHandler} />
                     </td>
                 </tr>
@@ -172,6 +135,7 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                             className='table_input'
                             name='writer_en'
                             value={writer_en}
+                            autoComplete='off'
                             onChange={onChangeInputHandler} />
                     </td>
                 </tr>
@@ -184,6 +148,7 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                             className='table_input'
                             name='title_kr'
                             value={title_kr}
+                            autoComplete='off'
                             onChange={onChangeInputHandler} />
                     </td>
                 </tr>
@@ -196,28 +161,29 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                             className='table_input'
                             name='title_en'
                             value={title_en}
+                            autoComplete='off'
                             onChange={onChangeInputHandler} />
                     </td>
                 </tr>
-                <tr style={{ height: '200px' }} className='input_table_body_lane'>
+                <tr className='input_table_body_lane'>
                     <th className='input_table_body_head'>
                         내용
                     </th>
                     <td className='input_table_body_room'>
                         <textarea
-                            className='table_input'
+                            className='table_textarea'
                             name='content_kr'
                             value={content_kr}
                             onChange={onChangeInputHandler} />
                     </td>
                 </tr>
-                <tr style={{ height: '200px' }} className='input_table_body_lane'>
+                <tr className='input_table_body_lane'>
                     <th className='input_table_body_head'>
                         내용(영문)
                     </th>
                     <td className='input_table_body_room'>
                         <textarea
-                            className='table_input'
+                            className='table_textarea'
                             name='content_en'
                             value={content_en}
                             onChange={onChangeInputHandler} />
@@ -230,7 +196,7 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                         </button>
                         {(!isUpload)
                             && <button
-                                onClick={onClickRemoveHandler}
+                                onClick={(e) => onClickRemoveHandler(e, admData, id, 'notices')}
                                 className='update_button'>
                                 삭제
                             </button>}
