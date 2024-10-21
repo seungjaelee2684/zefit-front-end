@@ -45,12 +45,13 @@ export default function AdmHistory() {
             <MetaTagTitle title={`관리자모드: ${config.title}`} />
             <AdmHeader title={config.title} />
             <section className='adm_content_wrapper'>
-                <div className='add_button_wrapper'>
-                    <a href={`/adm/${content}/update`} className='add_button'>
-                        <i className='icon-cloud-upload'></i>
-                        추가하기
-                    </a>
-                </div>
+                {(content !== 'inquirys')
+                    && <div className='add_button_wrapper'>
+                        <a href={`/adm/${content}/update`} className='add_button'>
+                            <i className='icon-cloud-upload'></i>
+                            추가하기
+                        </a>
+                    </div>}
                 {Component && <Component admData={admData} />}
             </section>
             <AdmScrollTop />

@@ -46,6 +46,26 @@
 .adm_content_part_title {
     font-size: 14px;
     font-weight: 600;
+    color: #70968e;
+}
+
+/* 링크 버튼 */
+.adm_content_part_link {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background-color: transparent;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+/* 링크 버튼 HOVER효과 */
+.adm_content_part_link:hover {
+    gap: 60px;
+    color: #64c5b1;
 }
 
 /* 관리자 페이지 테이블 컨테이너 */
