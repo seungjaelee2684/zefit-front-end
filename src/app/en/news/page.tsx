@@ -1,8 +1,8 @@
 'use client';
 
 import PageHeader from '@/components/common/PageHeader';
-import './style.css';
-import '../notice/style.css';
+import '../../news/style.css';
+import '../../notice/style.css';
 import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
 import DropDown from '@/components/common/DropDown';
@@ -16,8 +16,8 @@ export default function News() {
         title: string,
         value: string
     }>({
-        title: '제목',
-        value: 'title_kr'
+        title: 'Title',
+        value: 'title_en'
     });
     const [newsData, setNewsData] = useState<any>(null);
     const [page, setPage] = useState<number>(1);
@@ -51,7 +51,6 @@ export default function News() {
                     throw error;
                 }
                 setNewsData(data);
-                console.log(data);
             } catch (error) {
                 console.error("Error fetching data from Supabase:", error);
             };
@@ -97,9 +96,9 @@ export default function News() {
 
     return (
         <article>
-            <MetaTagTitle title='보도자료' />
+            <MetaTagTitle title='News' ko={false} />
             <PageHeader />
-            <PageBanner pageTitle='보도자료' />
+            <PageBanner pageTitle='News' />
             <PageTap tap='community' />
             <section className='page_layout'>
                 <div className='notice_page_container'>
@@ -110,37 +109,38 @@ export default function News() {
                         onSubmit={onSubmitSearchHandler}
                         className='notice_page_searh_bar_container'>
                         <DropDown
+                            isEnglish={true}
                             dropdownValue={dropdownValue}
                             setDropdownValue={setDropdownValue} />
                         <input
                             className='search_bar'
-                            placeholder='검색어를 입력해주세요.'
+                            placeholder='Search Word'
                             value={search}
                             onChange={(e: any) => setSearch(e.target.value)} />
                         <button
                             onClick={onSubmitSearchHandler}
                             className='search_button'>
-                            검색
+                            Search
                         </button>
                     </form>
                     <div className='notice_table_wrapper'>
                         <p className='notice_table_count'>
-                            전체 {totalCount}건 / {(division) ? division : 0} 페이지
+                            Total {totalCount} case / {(division) ? division : 0} page
                         </p>
                         <table className='notice_table'>
                             <thead className='notice_table_header_wrapper'>
                                 <tr className='notice_table_header'>
                                     <th className='table_header_category_room'>
-                                        이미지
+                                        Image
                                     </th>
                                     <th className='table_header_title_room'>
-                                        제목
+                                        Title & Content
                                     </th>
                                     <th className='table_header_etc_room'>
-                                        작성자
+                                        Writer
                                     </th>
                                     <th className='table_header_etc_room'>
-                                        등록일
+                                        Date
                                     </th>
                                 </tr>
                             </thead>
@@ -157,18 +157,18 @@ export default function News() {
                                         </th>
                                         <td className='table_body_special_title_room'>
                                             <a
-                                                href={`/news/${item?.id}`}
+                                                href={`/en/news/${item?.id}`}
                                                 className='news_table_body_title_room'>
                                                 <strong className='news_table_body_title'>
-                                                    {item?.title_kr}
+                                                    {item?.title_en}
                                                 </strong>
                                                 <p className='news_table_body_title'>
-                                                    {item?.content_kr}
+                                                    {item?.content_en}
                                                 </p>
                                             </a>
                                         </td>
                                         <td className='table_body_etc_room'>
-                                            {item?.writer_kr}
+                                            {item?.writer_en}
                                         </td>
                                         <td className='table_body_etc_room'>
                                             {item?.created_at}

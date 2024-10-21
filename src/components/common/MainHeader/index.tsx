@@ -13,6 +13,8 @@ export default function MainHeader() {
     const path = usePathname();
     const isMobile = useMediaQuery({ maxWidth: 1170 });
 
+    const isEnglish = path?.includes('/en');
+
     const [navOpen, setNavOpen] = useState<string | null>(null);
     const [position, setPosition] = useState<number>(0);
 
@@ -23,13 +25,13 @@ export default function MainHeader() {
 
     const handleEnglishTransColor = () => {
         if (navOpen || position > 0) {
-            if (path?.includes('/en')) {
+            if (isEnglish) {
                 return '#0190D6';
             } else {
                 return '#333333';
             }
         } else {
-            if (path?.includes('/en')) {
+            if (isEnglish) {
                 return '#ffffff';
             } else {
                 return '#cecece';
@@ -39,13 +41,13 @@ export default function MainHeader() {
 
     const handleKoreanTransColor = () => {
         if (navOpen || position > 0) {
-            if (!path?.includes('/en')) {
+            if (!isEnglish) {
                 return '#0190D6';
             } else {
                 return '#333333';
             }
         } else {
-            if (!path?.includes('/en')) {
+            if (!isEnglish) {
                 return '#ffffff';
             } else {
                 return '#cecece';
@@ -75,7 +77,7 @@ export default function MainHeader() {
                 className="main_header">
                 <nav className="main_header_navlist">
                     <div className='logo_box'>
-                        <a href={(path?.includes('/en')) ? '/en' : '/'}>
+                        <a href={(isEnglish) ? '/en' : '/'}>
                             <img
                                 style={{
                                     width: (position > 0) ? '75px' : '126px'
@@ -91,35 +93,35 @@ export default function MainHeader() {
                     <ul className='nav_button_wrapper'>
                         <li className='nav_button_box'>
                             <a
-                                href={(path?.includes('/en')) ? '/en/content/company' : '/content/company'}
+                                href={(isEnglish) ? '/en/content/company' : '/content/company'}
                                 className='nav_button'
                                 onMouseOver={() => setNavOpen('about')}
                                 style={{
                                     borderBottom: (navOpen === 'about') ? '4px solid #0190D6' : '4px solid #ffffff00'
                                 }}>
-                                회사소개
+                                {(isEnglish) ? 'About us' : '회사소개'}
                             </a>
                         </li>
                         <li className='nav_button_box'>
                             <a
-                                href={(path?.includes('/en')) ? '/en/content/zebrafish' : '/content/zebrafish'}
+                                href={(isEnglish) ? '/en/content/zebrafish' : '/content/zebrafish'}
                                 className='nav_button'
                                 onMouseOver={() => setNavOpen('business')}
                                 style={{
                                     borderBottom: (navOpen === 'business') ? '4px solid #0190D6' : '4px solid #ffffff00'
                                 }}>
-                                사업소개
+                                {(isEnglish) ? 'Business' : '사업소개'}
                             </a>
                         </li>
                         <li className='nav_button_box'>
                             <a
-                                href={(path?.includes('/en')) ? '/en/notice' : '/notice'}
+                                href={(isEnglish) ? '/en/notice' : '/notice'}
                                 className='nav_button'
                                 onMouseOver={() => setNavOpen('community')}
                                 style={{
                                     borderBottom: (navOpen === 'community') ? '4px solid #0190D6' : '4px solid #ffffff00'
                                 }}>
-                                커뮤니티
+                                {(isEnglish) ? 'Community' : '커뮤니티'}
                             </a>
                         </li>
                     </ul>
@@ -127,11 +129,11 @@ export default function MainHeader() {
                         <li className='translate_button_box'>
                             <a
                                 style={{
-                                    fontWeight: (path?.includes('/en')) ? '800' : '400',
+                                    fontWeight: (isEnglish) ? '800' : '400',
                                     color: handleEnglishTransColor(),
-                                    borderBottom: (path?.includes('/en')) ? '3px solid' : '3px solid #ffffff00'
+                                    borderBottom: (isEnglish) ? '3px solid' : '3px solid #ffffff00'
                                 }}
-                                href={`${(path?.includes('/en')) ? path : `/en${path}`}`}
+                                href={`${(isEnglish) ? path : `/en${path}`}`}
                                 className='translate_button'>
                                 ENG
                             </a>
@@ -139,9 +141,9 @@ export default function MainHeader() {
                         <li className='translate_button_box'>
                             <a
                                 style={{
-                                    fontWeight: (!path?.includes('/en')) ? '800' : '400',
+                                    fontWeight: (!isEnglish) ? '800' : '400',
                                     color: handleKoreanTransColor(),
-                                    borderBottom: (!path?.includes('/en')) ? '3px solid' : '3px solid #ffffff00'
+                                    borderBottom: (!isEnglish) ? '3px solid' : '3px solid #ffffff00'
                                 }}
                                 href={`${(path === '/en') ? '/' : path?.split('/en').join('')}`}
                                 className='translate_button'>

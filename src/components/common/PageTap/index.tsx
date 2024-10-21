@@ -10,22 +10,22 @@ export default function PageTap({ tap }: PageTapProps) {
 
     const path = usePathname();
 
+    const isEnglish = path?.includes('/en');
+
     const pageTapChanger = () => {
         if (tap === 'company') {
             return (
                 aboutNavList?.map((item: any, index: number) =>
                     <li key={index}>
                         <a
-                            href={(path !== item.href) ? item.href : null}
+                            href={(isEnglish) ? ((path !== item.href_en) ? item.href_en : null) : ((path !== item.href) ? item.href : null)}
                             style={{
-                                cursor: (path === item.href) ? 'default' : 'pointer'
+                                cursor: (isEnglish) ? ((path === item.href_en) ? 'default' : 'pointer') : ((path === item.href) ? 'default' : 'pointer')
                             }}
                             className={
-                                (path === item.href)
-                                    ? 'page_tap_click_button'
-                                    : 'page_tap_button'
+                                (isEnglish) ? ((path === item.href_en) ? 'page_tap_click_button' : 'page_tap_button') : ((path === item.href) ? 'page_tap_click_button' : 'page_tap_button')
                             }>
-                            {item.id}
+                            {(isEnglish) ? item.id_en : item.id}
                         </a>
                     </li>
                 )
@@ -35,7 +35,7 @@ export default function PageTap({ tap }: PageTapProps) {
                 communityNavList?.map((item: any, index: number) =>
                     <li key={index}>
                         <a
-                            href={!path?.includes(item.criteria) ? item.href : null}
+                            href={(!path?.includes(item.criteria)) ? ((isEnglish) ? item.href_en : item.href) : null}
                             style={{
                                 cursor: (path?.includes(item.criteria)) ? 'default' : 'pointer'
                             }}
@@ -44,7 +44,7 @@ export default function PageTap({ tap }: PageTapProps) {
                                     ? 'page_tap_click_button'
                                     : 'page_tap_button'
                             }>
-                            {item.id}
+                            {(isEnglish) ? item.id_en : item.id}
                         </a>
                     </li>
                 )
@@ -54,7 +54,7 @@ export default function PageTap({ tap }: PageTapProps) {
                 businessNavList?.map((item: any, index: number) =>
                     <li key={index}>
                         <a
-                            href={(!path?.includes(item.criteria)) ? item.href : null}
+                            href={(!path?.includes(item.criteria)) ? ((isEnglish) ? item.href_en : item.href) : null}
                             style={{
                                 cursor: (path?.includes(item.criteria)) ? 'default' : 'pointer'
                             }}
@@ -63,7 +63,7 @@ export default function PageTap({ tap }: PageTapProps) {
                                     ? 'page_tap_click_button'
                                     : 'page_tap_button'
                             }>
-                            {item.id}
+                            {(isEnglish) ? item.id_en : item.id}
                         </a>
                     </li>
                 )
@@ -80,7 +80,7 @@ export default function PageTap({ tap }: PageTapProps) {
                                 ? 'page_tap_click_button'
                                 : 'page_tap_button'
                         }>
-                        문의하기
+                        {(isEnglish) ? 'Contact' : '문의하기'}
                     </a>
                 </li>
             )

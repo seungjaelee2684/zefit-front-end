@@ -15,6 +15,8 @@ interface NavModalProps {
 
 export default function NavModal({ path, position, navOpen, setNavOpen }: NavModalProps) {
 
+    const isEnglish = path?.includes('/en');
+
     const navModalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -52,9 +54,9 @@ export default function NavModal({ path, position, navOpen, setNavOpen }: NavMod
                                 key={index}
                                 className='nav_modal_button_box'>
                                 <a
-                                    href={item.href}
+                                    href={(isEnglish) ? item.href_en : item.href}
                                     className='nav_modal_button'>
-                                    {item.id}
+                                    {(isEnglish) ? item.id_en : item.id}
                                 </a>
                             </div>
                         )}
@@ -67,7 +69,7 @@ export default function NavModal({ path, position, navOpen, setNavOpen }: NavMod
                                 <a
                                     href={item.href}
                                     className='nav_modal_button'>
-                                    {item.id}
+                                    {(isEnglish) ? item.id_en : item.id}
                                 </a>
                                 {item.list?.map((list: any, idx: number) =>
                                     <a
@@ -78,7 +80,7 @@ export default function NavModal({ path, position, navOpen, setNavOpen }: NavMod
                                         }}
                                         className='nav_modal_detail_button'>
                                         <div className='nav_modal_detail_button_point' />
-                                        {list.id}
+                                        {(isEnglish) ? list.en : list.id}
                                     </a>
                                 )}
 
@@ -91,9 +93,9 @@ export default function NavModal({ path, position, navOpen, setNavOpen }: NavMod
                                 key={index}
                                 className='nav_modal_button_box'>
                                 <a
-                                    href={item.href}
+                                    href={(isEnglish) ? item.href_en : item.href}
                                     className='nav_modal_button'>
-                                    {item.id}
+                                    {(isEnglish) ? item.id_en : item.id}
                                 </a>
                             </div>
                         )}

@@ -1,7 +1,7 @@
 'use client';
 
 import PageHeader from '@/components/common/PageHeader';
-import './style.css';
+import '../../notice/style.css';
 import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
 import DropDown from '@/components/common/DropDown';
@@ -15,8 +15,8 @@ export default function Notice() {
         title: string,
         value: string
     }>({
-        title: '제목',
-        value: 'title_kr'
+        title: 'Title',
+        value: 'title_en'
     });
     const [noticeData, setNoticeData] = useState<any>(null);
     const [specialNotice, setSpecialNotice] = useState<any>(null);
@@ -72,13 +72,13 @@ export default function Notice() {
                             </th>
                             <td className='table_body_special_title_room'>
                                 <a
-                                    href={`/notice/${item?.id}`}
+                                    href={`/en/notice/${item?.id}`}
                                     className='table_body_title_room'>
-                                    {item?.title_kr}
+                                    {item?.title_en}
                                 </a>
                             </td>
                             <td className='table_body_etc_room'>
-                                {item?.writer_kr}
+                                {item?.writer_en}
                             </td>
                             <td className='table_body_etc_room'>
                                 {item?.created_at}
@@ -101,13 +101,13 @@ export default function Notice() {
                             </th>
                             <td className='table_body_special_title_room'>
                                 <a
-                                    href={`/notice/${item?.id}`}
+                                    href={`/en/notice/${item?.id}`}
                                     className='special_link_title_room'>
-                                    {item?.title_kr}
+                                    {item?.title_en}
                                 </a>
                             </td>
                             <td className='table_body_etc_room'>
-                                {item?.writer_kr}
+                                {item?.writer_en}
                             </td>
                             <td className='table_body_etc_room'>
                                 {item?.created_at}
@@ -123,13 +123,13 @@ export default function Notice() {
                             </th>
                             <td className='table_body_special_title_room'>
                                 <a
-                                    href={`/notice/${item?.id}`}
+                                    href={`/en/notice/${item?.id}`}
                                     className='table_body_title_room'>
-                                    {item?.title_kr}
+                                    {item?.title_en}
                                 </a>
                             </td>
                             <td className='table_body_etc_room'>
-                                {item?.writer_kr}
+                                {item?.writer_en}
                             </td>
                             <td className='table_body_etc_room'>
                                 {item?.created_at}
@@ -194,9 +194,9 @@ export default function Notice() {
 
     return (
         <article>
-            <MetaTagTitle title='공지사항' />
+            <MetaTagTitle title='Notice' ko={false} />
             <PageHeader />
-            <PageBanner pageTitle='공지사항' />
+            <PageBanner pageTitle='Notice' />
             <PageTap tap='community' />
             <section className='page_layout'>
                 <div className='notice_page_container'>
@@ -205,37 +205,38 @@ export default function Notice() {
                     </h2>
                     <form className='notice_page_searh_bar_container'>
                         <DropDown
+                            isEnglish={true}
                             dropdownValue={dropdownValue}
                             setDropdownValue={setDropdownValue} />
                         <input
                             className='search_bar'
-                            placeholder='검색어를 입력해주세요.'
+                            placeholder='Search Word'
                             value={search}
                             onChange={(e: any) => setSearch(e.target.value)} />
                         <button
                             onClick={onSubmitSearchHandler}
                             className='search_button'>
-                            검색
+                            Search
                         </button>
                     </form>
                     <div className='notice_table_wrapper'>
                         <p className='notice_table_count'>
-                            전체 {totalCount}건 / {(division) ? division : 0} 페이지
+                            Total {totalCount} case / {(division) ? division : 0} page
                         </p>
                         <table className='notice_table'>
                             <thead className='notice_table_header_wrapper'>
                                 <tr className='notice_table_header'>
                                     <th className='table_header_category_room'>
-                                        분류
+                                        Category
                                     </th>
                                     <th className='table_header_title_room'>
-                                        제목
+                                        Title
                                     </th>
                                     <th className='table_header_etc_room'>
-                                        작성자
+                                        Writer
                                     </th>
                                     <th className='table_header_etc_room'>
-                                        등록일
+                                        Date
                                     </th>
                                 </tr>
                             </thead>

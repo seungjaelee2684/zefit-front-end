@@ -11,13 +11,15 @@ export default function SideTap({ tap, content }: SideTapProps) {
 
     const path = usePathname();
 
+    const isEnglish = path?.includes('/en');
+
     const linkControl = (item: string) => {
         if (content === 'development') {
             const find = businessNavList[2].list?.find((data: any) => data.id === item);
             const result = find?.en;
-            return `/content/${content}/${result}`;
+            return (isEnglish) ? `/en/content/${content}/${result}` : `/content/${content}/${result}`;
         } else {
-            return `/content/${content}/${item}`;
+            return (isEnglish) ? `/en/content/${content}/${item}` : `/content/${content}/${item}`;
         }
     };
 

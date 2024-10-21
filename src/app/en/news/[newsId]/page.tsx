@@ -3,8 +3,8 @@
 import PageBanner from "@/components/common/PageBanner";
 import PageHeader from "@/components/common/PageHeader";
 import PageTap from "@/components/common/PageTap";
-import './style.css';
-import '../../notice/[noticeId]/style.css'
+import '../../../news/[newsId]/style.css';
+import '../../../notice/[noticeId]/style.css'
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
@@ -42,9 +42,9 @@ export default function NewsDetail() {
 
     return (
         <article>
-            <MetaTagTitle title='보도자료' />
+            <MetaTagTitle title='News' ko={false} />
             <PageHeader />
-            <PageBanner pageTitle='보도자료' />
+            <PageBanner pageTitle='News' />
             <PageTap tap='community' />
             <section className='page_layout'>
                 <div className='notice_detail_page_container'>
@@ -58,33 +58,30 @@ export default function NewsDetail() {
                         </li>
                         <li className='notice_detail_tap_content'>
                             <i className='icon-user'></i>
-                            {newsData?.writer_kr}
+                            {newsData?.writer_en}
                         </li>
                         <li className='notice_detail_tap_content'>
                             /
                         </li>
                         <li>
                             <a
-                                href='/news'
+                                href='/en/news'
                                 className='notice_detail_tap_button'>
                                 <i className='icon-menu'></i>
-                                목록
+                                List
                             </a>
                         </li>
                     </ul>
                     <h2 className='notice_detail_title'>
-                        {newsData?.title_kr}
+                        {newsData?.title_en}
                     </h2>
-                    {/* {newsData?.image.map((item: any, index: number) => */}
                     {(newsData?.image)
                         && <img
-                            // key={index}
                             className='news_detail_Image'
                             src={newsData?.image}
-                            alt={`보도자료 이미지 ${newsData?.title_kr}`} />}
-                    {/* )} */}
+                            alt={`보도자료 이미지 ${newsData?.title_en}`} />}
                     <p className='notice_detail_content'>
-                        {newsData?.content_kr}
+                        {newsData?.content_en}
                     </p>
                     <a
                         href={newsData?.link}
