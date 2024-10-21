@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import './style.css';
 import { supabase } from '@/utils/Supabase';
+import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
 
 export interface CorrectProps {
     admData: any;
@@ -34,33 +35,6 @@ export default function CorrectHistory({ admData, isUpload, setIsUpload }: Corre
         });
     };
 
-    const onClickRemoveHandler = (e: any) => {
-        e.preventDefault();
-
-        // admData가 존재하는지 미리 체크
-        if (!admData || !admData?.id) {
-            console.error("admData or admData.id is missing.");
-            return;
-        }
-
-        const fetchRemove = async () => {
-            try {
-                const { error } = await supabase
-                    .from('historys')
-                    .delete()
-                    .eq('id', id);
-
-                if (error) throw error;
-
-                window.location.pathname = '/adm/historys';
-            } catch (error) {
-                console.error("Error fetching paginated data from Supabase:", error);
-            }
-        };
-
-        fetchRemove();
-    };
-
     return (
         <table className='input_table_container'>
             <tbody className='input_table_body'>
@@ -75,6 +49,8 @@ export default function CorrectHistory({ admData, isUpload, setIsUpload }: Corre
                             name='created_at'
                             defaultValue={date}
                             value={created_at}
+                            autoComplete='off'
+                            placeholder='0000-00-00'
                             onChange={onChangeInputHandler} />
                     </td>
                 </tr>
@@ -110,7 +86,7 @@ export default function CorrectHistory({ admData, isUpload, setIsUpload }: Corre
                     </button>
                     {(!isUpload)
                         && <button
-                            onClick={onClickRemoveHandler}
+                        onClick={(e) => onClickRemoveHandler(e, admData, id, 'historys')}
                             className='update_button'>
                             삭제
                         </button>}

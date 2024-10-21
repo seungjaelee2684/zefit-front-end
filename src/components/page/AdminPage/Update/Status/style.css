@@ -46,6 +46,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 /* 이미지 미리보기 스타일 */
@@ -58,6 +59,10 @@
 /* 지우기 버튼 */
 .image_delete_button {
   font-size: 24px;
+  color: #64c5b1;
+  position: absolute;
+  top: 6px;
+  right: 6px;
 }
 
 /* 선택창 버튼 */
@@ -65,8 +70,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4px;
-  font-size: 18px;
+  gap: 6px;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -86,6 +91,6 @@
   width: 10px;
   height: 10px;
   border-radius: 100%;
-  background-color: #333333;
+  background-color: #64c5b1;
 }
 

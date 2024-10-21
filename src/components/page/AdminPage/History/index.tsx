@@ -2,32 +2,12 @@
 
 import { supabase } from '@/utils/Supabase';
 import './style.css';
+import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
 
 export default function History(admData: any) {
 
     const resultdata = admData.admData?.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
     console.log(resultdata);
-
-    const onClickRemoveHandler = (e: any, id: string) => {
-        e.preventDefault();
-
-        const fetchRemove = async () => {
-            try {
-                const { error } = await supabase
-                    .from('historys')
-                    .delete()
-                    .eq('id', id);
-
-                if (error) throw error;
-
-                window.location.pathname = '/adm/historys';
-            } catch (error) {
-                console.error("Error fetching paginated data from Supabase:", error);
-            }
-        };
-
-        fetchRemove();
-    };
 
     return (
         <div className='adm_content_container'>
@@ -79,7 +59,7 @@ export default function History(admData: any) {
                                     <i className='icon-pencil'></i>
                                 </a>
                                 <button
-                                    onClick={(e) => onClickRemoveHandler(e, item?.id)}
+                                    onClick={(e) => onClickRemoveHandler(e, admData, item?.id, 'historys')}
                                     className='table_icon_box'>
                                     <i className='icon-trash'></i>
                                 </button>

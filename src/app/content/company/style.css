@@ -115,7 +115,7 @@
 .different_develop_title {
     font-size: 24px;
     font-weight: 700;
-    color: white;
+    color: #1D5BA2;
 }
 
 /* 차별화된 개발 부제목 */
@@ -202,6 +202,16 @@
     font-weight: 700;
 }
 
+/* 카드 내부 제목(영문) */
+.card_content_title_en {
+    width: 100%;
+    flex-wrap: wrap;
+    text-align: start;
+    white-space: pre-line;
+    font-size: 15px;
+    font-weight: 700;
+}
+
 /* 카드 내부 내용 */
 .card_content_text {
     width: 80%;
@@ -209,6 +219,16 @@
     text-align: start;
     white-space: pre-line;
     font-size: 14px;
+    font-weight: 500;
+}
+
+/* 카드 내부 내용(영문) */
+.card_content_text_en {
+    width: 80%;
+    flex-wrap: wrap;
+    text-align: start;
+    white-space: pre-line;
+    font-size: 13px;
     font-weight: 500;
 }
 

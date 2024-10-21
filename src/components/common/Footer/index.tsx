@@ -5,7 +5,7 @@ import './style.css';
 
 export default function Footer() {
 
-    const path = usePathname();
+    const path = usePathname() as string;
 
     return (
         <footer
@@ -16,18 +16,36 @@ export default function Footer() {
                 <nav>
                     <ul className='footer_link_wrapper'>
                         <li>
-                            <a className='footer_link'>
-                                이용약관
+                            <a
+                                href={(path?.includes('/en'))
+                                    ? '/en/content/provision'
+                                    : '/content/provision'}
+                                className='footer_link'>
+                                {(path?.includes('/en'))
+                                    ? 'Terms of use'
+                                    : '이용약관'}
                             </a>
                         </li>
                         <li>
-                            <a className='footer_link'>
-                                개인정보취급방침
+                            <a
+                                href={(path?.includes('/en'))
+                                    ? '/en/content/privacy'
+                                    : '/content/privacy'}
+                                className='footer_link'>
+                                {(path?.includes('/en'))
+                                    ? 'Privacy policy'
+                                    : '개인정보취급방침'}
                             </a>
                         </li>
                         <li>
-                            <a className='footer_link'>
-                                오시는길
+                            <a
+                                href={(path?.includes('/en'))
+                                    ? '/en/content/contact'
+                                    : '/content/contact'}
+                                className='footer_link'>
+                                {(path?.includes('/en'))
+                                    ? 'Location'
+                                    : '오시는길'}
                             </a>
                         </li>
                     </ul>
