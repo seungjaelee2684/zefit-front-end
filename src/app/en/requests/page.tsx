@@ -3,8 +3,7 @@
 import PageBanner from "@/components/common/PageBanner";
 import PageHeader from "@/components/common/PageHeader";
 import PageTap from "@/components/common/PageTap";
-import './style.css';
-import { checkArea } from "@/data/checkArea";
+import '../../requests/style.css';
 import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
 
@@ -50,9 +49,9 @@ export default function Requests() {
 
     return (
         <article>
-            <MetaTagTitle title='문의하기' />
+            <MetaTagTitle title='Contact Us' ko={false} />
             <PageHeader />
-            <PageBanner pageTitle='문의하기' />
+            <PageBanner pageTitle='Contact Us' />
             <PageTap tap='requests' />
             <section className='requests_page_layout'>
                 <img
@@ -68,62 +67,62 @@ export default function Requests() {
                         <div className='requests_lane_wrapper'>
                             <div className='requests_input_wrapper'>
                                 <label className='requests_input_label'>
-                                    담당자명*
+                                    RESPONSIBILITY*
                                 </label>
                                 <div className='requests_input_box'>
                                     <input
                                         className='requests_input'
-                                        placeholder='이름' />
+                                        placeholder='Responsibility' />
                                 </div>
                             </div>
                             <div className='requests_input_wrapper'>
                                 <label className='requests_input_label'>
-                                    이메일*
+                                    EMAIL*
                                 </label>
                                 <div className='requests_input_box'>
                                     <input
                                         className='requests_input'
-                                        placeholder='이메일' />
+                                        placeholder='Email' />
                                 </div>
                             </div>
                         </div>
                         <div className='requests_input_wrapper'>
                             <label className='requests_input_label'>
-                                회사명(부서/직책)*
+                                COMPANY NAME*
                             </label>
                             <div className='requests_input_box'>
                                 <input
                                     className='requests_input'
-                                    placeholder='회사명(부서/직책)' />
+                                    placeholder='Company Name' />
                             </div>
                         </div>
                         <div className='requests_input_wrapper'>
                             <label className='requests_input_label'>
-                                문의제목*
+                                INQUIRY TITLE*
                             </label>
                             <div className='requests_input_box'>
                                 <input
                                     className='requests_input'
-                                    placeholder='제목' />
+                                    placeholder='Title' />
                             </div>
                         </div>
                         <div className='requests_input_wrapper'>
                             <label className='requests_input_label'>
-                                문의내용*
+                                CONTENT OF INQUIRY*
                             </label>
                             <textarea
                                 className='requests_textarea'
-                                placeholder='이곳에 문의할 내용을 입력해주세요.' />
+                                placeholder='Please enter the content you want to inquire about here.' />
                         </div>
                         <div className='requests_input_wrapper'>
                             <label className='requests_input_label'>
                                 <i className='icon-check'></i>
-                                개인정보 처리방침
+                                PRIVACY POLICY
                             </label>
                             <textarea
                                 readOnly
                                 className='check_textarea_box'
-                                value={provisionData?.privacy}>
+                                value={provisionData?.privacy_en}>
                             </textarea>
                             <button
                                 style={{
@@ -138,18 +137,18 @@ export default function Requests() {
                                     className='check_box'>
                                     {(personal) && '✔'}
                                 </span>
-                                개인정보취급방침 내용을 읽었으며 귀하의 개인정보를 수집, 이용하는 것에 동의합니다.
+                                I have read the privacy policy and agree to the collection and use of your personal information.
                             </button>
                         </div>
                         <div className='requests_input_wrapper'>
                             <label className='requests_input_label'>
                                 <i className='icon-check'></i>
-                                홈페이지 이용약관
+                                WEBSITE TERMS OF USE
                             </label>
                             <textarea
                                 readOnly
                                 className='check_textarea_box'
-                                value={provisionData?.use}>
+                                value={provisionData?.use_en}>
                             </textarea>
                             <button
                                 style={{
@@ -164,7 +163,7 @@ export default function Requests() {
                                     className='check_box'>
                                     {(use) && '✔'}
                                 </span>
-                                홈페이지 이용약관에 동의합니다.
+                                I agree to the website terms and conditions.
                             </button>
                         </div>
                         <button
@@ -180,10 +179,10 @@ export default function Requests() {
                                 className='check_box'>
                                 {(personal && use) && '✔'}
                             </span>
-                            전체 약관에 동의합니다.
+                            I agree to all terms.
                         </button>
                         <button className='requests_button'>
-                            문의하기
+                            Inquire
                         </button>
                     </form>
                 </div>

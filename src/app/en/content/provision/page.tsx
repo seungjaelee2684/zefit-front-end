@@ -1,6 +1,6 @@
 'use client';
 
-import './style.css';
+import '../../../content/provision/style.css';
 import PageBanner from "@/components/common/PageBanner";
 import PageHeader from "@/components/common/PageHeader";
 import MetaTagTitle from '@/utils/MetaTagTitle';

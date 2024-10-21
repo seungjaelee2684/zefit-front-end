@@ -3,7 +3,7 @@
 import PageBanner from "@/components/common/PageBanner";
 import PageHeader from "@/components/common/PageHeader";
 import PageTap from "@/components/common/PageTap";
-import './style.css';
+import '../../status/style.css';
 import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
 import { supabase } from "@/utils/Supabase";
@@ -45,9 +45,9 @@ export default function Status() {
 
     return (
         <article>
-            <MetaTagTitle title='인증 및 파트너 현황' />
+            <MetaTagTitle title='Certifications & Partners' ko={false} />
             <PageHeader />
-            <PageBanner pageTitle='인증 및 파트너 현황' />
+            <PageBanner pageTitle='Certifications & Partners' />
             <PageTap tap='company' />
             <div className='page_layout'>
                 <section className='status_page_container'>

@@ -6,21 +6,46 @@ import './style.css'
 import MainHeader from '@/components/common/MainHeader';
 import { useEffect, useState } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
+import { useMediaQuery } from 'react-responsive';
+import { supabase } from '@/utils/Supabase';
 
 export default function Home() {
 
-    const [partner, setPartner] = useState<any[]>([]);
+    // 뷰포트 반응형
+    const isMobile = useMediaQuery({ maxWidth: 1170 });
 
+    const [serviceHref, setServiceHref] = useState<any>(null); // 서비스 첫번째 데이터 state
+    const [partner, setPartner] = useState<any[]>([]); // 파트너 리스트 state
+
+    // 마운트했을 때 api통신을 통해 파트너 리스트와 서비스 데이터 가져오기
     useEffect(() => {
-        fetch('/api/inquiry/partner')
+        fetch('/api/inquiry/landing/service')
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 return response.json();
             })
-            .then((jsonData) => setPartner(jsonData))
+            .then((jsonData) => setServiceHref(jsonData))
             .catch((error) => console.error("Fetch error:", error));
+
+        const fetchData = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('partners')
+                    .select('*')
+                    .eq('state', 'partner');
+                if (error) {
+                    throw error;
+                }
+                setPartner(data);
+                console.log(data);
+            } catch (error) {
+                console.error("Error fetching paginated data from Supabase:", error);
+            }
+        };
+
+        fetchData();
     }, []);
 
     return (
@@ -155,7 +180,7 @@ export default function Home() {
                                 <a href='/adm' className='partner_link'>
                                     <img
                                         className='partner_link_logo'
-                                        src={item.src}
+                                        src={item.image}
                                         alt={item.title} />
                                 </a>
                             </li>

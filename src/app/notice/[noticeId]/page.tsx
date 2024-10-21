@@ -42,9 +42,9 @@ export default function NoticeDetail() {
 
     return (
         <article>
-            <MetaTagTitle title='보도자료' />
+            <MetaTagTitle title='공지사항' />
             <PageHeader />
-            <PageBanner pageTitle='보도자료' />
+            <PageBanner pageTitle='공지사항' />
             <PageTap tap='community' />
             <section className='page_layout'>
                 <div className='notice_detail_page_container'>
@@ -65,7 +65,7 @@ export default function NoticeDetail() {
                         </li>
                         <li>
                             <a
-                                href='/news'
+                                href='/notice'
                                 className='notice_detail_tap_button'>
                                 <i className='icon-menu'></i>
                                 목록

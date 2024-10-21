@@ -9,6 +9,8 @@ export default function FloatingButton() {
     const path = usePathname();
     const isMobile = useMediaQuery({ maxWidth: 1170 });
 
+    const isEnglish = path?.includes('/en');
+
     const onClickScrollTopHandler = () => {
         window.scrollTo({
             top: 0,
@@ -21,7 +23,7 @@ export default function FloatingButton() {
             style={{ display: ((path?.includes('/adm')) || isMobile) ? 'none' : 'flex' }}
             className='floating_button_container'>
             <a
-                href='/requests'
+                href={(isEnglish) ? '/en/requests' : '/requests'}
                 className='contact_floating_button'>
                 <i
                     style={{ fontSize: '24px' }}

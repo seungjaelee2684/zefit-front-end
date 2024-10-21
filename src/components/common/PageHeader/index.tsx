@@ -13,6 +13,8 @@ export default function PageHeader() {
     const path = usePathname();
     const isMobile = useMediaQuery({ maxWidth: 1170 });
 
+    const isEnglish = path?.includes('/en');
+
     const [navOpen, setNavOpen] = useState<string | null>(null);
     const [position, setPosition] = useState<number>(0);
 
@@ -43,7 +45,7 @@ export default function PageHeader() {
                 className='page_header_container'>
                 <nav className="main_header_navlist">
                     <div className='logo_box'>
-                        <a href='/'>
+                        <a href={(isEnglish) ? '/en' : '/'}>
                             <img
                                 style={{
                                     width: (position > 0) ? '75px' : '126px'
@@ -57,35 +59,35 @@ export default function PageHeader() {
                     <ul className='nav_button_wrapper'>
                         <li className='nav_button_box'>
                             <a
-                                href={(path?.includes('/en')) ? '/en/content/company' : '/content/company'}
+                                href={(isEnglish) ? '/en/content/company' : '/content/company'}
                                 className='page_header_nav_button'
                                 onMouseOver={() => setNavOpen('about')}
                                 style={{
                                     borderBottom: (navOpen === 'about') ? '4px solid #0190D6' : '4px solid #ffffff00'
                                 }}>
-                                회사소개
+                                {(isEnglish) ? 'About Us' : '회사소개'}
                             </a>
                         </li>
                         <li className='nav_button_box'>
                             <a
-                                href={(path?.includes('/en')) ? '/en/content/zebrafish' : '/content/zebrafish'}
+                                href={(isEnglish) ? '/en/content/zebrafish' : '/content/zebrafish'}
                                 className='page_header_nav_button'
                                 onMouseOver={() => setNavOpen('business')}
                                 style={{
                                     borderBottom: (navOpen === 'business') ? '4px solid #0190D6' : '4px solid #ffffff00'
                                 }}>
-                                사업소개
+                                {(isEnglish) ? 'Business' : '사업소개'}
                             </a>
                         </li>
                         <li className='nav_button_box'>
                             <a
-                                href={(path?.includes('/en')) ? '/en/notice' : '/notice'}
+                                href={(isEnglish) ? '/en/notice' : '/notice'}
                                 className='page_header_nav_button'
                                 onMouseOver={() => setNavOpen('community')}
                                 style={{
                                     borderBottom: (navOpen === 'community') ? '4px solid #0190D6' : '4px solid #ffffff00'
                                 }}>
-                                커뮤니티
+                                {(isEnglish) ? 'Community' : '커뮤니티'}
                             </a>
                         </li>
                     </ul>
