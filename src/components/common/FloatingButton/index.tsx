@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import './style.css';
 import { useMediaQuery } from 'react-responsive';
+import { useEffect, useState } from 'react';
 
 export default function FloatingButton() {
 
@@ -20,7 +21,9 @@ export default function FloatingButton() {
 
     return (
         <div
-            style={{ display: ((path?.includes('/adm')) || isMobile) ? 'none' : 'flex' }}
+            style={{
+                display: ((path?.includes('/adm')) || isMobile) ? 'none' : 'flex'
+            }}
             className='floating_button_container'>
             <a
                 href={(isEnglish) ? '/en/requests' : '/requests'}
