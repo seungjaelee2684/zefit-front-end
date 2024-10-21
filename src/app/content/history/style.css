@@ -80,7 +80,6 @@
 /* 타임라인 연결선 */
 .timeline_connected_line {
     width: 2px;
-    height: calc(100% - 40px);
     background-color: #00AEEF;
     position: absolute;
     top: 24px;

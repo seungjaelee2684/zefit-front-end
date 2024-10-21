@@ -86,9 +86,9 @@ export default function Service() {
                                     <button
                                         onClick={() => onClickTapHandler(item.name)}
                                         style={{
-                                            fontWeight: (item.name_en === serviceTap?.name) ? '700' : '400',
-                                            backgroundColor: (item.name_en === serviceTap.name) ? '#0055a7' : '#e9e9e9',
-                                            color: (item.name_en === serviceTap?.name) ? '#ffffff' : '#6B6B6B'
+                                            fontWeight: (item.name_en === serviceTap?.name_en) ? '700' : '400',
+                                            backgroundColor: (item.name_en === serviceTap?.name_en) ? '#0055a7' : '#e9e9e9',
+                                            color: (item.name_en === serviceTap?.name_en) ? '#ffffff' : '#6B6B6B'
                                         }}
                                         className='detail_tap_button'>
                                         {item.name_en}

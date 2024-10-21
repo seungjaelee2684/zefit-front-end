@@ -4,11 +4,16 @@ import PageHeader from '@/components/common/PageHeader';
 import './style.css';
 import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
 import { supabase } from '@/utils/Supabase';
 
 export default function History() {
+
+    const timelineRef = useRef<HTMLUListElement>(null);
+    const pointRefs = useRef<HTMLDivElement[]>([]);
+    const lineRef = useRef<HTMLDivElement>(null);
+    const [lineHeight, setLineHeight] = useState<number>(0);
 
     const [historyData, setHistoryData] = useState<any[]>([]);
     console.log("🚀 ~ History ~ historyData:", historyData);
@@ -69,6 +74,25 @@ export default function History() {
         fetchData()
     }, []);
 
+    useEffect(() => {
+        if (pointRefs.current.length > 0) {
+            const firstPoint = pointRefs.current[0].getBoundingClientRect();
+            const lastPoint = pointRefs.current[pointRefs.current.length - 1].getBoundingClientRect();
+            
+            const top = firstPoint.top;
+            const bottom = lastPoint.bottom;
+            
+            const distance = bottom - top;
+            
+            console.log(`첫 번째 포인트와 마지막 포인트 사이의 거리: ${distance}px`);
+            
+            if (lineRef.current) {
+              lineRef.current.style.top = `23px`;
+              lineRef.current.style.height = `${distance}px`;
+            }
+          }
+    }, [historyData]);
+
     return (
         <article>
             <MetaTagTitle title='연혁' />
@@ -85,8 +109,10 @@ export default function History() {
                             {'많은 사람들의 건강한 삶으로 행복한 사회를 만들기 위해\n혁신적인 발전을 이루는 노력의 길'}
                         </h3>
                     </div>
-                    <ul className='history_wrapper'>
-                        <div className='timeline_connected_line' />
+                    <ul className='history_wrapper' ref={timelineRef}>
+                        <div
+                            ref={lineRef}
+                            className='timeline_connected_line' />
                         {transformedData?.map((item: any, index: number) =>
                             <li
                                 key={index}
@@ -99,10 +125,13 @@ export default function History() {
                                     {item?.created_year}
                                 </div>
                                 <div
+                                    ref={(el: HTMLDivElement | null) => {
+                                        if (el) pointRefs.current[index] = el;
+                                    }}
                                     className='timeline_point'
                                     style={{
                                         backgroundColor: (item?.created_year === year) ? '#00AEEF' : '#ffffff',
-                                        marginLeft: (item?.created_year === year) ? '-3px' : '0px'
+                                        // marginLeft: (item?.created_year === year) ? '-3px' : '0px'
                                     }} />
                                 <ul className='timeline_month_list'>
                                     {item?.content.map((mon: any, idx: number) =>
