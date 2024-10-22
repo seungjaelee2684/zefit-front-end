@@ -5,6 +5,7 @@ import './style.css';
 import { supabase } from '@/utils/Supabase';
 import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
 import { onClickAddHandler } from '@/utils/AddDataHandler';
+import { onClickUpdateHandler } from '@/utils/UpdateDataHandler';
 
 export interface CorrectProps {
     admData: any;
@@ -88,20 +89,23 @@ export default function CorrectHistory({ admData, isUpload, setIsUpload }: Corre
                             className='update_button'>
                             추가하기
                         </button>
-                        : <button className='update_button'>
+                        : <button
+                            onClick={(e) => onClickUpdateHandler(e, historyInput, id, 'historys')}
+                            className='update_button'>
                             수정 완료
                         </button>}
                     {(!isUpload)
                         && <button
-                            onClick={(e) => onClickRemoveHandler(e, admData, Number(id), 'historys')}
+                            onClick={(e) => onClickRemoveHandler(e, admData, id, 'historys')}
                             className='update_button'>
                             삭제
                         </button>}
                     {(!isUpload)
-                        && <button
+                        && <a
+                            href='/adm/history/update'
                             className='update_button'>
                             추가하기
-                        </button>}
+                        </a>}
                     <a href='/adm/historys' className='update_button'>
                         전체 목록
                     </a>
