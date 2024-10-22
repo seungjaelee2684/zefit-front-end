@@ -9,7 +9,7 @@ import MetaTagTitle from '@/utils/MetaTagTitle';
 import { useMediaQuery } from 'react-responsive';
 import { supabase } from '@/utils/Supabase';
 
-export default function Home() {
+export default function HomeEN() {
 
     // 뷰포트 반응형
     const isMobile = useMediaQuery({ maxWidth: 1170 });

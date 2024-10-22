@@ -57,7 +57,7 @@
 
 /* 타임라인 년도 */
 .timeline_year {
-    min-width: fit-content;
+    min-width: 88px;
     font-size: 38px;
     font-weight: 600;
     color: #00AEEF;
@@ -74,13 +74,11 @@
     z-index: 2;
     margin-right: 32px;
     margin-top: 23px;
-    /* background-color: #00AEEF; */
 }
 
 /* 타임라인 연결선 */
 .timeline_connected_line {
     width: 2px;
-    height: calc(100% - 40px);
     background-color: #00AEEF;
     position: absolute;
     top: 24px;
@@ -117,4 +115,5 @@
 /* 타임라인 월별 내용 */
 .timeline_month_content {
     font-size: 24px;
+    white-space: pre-line;
 }

@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import './style.css';
 import { useMediaQuery } from 'react-responsive';
+import { useEffect, useState } from 'react';
 
 export default function FloatingButton() {
 
@@ -11,6 +12,10 @@ export default function FloatingButton() {
 
     const isEnglish = path?.includes('/en');
 
+    const [isScroll, setIsScroll] = useState<string>('stop');
+    const [scrollValue, setScrollValue] = useState<number>(window.scrollY);
+    console.log(isScroll, scrollValue);
+
     const onClickScrollTopHandler = () => {
         window.scrollTo({
             top: 0,
@@ -18,9 +23,33 @@ export default function FloatingButton() {
         });
     };
 
+    useEffect(() => {
+        const scrollEvent = (e: any) => {
+            const scrolly = window.scrollY;
+            
+            if (scrolly > scrollValue) {
+                setIsScroll('down');
+            } else if (scrolly < scrollValue) {
+                setIsScroll('up');
+            } else {
+                setIsScroll('stop')
+            }
+            
+            setScrollValue(scrolly);
+        };
+
+        document.addEventListener('scroll', scrollEvent);
+
+        return () => {
+            document.removeEventListener('scroll', scrollEvent);
+        };
+    }, [scrollValue]);
+
     return (
         <div
-            style={{ display: ((path?.includes('/adm')) || isMobile) ? 'none' : 'flex' }}
+            style={{
+                display: ((path?.includes('/adm')) || isMobile) ? 'none' : 'flex'
+            }}
             className='floating_button_container'>
             <a
                 href={(isEnglish) ? '/en/requests' : '/requests'}

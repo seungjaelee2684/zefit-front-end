@@ -4,11 +4,14 @@ import PageHeader from '@/components/common/PageHeader';
 import './style.css';
 import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
 import { supabase } from '@/utils/Supabase';
 
 export default function History() {
+
+    const pointRefs = useRef<HTMLDivElement[]>([]);
+    const lineRef = useRef<HTMLDivElement>(null);
 
     const [historyData, setHistoryData] = useState<any[]>([]);
     console.log("🚀 ~ History ~ historyData:", historyData);
@@ -30,16 +33,26 @@ export default function History() {
                 result[created_year] = {
                     id: item.id, // id 추가
                     created_year: String(created_year),
-                    content: [],
+                    content: {},
                 };
             }
 
-            // 해당 연도에 해당하는 month와 content를 추가
-            result[created_year].content.push({
-                created_month,
-                kr: item.content_kr,
-                en: item.content_en,
-            });
+            // 해당 연도와 월에 해당하는 content를 추가
+            if (!result[created_year].content[created_month]) {
+                result[created_year].content[created_month] = {
+                    created_month,
+                    kr: item.content_kr,
+                    en: item.content_en,
+                };
+            } else {
+                result[created_year].content[created_month].kr += '\n\n' + item.content_kr;
+                result[created_year].content[created_month].en += '\n\n' + item.content_en;
+            }
+        });
+
+        // content 객체를 배열로 변환
+        Object.keys(result).forEach(year => {
+            result[Number(year)].content = Object.values(result[Number(year)].content);
         });
 
         const resultArray = Object.values(result);
@@ -69,6 +82,25 @@ export default function History() {
         fetchData()
     }, []);
 
+    useEffect(() => {
+        if (pointRefs.current.length > 0) {
+            const firstPoint = pointRefs.current[0].getBoundingClientRect();
+            const lastPoint = pointRefs.current[pointRefs.current.length - 1].getBoundingClientRect();
+
+            const top = firstPoint.top;
+            const bottom = lastPoint.bottom;
+
+            const distance = bottom - top;
+
+            console.log(`첫 번째 포인트와 마지막 포인트 사이의 거리: ${distance}px`);
+
+            if (lineRef.current) {
+                lineRef.current.style.top = `23px`;
+                lineRef.current.style.height = `${distance}px`;
+            }
+        }
+    }, [historyData]);
+
     return (
         <article>
             <MetaTagTitle title='연혁' />
@@ -86,7 +118,7 @@ export default function History() {
                         </h3>
                     </div>
                     <ul className='history_wrapper'>
-                        <div className='timeline_connected_line' />
+                        <div ref={lineRef} className='timeline_connected_line' />
                         {transformedData?.map((item: any, index: number) =>
                             <li
                                 key={index}
@@ -99,10 +131,13 @@ export default function History() {
                                     {item?.created_year}
                                 </div>
                                 <div
+                                    ref={(el: HTMLDivElement | null) => {
+                                        if (el) pointRefs.current[index] = el;
+                                    }}
                                     className='timeline_point'
                                     style={{
                                         backgroundColor: (item?.created_year === year) ? '#00AEEF' : '#ffffff',
-                                        marginLeft: (item?.created_year === year) ? '-3px' : '0px'
+                                        // marginLeft: (item?.created_year === year) ? '-3px' : '0px'
                                     }} />
                                 <ul className='timeline_month_list'>
                                     {item?.content.map((mon: any, idx: number) =>

@@ -1,0 +1,32 @@
+/* 404에러 페이지 css style */
+
+/* 에러 페이지 레이아웃 */
+.error_layout {
+    width: 100%;
+    height: 100dvh;
+    background-color: #eeeeee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+}
+
+/* 에러 제목 */
+.error_title {
+    font-size: 48px;
+    font-weight: 300;
+}
+
+/* 에러 부제목 */
+.error_sub_title {
+    font-size: 21px;
+    white-space: pre-line;
+    text-align: center;
+}
