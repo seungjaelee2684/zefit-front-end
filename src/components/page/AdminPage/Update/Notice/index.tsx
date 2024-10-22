@@ -202,11 +202,11 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                             </button>}
                         {(!isUpload)
                             && <a
-                                href='/adm/partners/update'
+                                href='/adm/notices/update'
                                 className='update_button'>
                                 추가하기
                             </a>}
-                        <a href='/adm/partners' className='update_button'>
+                        <a href='/adm/notices' className='update_button'>
                             전체 목록
                         </a>
                     </td>

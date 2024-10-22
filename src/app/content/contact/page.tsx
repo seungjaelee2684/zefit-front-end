@@ -82,10 +82,7 @@ export default function ContactMap() {
                 className='page_layout'>
                 <section className='contact_map_page_container'>
                     <h2 className='contact_map_page_title_wrapper'>
-                        <img
-                            className='title_icon'
-                            src='/logos/zefit.png' />
-                        Zefit으로 오시는 길을 안내드립니다.
+                        오시는 길
                     </h2>
                     <div className='map_content_wrapper'>
                         <div className='kakao_map_info_wrapper'>
