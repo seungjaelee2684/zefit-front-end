@@ -94,7 +94,9 @@ export default function PageTap({ tap }: PageTapProps) {
             }}
             className='page_tap_container'>
             <nav className='page_tap_out_wrapper'>
-                <a href='/' className='home_button_tap'>
+                <a
+                    href={(isEnglish) ? '/en' : '/'}
+                    className='home_button_tap'>
                     <img
                         src='/icons/home.png'
                         alt='홈 아이콘'

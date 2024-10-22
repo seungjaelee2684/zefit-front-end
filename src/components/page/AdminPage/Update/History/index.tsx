@@ -102,7 +102,7 @@ export default function CorrectHistory({ admData, isUpload, setIsUpload }: Corre
                         </button>}
                     {(!isUpload)
                         && <a
-                            href='/adm/history/update'
+                            href='/adm/historys/update'
                             className='update_button'>
                             추가하기
                         </a>}

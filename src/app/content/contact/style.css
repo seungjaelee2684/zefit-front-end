@@ -19,7 +19,6 @@
     font-size: 32px;
     font-weight: 700;
     color: #1D5BA2;
-    text-decoration: underline;
     margin-bottom: 48px;
 }
 
@@ -174,7 +173,7 @@
     align-items: center;
     color: #ffffff;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 /* 오시는 방법 컨텐츠 컨테이너 */

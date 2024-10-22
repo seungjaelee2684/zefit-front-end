@@ -1,1 +1,21 @@
 /* 관리자 페이지 연혁 컴포넌트 css style */
+
+/* 테이블 아이콘 박스 */
+.table_icon_box {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #36404c;
+    color: white;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+/* 테이블 아이콘 박스 HOVER효과 */
+.table_icon_box:hover {
+    background-color: #5c6876;
+}
