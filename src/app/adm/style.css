@@ -45,14 +45,14 @@
 /* 컨텐츠 파트별 제목 */
 .adm_content_part_title {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     color: #70968e;
 }
 
 /* 링크 버튼 */
 .adm_content_part_link {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     padding: 8px 16px;
     display: flex;
     align-items: center;
