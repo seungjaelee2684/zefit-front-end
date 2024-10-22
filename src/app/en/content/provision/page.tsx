@@ -6,7 +6,7 @@ import PageHeader from "@/components/common/PageHeader";
 import MetaTagTitle from '@/utils/MetaTagTitle';
 import { useEffect, useState } from 'react';
 
-export default function Provision() {
+export default function ProvisionEN() {
 
     const [provisionData, setProvisionData] = useState<any>(null);
 

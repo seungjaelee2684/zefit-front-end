@@ -6,7 +6,7 @@ import PageHeader from "@/components/common/PageHeader";
 import MetaTagTitle from '@/utils/MetaTagTitle';
 import { useEffect, useState } from 'react';
 
-export default function Privacy() {
+export default function PrivacyEN() {
 
     const [privacyData, setPrivacyData] = useState<any>(null);
 

@@ -1,21 +1,16 @@
 import { supabase } from "./Supabase";
 
-export const onClickRemoveHandler = (e: any, admData: any, id: number, table: string) => {
+export const onClickAddHandler = (e: any, insertData: any, table: string) => {
     e.preventDefault();
 
-    // admData가 존재하는지 미리 체크
-    if (!admData || !id) {
-        console.error("admData or admData.id is missing.");
-        return;
-    }
-
     const fetchRemove = async () => {
-        console.log(table, id);
         try {
-            const { error } = await supabase
+            const { data, error } = await supabase
                 .from(table)
-                .delete()
-                .eq('id', id);
+                .insert([
+                    insertData,
+                ])
+                .select()
 
             if (error) throw error;
 

@@ -1,6 +1,4 @@
-import path from "path";
-import { promises as fs } from 'fs';
-import { NextApiRequest, NextApiResponse } from "next";
+// import { NextApiRequest, NextApiResponse } from "next";
 
 // export default async function postEmailBotApi(req: NextApiRequest, res: NextApiResponse) {
 //   if (req.method === 'POST') {

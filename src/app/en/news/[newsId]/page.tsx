@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
 import { supabase } from "@/utils/Supabase";
 
-export default function NewsDetail() {
+export default function NewsDetailEN() {
 
     const { newsId }: any = useParams();
 
