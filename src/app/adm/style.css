@@ -97,6 +97,90 @@
     padding: 12px 30px;
     border: 1px solid #444e58;
     font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 테이블 헤더 TINY */
+.tiny_table_header {
+    min-width: 100px;
+    height: 100%;
+    color: white;
+    padding: 12px 30px;
+    border: 1px solid #444e58;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 테이블 헤더 SMALL */
+.small_table_header {
+    min-width: 120px;
+    height: 100%;
+    color: white;
+    padding: 12px 30px;
+    border: 1px solid #444e58;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 테이블 헤더 MEDIUM */
+.medium_table_header {
+    min-width: 140px;
+    height: 100%;
+    color: white;
+    padding: 12px 30px;
+    border: 1px solid #444e58;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 테이블 바디 TINY */
+.tiny_table_body {
+    min-width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid #E7E7E7;
+    font-size: 14px;
+    color: #434343;
+    font-weight: 400;
+}
+
+/* 테이블 바디 SMALL */
+.small_table_body {
+    min-width: 120px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid #E7E7E7;
+    font-size: 14px;
+    color: #434343;
+    font-weight: 400;
+}
+
+/* 테이블 바디 MEDIUM */
+.medium_table_body {
+    min-width: 140px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid #E7E7E7;
+    font-size: 14px;
+    color: #434343;
+    font-weight: 400;
 }
 
 /* 테이블 바디 컨테이너 */
