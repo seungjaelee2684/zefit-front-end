@@ -4,12 +4,15 @@ import { useEffect, useRef, useState } from 'react';
 import './style.css';
 import { useRecoilState } from 'recoil';
 import { admNavModalOpen } from '@/modules/navModal';
+import { usePathname } from 'next/navigation';
 
 interface AdmHeaderProps {
     title: string;
 };
 
 export default function AdmHeader({ title }: AdmHeaderProps) {
+
+    const path = usePathname() as string;
 
     const tapRef = useRef<HTMLUListElement>(null);
     const [openTap, setOpenTap] = useRecoilState(admNavModalOpen);
@@ -103,6 +106,9 @@ export default function AdmHeader({ title }: AdmHeaderProps) {
                     <li className='adm_side_tap_nav_button'>
                         <a
                             href='/adm/historys'
+                            style={{
+                                color: (path?.includes('/adm/historys') ? 'white' : '')
+                            }}
                             className='adm_side_tap_nav_button_text'>
                             연혁
                         </a>
@@ -110,6 +116,9 @@ export default function AdmHeader({ title }: AdmHeaderProps) {
                     <li className='adm_side_tap_nav_button'>
                         <a
                             href='/adm/partners'
+                            style={{
+                                color: (path?.includes('/adm/partners') ? 'white' : '')
+                            }}
                             className='adm_side_tap_nav_button_text'>
                             인증 및 파트너 현황
                         </a>
@@ -117,6 +126,9 @@ export default function AdmHeader({ title }: AdmHeaderProps) {
                     <li className='adm_side_tap_nav_button'>
                         <a
                             href='/adm/notices'
+                            style={{
+                                color: (path?.includes('/adm/notices') ? 'white' : '')
+                            }}
                             className='adm_side_tap_nav_button_text'>
                             공지사항
                         </a>
@@ -124,6 +136,9 @@ export default function AdmHeader({ title }: AdmHeaderProps) {
                     <li className='adm_side_tap_nav_button'>
                         <a
                             href='/adm/news'
+                            style={{
+                                color: (path?.includes('/adm/news') ? 'white' : '')
+                            }}
                             className='adm_side_tap_nav_button_text'>
                             보도자료
                         </a>
@@ -132,6 +147,9 @@ export default function AdmHeader({ title }: AdmHeaderProps) {
                 <li style={{ width: '100%' }}>
                     <a
                         href='/adm/inquirys'
+                        style={{
+                            color: (path?.includes('/adm/inquirys') ? 'white' : '')
+                        }}
                         className='adm_side_tap_lane'>
                         <span className='adm_side_tap_lane_content_wrap'>
                             <i className='icon-envelope-open'></i>
