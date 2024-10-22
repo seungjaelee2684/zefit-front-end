@@ -15,7 +15,7 @@ export default function Status() {
     console.log("🚀 ~ Status ~ partner:", partner);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchPartnerData = async () => {
             try {
                 const { data, error } = await supabase
                     .from('partners')
@@ -30,17 +30,23 @@ export default function Status() {
             }
         };
 
-        fetch('/api/inquiry/certification')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+        const fetchCertifyData = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('partners')
+                    .select('*')
+                    .eq('state', 'certification');
+                if (error) {
+                    throw error;
                 }
-                return response.json();
-            })
-            .then((jsonData) => setCertification(jsonData))
-            .catch((error) => console.error("Fetch error:", error));
+                setCertification(data);
+            } catch (error) {
+                console.error("Error fetching paginated data from Supabase:", error);
+            }
+        };
 
-        fetchData();
+        fetchPartnerData();
+        fetchCertifyData();
     }, []);
 
     return (
@@ -61,8 +67,8 @@ export default function Status() {
                                 <a className='status_image_wrapper'>
                                     <img
                                         className='status_image'
-                                        src={item?.src}
-                                        alt={item?.title} />
+                                        src={item?.image}
+                                        alt={item?.title_kr} />
                                 </a>
                             </li>
                         )}

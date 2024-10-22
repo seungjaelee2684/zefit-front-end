@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
 import { supabase } from '@/utils/Supabase';
 
-export default function Notice() {
+export default function NoticeEN() {
 
     const [dropdownValue, setDropdownValue] = useState<{
         title: string,

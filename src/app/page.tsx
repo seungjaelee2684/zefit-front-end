@@ -10,6 +10,8 @@ import { supabase } from '@/utils/Supabase';
 
 export default function Home() {
 
+    const [isMounted, setIsMounted] = useState(false);
+
     // 뷰포트 반응형
     const isMobile = useMediaQuery({ maxWidth: 1170 });
 
@@ -18,6 +20,8 @@ export default function Home() {
 
     // 마운트했을 때 api통신을 통해 파트너 리스트와 서비스 데이터 가져오기
     useEffect(() => {
+        setIsMounted(true);
+
         fetch('/api/inquiry/landing/service')
             .then((response) => {
                 if (!response.ok) {
@@ -46,6 +50,10 @@ export default function Home() {
 
         fetchData();
     }, []);
+
+    if (!isMounted) {
+        return null; // 또는 로딩 인디케이터
+    }
 
     return (
         <article>

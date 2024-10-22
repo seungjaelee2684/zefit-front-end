@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import SideTap from "@/components/common/SideTap";
 import MetaTagTitle from "@/utils/MetaTagTitle";
 
-export default function Service() {
+export default function ServiceEN() {
 
     const { service }: any = useParams();
 

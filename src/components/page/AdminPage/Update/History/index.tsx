@@ -4,6 +4,7 @@ import { useState } from 'react';
 import './style.css';
 import { supabase } from '@/utils/Supabase';
 import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
+import { onClickAddHandler } from '@/utils/AddDataHandler';
 
 export interface CorrectProps {
     admData: any;
@@ -81,12 +82,18 @@ export default function CorrectHistory({ admData, isUpload, setIsUpload }: Corre
                     </td>
                 </tr>
                 <tr className='update_button_container'>
-                    <button className='update_button'>
-                        {(isUpload) ? '추가하기' : '수정 완료'}
-                    </button>
+                    {(isUpload)
+                        ? <button
+                            onClick={(e) => onClickAddHandler(e, historyInput, 'historys')}
+                            className='update_button'>
+                            추가하기
+                        </button>
+                        : <button className='update_button'>
+                            수정 완료
+                        </button>}
                     {(!isUpload)
                         && <button
-                        onClick={(e) => onClickRemoveHandler(e, admData, id, 'historys')}
+                            onClick={(e) => onClickRemoveHandler(e, admData, Number(id), 'historys')}
                             className='update_button'>
                             삭제
                         </button>}

@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
 import { supabase } from '@/utils/Supabase';
 
-export default function News() {
+export default function NewsEN() {
 
     const [dropdownValue, setDropdownValue] = useState<{
         title: string,

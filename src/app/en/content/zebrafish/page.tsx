@@ -6,7 +6,7 @@ import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
 import MetaTagTitle from '@/utils/MetaTagTitle';
 
-export default function ZebrafishModel() {
+export default function ZebrafishModelEN() {
     return (
         <article>
             <MetaTagTitle title='Zebrafish' ko={false} />

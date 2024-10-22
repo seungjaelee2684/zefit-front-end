@@ -7,7 +7,7 @@ import '../../requests/style.css';
 import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
 
-export default function Requests() {
+export default function RequestsEN() {
 
     const [provisionData, setProvisionData] = useState<any>(null);
     const [check, setCheck] = useState<{
