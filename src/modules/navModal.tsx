@@ -5,7 +5,18 @@ export const navModalOpen = atom({
     default: false
 });
 
+const getInitialAdmNavModalOpen = () => {
+
+    const pathList = ['/adm/historys', '/adm/partners', '/adm/notices', '/adm/news'];
+
+    if (typeof window !== 'undefined') {
+        const pathname = window.location.pathname;
+        return pathList.some((item: string) => pathname?.includes(item));
+    }
+    return false;
+};
+
 export const admNavModalOpen = atom({
     key: 'admNavModalOpen',
-    default: false
+    default: getInitialAdmNavModalOpen()
 });
