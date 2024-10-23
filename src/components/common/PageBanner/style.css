@@ -1,0 +1,76 @@
+/* 페이지 상단 배너 css style */
+
+/* 페이지 상단 배너 컨테이너 */
+.page_top_banner_container {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    background-image: url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/sub_top_bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* 상단 배너 어두운 배경 */
+.page_top_banner_container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+/* 상단 배너 텍스트 박스 */
+.page_top_banner_text_box {
+    position: absolute;
+    top: 100px;
+    left: calc(50% - 575px);
+    z-index: 1;
+    width: 1170px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: 8px;
+}
+
+/* 상단 배너 제목 */
+.page_top_banner_title {
+    font-size: 44px;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+}
+
+/* 상단 배너 부제목 */
+.page_top_banner_sub_title {
+    font-size: 18px;
+    font-weight: 200;
+    color: rgb(234, 234, 234);
+}
+
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+    .page_top_banner_container {
+        height: 260px;
+    }
+
+    .page_top_banner_text_box {
+        width: 94%;
+        left: 3%;
+        top: 10px;
+        gap: 4px;
+    }
+
+    .page_top_banner_title {
+        font-size: 24px;
+    }
+
+    .page_top_banner_sub_title {
+        font-size: 12px;
+    }
+}

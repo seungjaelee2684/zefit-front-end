@@ -1,0 +1,126 @@
+/* 랜딩 페이지 Header css style */
+
+/* 랜딩 페이지 헤더 컨테이너 */
+.main_header {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 20;
+    border-bottom: 1px solid #e9e9e980;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+/* 헤더 내비게이션 리스트 */
+.main_header_navlist {
+    width: 1170px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 헤더 로고 박스 */
+.logo_box {
+    width: 126px;
+    min-width: 126px;
+    height: 100%;
+}
+
+/* 헤더 로고 */
+.logo {
+    width: 126px;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.2s;
+}
+
+/* 내비게이션 버튼 컨테이너 */
+.nav_button_wrapper {
+    width: 480px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 내비게이션 버튼 박스 */
+.nav_button_box {
+    height: 100%;
+}
+
+/* 내비게이션 버튼 */
+.nav_button {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+/* 내비게이션 버튼 HOVER효과 */
+/* .nav_button:hover {
+    opacity: 0.5;
+} */
+
+/* 번역 버튼 컨테이너 */
+.translate_button_wrapper {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+/* 번역 버튼 박스 */
+.translate_button_box {
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 번역 버튼 */
+.translate_button {
+    /* border: none;
+    outline: none; */
+    background-color: none;
+    color: white;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+    .main_header {
+        height: 60px;
+    }
+
+    .main_header_navlist {
+        width: 94%;
+    }
+
+    .logo {
+        width: 75px;
+    }
+
+    .nav_button_wrapper {
+        display: none;
+    }
+
+    .translate_button_wrapper {
+        width: 40px;
+    }
+}

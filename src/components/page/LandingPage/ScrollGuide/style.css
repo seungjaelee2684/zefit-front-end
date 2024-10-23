@@ -1,0 +1,60 @@
+/* 랜딩 페이지 스크롤 가이드 css style */
+
+/* 상단 배너 스크롤 가이드 */
+.top_banner_scroll_guide {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: absolute;
+    left: calc(50% - 46px);
+    bottom: 10px;
+    color: white;
+}
+
+/* 스크롤 가이드 텍스트 */
+.scroll_guide_text {
+    font-size: 12px;
+    font-weight: 500;
+    animation: scroll_guide_text_move 1.5s linear infinite forwards;
+}
+
+/* 스크롤 가이드 화살표 박스 */
+.scroll_guide_arrow_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: -8px;
+    font-size: 10px;
+    animation: scroll_guide_arrow_move 1.5s linear infinite forwards;
+}
+
+
+/* 애니메이션 */
+
+/* 스크롤 가이드 텍스트 애니메이션 */
+@keyframes scroll_guide_text_move {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+/* 스크롤 가이드 화살표 애니메이션 */
+@keyframes scroll_guide_arrow_move {
+    from {
+        opacity: 1;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(0px);
+    }
+}

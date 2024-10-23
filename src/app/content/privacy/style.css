@@ -1,0 +1,76 @@
+/* 개인정보 처리방침 페이지 css style */
+
+/* 개인정보 처리방침 컨테이너 */
+.provacy_page_container {
+    width: 1170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 100px;
+    padding: 80px 0px;
+}
+
+/* 개인정보 처리방침 외부 컨테이너 */
+.provacy_page_out_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 50px;
+}
+
+/* 개인정보 처리방침 컨텐츠 컨테이너 */
+.provacy_page_content_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 32px;
+}
+
+/* 개인정보 처리방침 문단 제목 */
+.provacy_paragraph_title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+/* 개인정보 처리방침 문단 내용 */
+.provacy_paragraph_content {
+    width: 100%;
+    flex-wrap: wrap;
+    text-align: start;
+    white-space: pre-line;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+/* 개인정보 처리방침 문단 미니 제목 */
+.provacy_paragraph_mini_title {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+/* 개인정보 처리방침 문단 미니 내용 */
+.provacy_paragraph_mini_content {
+    width: 100%;
+    flex-wrap: wrap;
+    text-align: start;
+    white-space: pre-line;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+    .provacy_page_container {
+        width: 94%;
+    }
+}

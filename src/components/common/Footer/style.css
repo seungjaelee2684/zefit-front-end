@@ -1,0 +1,147 @@
+/* Footer css style */
+
+/* 푸터 컨테이너 */
+.footer_container {
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    padding: 55px 0px;
+    background-color: white;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+/* 푸터 링크 컨테이너 */
+.footer_link_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* 푸터 링크 */
+.footer_link {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+/* 푸터 컨텐츠 컨테이너 */
+.footer_content_wrapper {
+    width: 1170px;
+    line-height: 1.8;
+    letter-spacing: -0.4px;
+    text-align: center;
+}
+
+/* 아이콘 style */
+.icon-envelope, .icon-earphones {
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+/* 웨이브 이미지 */
+.wave {
+    width: 100%;
+    height: 33px;
+    position: absolute;
+    top: -33px;
+    left: 0;
+    z-index: 4;
+    background: url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/wave.png');
+    animation: wave 20s linear infinite;
+}
+
+/* 투명 웨이브 이미지 */
+.wave::after {
+    content: '';
+    width: 100%;
+    height: 33px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    opacity: 0.4;
+    background: url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/wave.png');
+    animation: reverse_wave 10s linear infinite;
+}
+
+
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+    .footer_container {
+        padding: 30px 0px;
+        gap: 16px;
+    }
+
+    .footer_link_wrapper {
+        gap: 10px;
+    }
+
+    .footer_link {
+        font-size: 14px;
+    }
+
+    .footer_content_wrapper {
+        width: 94%;
+        font-size: 10px;
+    }
+
+    .icon-envelope, .icon-earphones {
+        font-size: 10px;
+        margin-right: 3px;
+    }
+
+    .wave {
+        width: 100%;
+        height: 28px;
+        position: absolute;
+        top: -28px;
+        left: 0;
+        z-index: 4;
+        background: url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/wave.png');
+        animation: wave 20s linear infinite;
+    }
+    
+    .wave::after {
+        content: '';
+        width: 100%;
+        height: 28px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        opacity: 0.4;
+        background: url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/wave.png');
+        animation: reverse_wave 10s linear infinite;
+    }
+}
+
+
+/* keyframes 애니메이션 */
+
+/* 웨이브 애니메이션 */
+@keyframes wave {
+    0% {
+        background-position: 0;
+    }
+
+    100% {
+        background-position: 2061px;
+    }
+}
+
+@keyframes reverse_wave {
+    0% {
+        background-position: 2061px;
+    }
+
+    100% {
+        background-position: 0;
+    }
+}

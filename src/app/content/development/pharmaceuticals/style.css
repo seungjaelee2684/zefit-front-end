@@ -1,0 +1,194 @@
+/* 신약개발기술 페이지 css style */
+
+/* 신약개발기술 페이지 컨테이너 */
+.pharmaceuticals_page_container {
+    width: 1170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 40px;
+    padding: 90px 0px;
+}
+
+/* 신약개발기술 페이지 상단 설명글 컨테이너 */
+.pharmaceuticals_page_top_info_container {
+    width: 100%;
+    height: 590px;
+    position: relative;
+}
+
+/* 상단 설명글 컨텐츠 컨테이너 */
+.top_info_content_wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 48px 0px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+
+/* 상단 설명글 컨텐츠 박스 */
+.top_info_content_box {
+    width: 77%;
+    height: fit-content;
+    padding: 80px 100px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+}
+
+/* 상단 설명글 제목 */
+.top_info_title {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+/* 상단 설명글 컨텐츠 */
+.top_info_content {
+    font-size: 18px;
+    text-align: center;
+    white-space: pre-line;
+}
+
+/* 상단 설명글 백그라운드 박스 */
+.top_info_background_box {
+    width: 63%;
+    height: 65%;
+    background-color: #0055A7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* 상단 설명글 이미지 */
+.top_info_image {
+    width: 70%;
+    height: 70%;
+    object-fit: cover;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+}
+
+/* 하단 컨텐츠 컨테이너 */
+.bottom_content_container {
+    width: 100%;
+    height: 640px;
+    padding-top: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    background-color: #F6F6F6;
+}
+
+/* 하단 컨텐츠 카드 컨테이너 */
+.bottom_content_card_wrapper {
+    width: 1170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+/* 하단 컨텐츠 카드 박스 */
+.card_box {
+    max-width: 380px;
+    width: 100%;
+    height: 352px;
+    border-radius: 12px;
+    padding: 30px 12px;
+    background-color: white;
+    border: 1px solid #78B0E5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+}
+
+/* 하단 컨텐츠 카드 아이콘 */
+.card_box_icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+/* 하단 컨텐츠 카드 제목 */
+.card_box_title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* 하단 컨텐츠 카드 텍스트 박스 */
+.card_text_box {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+}
+
+/* 하단 컨텐츠 카드 텍스트 박스 라인 */
+.card_text_box_lane {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: #555555;
+    gap: 7px;
+}
+
+/* 카드 텍스트 박스 라인 포인트 */
+.card_text_box_lane_point {
+    min-width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border: 1px solid;
+}
+
+/* 카드 텍스트 박스 라인 포인트(영문) */
+.card_text_box_lane_point_en {
+    min-width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    border: 1px solid;
+}
+
+/* 카드 텍스트 박스 라인 글씨 */
+.card_text_box_lane_font {
+    font-size: 13px;
+    text-align: start;
+}
+
+/* 다음 스텝 화살표 */
+.card_next_step_arrow {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #78B0E5;
+    position: absolute;
+    top: 146px;
+    right: -37px;
+    z-index: 2;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+    .pharmaceuticals_page_container {
+        width: 94%;
+    }
+}

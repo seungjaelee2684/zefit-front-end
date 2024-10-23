@@ -1,0 +1,233 @@
+/* 문의하기 페이지 css style */
+
+/* 문의하기 페이지 레이아웃 */
+.requests_page_layout {
+    width: 100%;
+    height: 1800px;
+    position: relative;
+}
+
+/* 문의하기 페이지 배경 이미지 */
+.requests_page_background_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    opacity: 0.15;
+}
+
+/* 문의하기 배경색 컨테이너 */
+.background_color_wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    padding: 120px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 80px;
+    background-color: #275f9766;
+}
+
+/* 문의하기 제목 */
+.requests_title {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-transform: uppercase;
+}
+
+/* 문의하기 제목 하단 바 */
+.requests_title_under_bar {
+    width: 100px;
+    height: 4px;
+    background-color: white;
+}
+
+/* 문의하기 폼 컨텐츠 컨테이너 */
+.requests_form_content_wrapper {
+    width: 822px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 38px;
+}
+
+/* 문의하기 라인 컨테이너 */
+.requests_lane_wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* 문의하기 input 컨테이너 */
+.requests_input_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+}
+
+/* 문의하기 input 라벨 */
+.requests_input_label {
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 문의하기 입력창 컨테이너 */
+.requests_input_box {
+    width: 100%;
+    position: relative;
+}
+
+/* 문의하기 input */
+.requests_input {
+    width: 100%;
+    height: 48px;
+    padding: 17px;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    transition: all 0.3s;
+    border: 1px solid #c2c2c2;
+}
+
+/* 문의하기 input FOCUS효과 */
+.requests_input:focus {
+    border: 1px solid #4a4a4a;
+}
+
+/* 문의하기 input PLACEHOLDER style */
+.requests_input::placeholder {
+    color: #c2c2c2;
+}
+
+/* 문의하기 textarea */
+.requests_textarea {
+    width: 100%;
+    height: 236px;
+    padding: 17px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #c2c2c2;
+    resize: none;
+    transition: all 0.3s;
+}
+
+/* 문의하기 textarea FOCUS효과 */
+.requests_textarea:focus {
+    border: 1px solid #4a4a4a;
+}
+
+/* 문의하기 textarea PLACEHOLDER style */
+.requests_textarea::placeholder {
+    color: #c2c2c2;
+}
+
+.requests_input_box::after {
+    content: '';
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-image: url('http://www.zefit.co.kr/theme/basic/img/require.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* 동의문 박스 */
+.check_textarea_box {
+    width: 100%;
+    height: 142px;
+    overflow-y: auto;
+    border-radius: 4px;
+    border: 1px solid #495057a9;
+    background-color: #E9ECEF;
+    padding: 17px;
+    outline: none;
+    white-space: pre-line;
+    text-align: start;
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+}
+
+/* 동의문 체크 버튼 */
+.check_box_button {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #eeeeee;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+/* 동의문 체크 버튼 HOVER효과 */
+.check_box_button:hover {
+    color: #007aff;
+}
+
+/* 동의문 체크 박스 */
+.check_box {
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    background-color: white;
+    color: white;
+    font-size: 10px;
+    transition: all 0.2s;
+}
+
+/* 문의하기 버튼 */
+.requests_button {
+    width: 100%;
+    height: 48px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    color: white;
+    background-color: #275F97;
+    outline: none;
+    border: none;
+    transition: all 0.2s;
+}
+
+/* 문의하기 버튼 HOVER효과 */
+.requests_button:hover {
+    background-color: #267bb4;
+}
+
+/* 문의하기 버튼 AVTIVE효과 */
+.requests_button:focus {
+    background-color: #194481;
+}

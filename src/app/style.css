@@ -1,0 +1,651 @@
+/* 랜딩 페이지 css style */
+
+/* 상단 배너 컨테이너 */
+.landing_top_banner_container {
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* 상단 배너 */
+.landing_top_banner {
+    width: 140%;
+    height: 140%;
+    background-image: url('http://www.zefit.co.kr/data/slider/3551210086_0f617416_20811665.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: banner_fade_in 3s ease-in-out forwards;
+}
+
+/* 상단 배너 어두운 배경 */
+.landing_top_banner::after {
+    content: '';
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* 상단 배너 텍스트 박스 */
+.top_banner_text_box {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 575px);
+    z-index: 1;
+    width: 1170px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    color: white;
+    user-select: none;
+}
+
+/* 상단 배너 제목 */
+.top_banner_title {
+    font-size: 64px;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    animation: top_banner_title_fade_in 1.2s 1s forwards;
+}
+
+/* 상단 배너 부제목 */
+.top_banner_caption {
+    font-size: 24px;
+    font-weight: 300;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: top_banner_title_fade_in 1.2s 1.3s forwards;
+}
+
+/* 전체 콘텐츠 박스 */
+.landing_content_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin-top: 80px;
+}
+
+/* 회사 소개 섹션 */
+.landing_company_intro_wrapper {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 80px;
+}
+
+/* 회사 소개 섹션 제목 */
+.company_title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #00AEEF;
+    user-select: none;
+}
+
+/* 회사 소개 섹션 부제목 */
+.company_sub_title {
+    text-align: start;
+    font-size: 24px;
+    white-space: pre-line;
+}
+
+/* 회사 소개 섹션 부제목 폰트 하이라이트 */
+.company_bold_text {
+    font-weight: 700;
+}
+
+/* 회사 소개 이미지 */
+.company_image {
+    width: 800px;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* 회사 소개 링크 버튼 리스트 */
+.company_link_button_wrapper {
+    width: 100%;
+    display: flex;
+    align-items: start;
+}
+
+/* 회사 소개 링크 버튼 외부 박스 */
+.company_link_button_box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* 링크 버튼 중간바 */
+.company_link_center_bar {
+    min-width: 1px;
+    height: 80px;
+    background-color: #cccccc;
+}
+
+/* 회사 소개 링크 버튼 */
+.company_link_button {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 24px;
+    transition: all 0.3s;
+    padding: 0px 30px;
+    cursor: pointer;
+}
+
+/* 회사 소개 링크 버튼 텍스트 박스 */
+.link_button_text_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 8px;
+}
+
+/* 회사 소개 링크 버튼 제목 */
+.link_button_title {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* 회사 소개 링크 버튼 부연 설명 */
+.link_button_content {
+    text-align: start;
+    font-size: 14px;
+    white-space: pre-line;
+}
+
+/* 회사 소개 링크 버튼 화살표 */
+.link_button_arrow {
+    font-size: 20px;
+    transition: all 0.3s;
+}
+
+/* 회사소개 링크 버튼 HOVER효과 */
+.company_link_button:hover {
+    color: #1D5BA2;
+}
+
+/* 회사소개 링크 버튼 HOVER효과 > 화살표 */
+.company_link_button:hover .link_button_arrow {
+    transform: translateX(6px);
+}
+
+/* 비즈니스 소개 섹션 */
+.landing_business_content {
+    width: 100%;
+    height: 680px;
+    background-image: url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img4.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* 비즈니스 소개 컨테이너 */
+.business_content_wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+    padding: 70px 0px;
+    background-color: #0000004c;
+}
+
+/* 비즈니스 소개 제목 */
+.business_title {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    user-select: none;
+}
+
+/* 비즈니스 소개 카드 컨테이너 */
+.business_card_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+/* 비즈니스 소개 카드 박스 */
+.business_card_out_wrapper {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 비즈니스 소개 카드 */
+.business_card_box {
+    width: 370px;
+    height: 390px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff80;
+    transition: all 0.3s;
+    box-shadow: 0px 0px 10px 0px #0000003f;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+/* 비즈니스 소개 카드 썸네일 이미지 */
+.business_card_image {
+    width: 100%;
+    min-height: 260px;
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    transition: all 0.3s;
+}
+
+/* 비즈니스 소개 카드 텍스트 박스 */
+.business_card_text_box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 16px;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+/* 비즈니스 소개 카드 제목 */
+.business_card_title {
+    width: 100%;
+    text-align: start;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+/* 비즈니스 소개 카드 부연 설명 */
+.business_card_content {
+    width: 100%;
+    text-align: start;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* 비즈니스 소개 카드 HOVER효과 */
+.business_card_box:hover {
+    background-color: #00AEEF80;
+}
+
+/* 비즈니스 소개 카드 HOVER효과 > 텍스트 박스 */
+.business_card_box:hover .business_card_text_box {
+    color: white;
+}
+
+/* 비즈니스 소개 카드 HOVER효과 > 카드 이미지 */
+.business_card_box:hover .business_card_image {
+    background-size: 110%;
+}
+
+/*  파트너 소개 섹션 */
+.landing_partner_content {
+    width: 100%;
+    padding: 70px 0px 100px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    background-color: #F1F1F1;
+}
+
+/* 파트너 소개 제목 */
+.partner_title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #00AEEF;
+    user-select: none;
+}
+
+/* 파트너 소개 리스트 */
+.partner_list {
+    width: 1170px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+/* 파트너 소개 링크 박스 */
+.partner_link_box {
+    width: 270px;
+    height: 100px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 2px 2px 8px 0px #0000003f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* 파트너 소개 링크 */
+.partner_link {
+    width: 100%;
+    height: 76px;
+}
+
+/* 파트너 소개 링크 로고 */
+.partner_link_logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 문의하기 섹션 */
+.landing_contact_container {
+    width: 100%;
+    height: 380px;
+    background-image: url('http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+}
+
+/* 문의하기 섹션 컨텐츠 컨테이너 */
+.landing_contact_content_wrapper {
+    width: 100%;
+    height: 100%;
+    background-color: #0000004c;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 40px;
+    padding: 70px 0px 0px 0px;
+}
+
+/*문의하기 제목*/
+.contact_title {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    user-select: none;
+}
+
+/* 문의하기 설명글 */
+.contact_content {
+    font-size: 24px;
+    font-weight: 500;
+    color: white;
+}
+
+/* 문의하기 버튼 */
+.contact_button {
+    width: 180px;
+    height: 54px;
+    position: relative;
+}
+
+/* 문의하기 버튼 텍스트 */
+.contact_button_text {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+}
+
+/* 문의하기 버튼 화살표 */
+.contact_button_arrow {
+    width: 24px;
+    height: 8px;
+    object-fit: contain;
+    transition: all 0.4s ease-in-out;
+}
+
+/* 문의하기 버튼 svg */
+.contact_button_svg {
+    width: 180px;
+    height: 54px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    background-color: transparent;
+}
+
+/* 문의하기 버튼 rect */
+.contact_button_svg_child {
+    fill: none;
+    stroke: white;
+    stroke-width: 1;
+    stroke-dasharray: 468;
+    stroke-dashoffset: 468; /* 사각형의 전체 둘레 */
+    background-color: white;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.4s ease-in-out;
+    rx: 30;
+    ry: 30;
+}
+
+/* 문의하기 버튼 HOVER효과 > 화살표 */
+.contact_button:hover .contact_button_arrow {
+    transform: translateX(8px);
+}
+
+/* 문의하기 버튼 HOVER효과 > 애니메이션(테두리선이 그려지는) */
+.contact_button:hover .contact_button_svg_child  {
+    stroke-dashoffset: 0;
+}
+
+
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+
+    /* 상단 배너 */
+    .landing_top_banner_container {
+        height: 300px;
+    }
+
+    .top_banner_text_box {
+        width: 94%;
+        left: 2%;
+    }
+
+    .top_banner_title {
+        font-size: 28px;
+    }
+
+    .top_banner_caption {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    /* 회사 소개 */
+    .landing_company_intro_wrapper {
+        width: 94%;
+        gap: 24px;
+        margin-bottom: 40px;
+    }
+
+    .company_image {
+        width: 100%;
+        height: 300px;
+    }
+
+    .company_title {
+        font-size: 20px;
+    }
+
+    .company_sub_title {
+        font-size: 18px;
+        white-space: normal;
+    }
+
+    .company_link_button_wrapper {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .company_link_button_box {
+        justify-content: start;
+    }
+
+    .company_link_center_bar {
+        display: none;
+    }
+
+    .company_link_button {
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid;
+        padding: 16px 30px;
+        border-radius: 20px;
+    }
+
+    /* 비즈니스 소개 */
+    .landing_business_content {
+        height: fit-content;
+    }
+
+    .business_content_wrapper {
+        gap: 32px;
+        padding: 40px 0px;
+    }
+
+    .business_title {
+        font-size: 20px;
+    }
+
+    .business_card_wrapper {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .business_card_out_wrapper {
+        width: 100%;
+    }
+
+    .business_card_box {
+        width: 94%;
+        height: 180px;
+    }
+
+    .business_card_image {
+        min-height: 100%;
+    }
+
+    .business_card_image::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #0000004c;
+    }
+
+    .business_card_text_box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: white;
+    }
+
+    /* 파트너 리스트 */
+    .landing_partner_content {
+        padding: 40px 0px 50px 0px;
+    }
+
+    .partner_title {
+        font-size: 20px;
+    }
+
+    .partner_list {
+        width: 94%;
+        gap: 16px;
+    }
+
+    .partner_link_box {
+        width: calc((100% - 32px) / 2);
+        height: 58px;
+        border-radius: 4px;
+    }
+
+    .partner_link {
+        height: 48px;
+    }
+
+    /* 문의하기 */
+    .landing_contact_container {
+        height: 270px;
+    }
+
+    .landing_contact_content_wrapper {
+        gap: 24px;
+        padding: 40px 0px 0px 0px;
+    }
+
+    .contact_title {
+        font-size: 20px;
+    }
+
+    .contact_content {
+        font-size: 18px;
+    }
+
+    .contact_button_svg_child {
+        stroke-dashoffset: 0;
+    }
+}
+
+
+/* keyframes 애니메이션 */
+
+/* 상단 배너 애니메이션 */
+@keyframes banner_fade_in {
+    to {
+        width: 120%;
+        height: 120%;
+    }
+}
+
+/* 상단 배너 제목 페이드 인 애니메이션 */
+@keyframes top_banner_title_fade_in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

@@ -1,0 +1,202 @@
+/* 파이프라인 페이지 css style */
+
+/* 파이프라인 페이지 컨테이너 */
+.pipeline_page_container {
+    width: 1170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 40px;
+    padding: 90px 0px;
+}
+
+/* 파이프라인 페이지 제목 */
+.pipeline_page_title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* 파이프라인 표 자료 컨테이너 */
+.pipeline_table_container {
+    width: 100%;
+    height: 700px;
+    background-color: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding-top: 70px;
+    gap: 90px;
+}
+
+/* 파이프라인 표 컨테이너 제목 */
+.pipeline_table_label_title {
+    font-size: 24px;
+    text-align: center;
+    white-space: pre-line;
+}
+
+/* 파이프라인 표 박스 */
+.table_box {
+    width: 1170px;
+    height: 340px;
+    border-top: 2px solid;
+    background-color: white;
+    border-collapse: collapse;
+}
+
+/* 표 헤더 */
+.table_header {
+    width: 100%;
+    height: 60px;
+    min-height: 60px;
+    background-color: #EBEDF3;
+    border-bottom: 2px solid #b8b8b8;
+}
+
+/* 표 헤더 컨테이너 */
+.table_header_wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* 표 헤더칸 */
+.table_header_room {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* 표 바디 */
+.table_body {
+    width: 100%;
+    height: 100%;
+}
+
+/* 표 바디 라인 컨테이너 */
+.table_body_lane {
+    width: 100%;
+    height: calc(100% / 3);
+    display: flex;
+    align-items: center;
+}
+
+/* 표 바디칸 헤드 */
+.table_body_room_head {
+    width: calc(100% / 6);
+    height: 100%;
+    border-right: 1px solid #cfcfcf;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* 표 바디칸 헤드 텍스트 */
+.table_body_room_head_text {
+    width: 100%;
+    height: 200%;
+    font-size: 16px;
+    font-weight: 500;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #cfcfcf;
+}
+
+/* 표 바디칸 서브헤드 */
+.table_body_room_sub_head {
+    width: calc(100% / 6);
+    height: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #cfcfcf;
+}
+
+/* 표 바디칸 그래프 */
+.table_body_room_graph {
+    width: calc(100% / 6 * 4);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #cfcfcf;
+}
+
+/* 표 바디칸 그래프 박스 */
+.graph_box {
+    width: 87%;
+    height: 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #eaeaea;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 그래프 */
+.graph {
+    height: 100%;
+    transition: all 3s ease-in-out;
+    background: linear-gradient(to right, #00AEEF, #006489);
+}
+
+
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+    .pipeline_page_container {
+        width: 94%;
+        padding: 40px 0px;
+    }
+
+    .pipeline_page_title {
+        font-size: 14px;
+    }
+
+    .pipeline_table_container {
+        height: 400px;
+        padding-top: 30px;
+        gap: 32px;
+    }
+
+    .pipeline_table_label_title {
+        font-size: 12px;
+    }
+
+    .table_box {
+        width: 94%;
+        height: 240px;
+    }
+
+    .table_header {
+        height: 60px;
+    }
+
+    .table_header_room, .table_body_room_head,
+    .table_body_room_head_text, .table_body_room_sub_head {
+        font-size: 8px;
+    }
+
+    .graph_box {
+        height: 14px;
+    }
+}
