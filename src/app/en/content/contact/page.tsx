@@ -82,10 +82,7 @@ export default function ContactMap() {
                 className='page_layout'>
                 <section className='contact_map_page_container'>
                     <h2 className='contact_map_page_title_wrapper'>
-                        <img
-                            className='title_icon'
-                            src='/logos/zefit.png' />
-                        How to come to Zefit
+                        Location
                     </h2>
                     <div className='map_content_wrapper'>
                         <div className='kakao_map_info_wrapper'>

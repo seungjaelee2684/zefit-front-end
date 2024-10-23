@@ -11,12 +11,6 @@
     padding: 140px 0px 170px 0px;
 }
 
-/* 모델 페이지 제목 */
-.model_page_title {
-    font-size: 24px;
-    color: #1D5BA2;
-}
-
 /* 모델 페이지 상단 설명글 컨테이너 */
 .model_page_top_info_wrapper {
     width: 100%;

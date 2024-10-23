@@ -202,7 +202,7 @@ export default function Home() {
                 {/* 파트너 리스트 섹션 */}
                 <section className='landing_partner_content'>
                     <h2 className='partner_title'>
-                        THE PARTNER
+                        THE PARTNERS
                     </h2>
                     <ul className='partner_list'>
                         {partner?.map((item: any, index: number) =>

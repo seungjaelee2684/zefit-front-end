@@ -8,6 +8,7 @@ import { RecoilRoot, useRecoilValue } from "recoil";
 import ClientProvider from "./clientProvider";
 import NavModal from "@/components/common/NavModal";
 import Loading from "@/components/common/loading";
+import Script from "next/script";
 
 const notoSansKr = Noto_Sans_KR({
   // preload: true, 기본값
@@ -52,7 +53,10 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <script type="text/javascript" src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&libraries=services&autoload=false`}></script>
+          <Script
+            src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&libraries=services&autoload=false`}
+            strategy="lazyOnload" // 페이지 로드 이후 스크립트 로드
+          />
         </ClientProvider>
       </body>
     </html>

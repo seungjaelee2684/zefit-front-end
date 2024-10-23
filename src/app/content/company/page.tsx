@@ -19,7 +19,7 @@ export default function Company() {
             {/* 회사 개요 페이지 레이아웃 */}
             <div className='page_layout'>
                 <section className='company_introduce_container'>
-                    <h2 className='company_introduce_title'>
+                    <h2 className='page_title'>
                         About Us
                     </h2>
                     <h3 className='company_introduce_sub_title'>
