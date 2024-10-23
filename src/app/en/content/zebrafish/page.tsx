@@ -15,7 +15,7 @@ export default function ZebrafishModelEN() {
             <PageTap tap='business' />
             <div className='page_layout'>
                 <section className='model_page_first_container'>
-                    <h2 className='model_page_title'>
+                    <h2 className='page_title'>
                         Model
                     </h2>
                     <div className='model_page_top_info_wrapper'>

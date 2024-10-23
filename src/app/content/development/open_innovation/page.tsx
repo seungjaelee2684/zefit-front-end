@@ -82,7 +82,11 @@ export default function OpenInnovation() {
                             <li key={index} className='card_box'>
                                 <div className='card_step_box'>
                                     step {item?.id}
+                                    
                                 </div>
+                                <span className='card_step_box_text'>
+                                        
+                                    </span>
                                 {(index !== innovationData?.step.length - 1)
                                     && <div className='card_next_step_arrow'>
                                         <i className='icon-arrow-right' />

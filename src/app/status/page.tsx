@@ -57,7 +57,7 @@ export default function Status() {
             <PageTap tap='company' />
             <div className='page_layout'>
                 <section className='status_page_container'>
-                    <h2 className='status_page_title_wrapper'>
+                    <h2 className='page_left_title'>
                         Certification
                     </h2>
                     <ul className='status_page_content_list'>
@@ -75,7 +75,7 @@ export default function Status() {
                     </ul>
                     <h2
                         style={{ marginTop: '40px' }}
-                        className='status_page_title_wrapper'>
+                        className='page_left_title'>
                         Partner
                     </h2>
                     <ul className='status_page_content_list'>

@@ -6,6 +6,8 @@ import './style.css';
 import { supabase } from '@/utils/Supabase';
 import { handleImageChange, handleImageDelete } from '@/utils/HandleImage';
 import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
+import { onClickAddHandler } from '@/utils/AddDataHandler';
+import { onClickUpdateHandler } from '@/utils/UpdateDataHandler';
 
 export default function CorrectNotice({ admData, isUpload, setIsUpload }: CorrectProps) {
 
@@ -191,9 +193,17 @@ export default function CorrectNotice({ admData, isUpload, setIsUpload }: Correc
                 </tr>
                 <tr style={{ width: '100%' }}>
                     <td className='update_button_container'>
-                        <button className='update_button'>
-                            {(isUpload) ? '추가하기' : '수정 완료'}
-                        </button>
+                        {(isUpload)
+                            ? <button
+                                onClick={(e) => onClickAddHandler(e, noticeInput, 'notices')}
+                                className='update_button'>
+                                추가하기
+                            </button>
+                            : <button
+                                onClick={(e) => onClickUpdateHandler(e, noticeInput, id, 'notices')}
+                                className='update_button'>
+                                수정 완료
+                            </button>}
                         {(!isUpload)
                             && <button
                                 onClick={(e) => onClickRemoveHandler(e, admData, id, 'notices')}

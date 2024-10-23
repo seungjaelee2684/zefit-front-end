@@ -200,7 +200,7 @@ export default function Notice() {
             <PageTap tap='community' />
             <section className='page_layout'>
                 <div className='notice_page_container'>
-                    <h2 className='notice_page_title'>
+                    <h2 className='page_title'>
                         Notice
                     </h2>
                     <form className='notice_page_searh_bar_container'>

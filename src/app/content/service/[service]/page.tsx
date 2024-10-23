@@ -44,7 +44,7 @@ export default function Service() {
     }, [service]);
 
     return (
-        <article>
+        <article style={{ position: 'relative' }}>
             <MetaTagTitle title='서비스' />
             <PageHeader />
             <PageBanner pageTitle='서비스' />
@@ -73,7 +73,6 @@ export default function Service() {
                             className='service_info_image'
                             src={findData?.thumbnail}
                             alt={findData?.service} />
-                        <div className='service_back_deco_box' />
                     </div>
                 </section>
                 <section className='service_page_detail_container'>

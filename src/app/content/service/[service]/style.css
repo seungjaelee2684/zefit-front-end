@@ -49,7 +49,7 @@
     top: 0;
     left: 0;
     z-index: 3;
-    padding: 40px 90px;
+    padding: 30px 60px 40px 60px;
 }
 
 /* 서비스 설명글 박스 제목 */
@@ -60,8 +60,10 @@
 
 /* 서비스 설명글 박스 내용 */
 .service_page_info_box_content {
-    font-size: 20px;
+    width: 100%;
+    font-size: 18px;
     font-weight: 400;
+    line-height: 150%;
     text-align: start;
 }
 
@@ -74,18 +76,6 @@
     bottom: 0;
     right: 0;
     z-index: 2;
-}
-
-/* 서비스 설명글 배경 박스 */
-.service_back_deco_box {
-    width: 250px;
-    height: 150px;
-    border: 2px solid #1D5BA2;
-    background-color: white;
-    position: absolute;
-    bottom: -46px;
-    left: 320px;
-    z-index: 1;
 }
 
 /* 서비스 세부 내용 전체 컨테이너 */

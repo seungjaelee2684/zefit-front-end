@@ -128,7 +128,7 @@ export default function HomeEN() {
                                             Model
                                         </strong>
                                         <p className='business_card_content'>
-                                            Zefit's competitiveness and core value
+                                            {"Zefit's competitiveness and core value"}
                                         </p>
                                     </div>
                                 </a>
@@ -145,7 +145,7 @@ export default function HomeEN() {
                                             Service
                                         </strong>
                                         <p className='business_card_content'>
-                                            Zefit's service is accurate
+                                            {"Zefit's service is accurate"}
                                         </p>
                                     </div>
                                 </a>
@@ -162,7 +162,7 @@ export default function HomeEN() {
                                             Pharmaceuticals
                                         </strong>
                                         <p className='business_card_content'>
-                                            innovative drug discovery platform
+                                            {"innovative drug discovery platform"}
                                         </p>
                                     </div>
                                 </a>

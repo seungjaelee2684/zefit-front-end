@@ -102,7 +102,7 @@ export default function NewsEN() {
             <PageTap tap='community' />
             <section className='page_layout'>
                 <div className='notice_page_container'>
-                    <h2 className='notice_page_title'>
+                    <h2 className='page_title'>
                         News
                     </h2>
                     <form
