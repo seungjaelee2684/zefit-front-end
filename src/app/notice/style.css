@@ -11,12 +11,6 @@
     padding: 40px 0px;
 }
 
-/* 공지사항 페이지 제목 */
-.notice_page_title {
-    font-size: 24px;
-    color: #1D5BA2;
-}
-
 /* 공지사항 페이지 검색 바 컨테이너 */
 .notice_page_searh_bar_container {
     width: 100%;

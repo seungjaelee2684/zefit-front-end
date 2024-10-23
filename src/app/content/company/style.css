@@ -11,11 +11,6 @@
     padding: 90px 0px;
 }
 
-/* 회사 개요 페이지 소개글 제목 */
-.company_introduce_title {
-    font-size: 24px;
-    color: #1D5BA2;
-}
 
 /* 회사 개요 페이지 소개글 설명 */
 .company_introduce_sub_title {

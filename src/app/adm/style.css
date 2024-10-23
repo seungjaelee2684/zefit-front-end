@@ -26,46 +26,18 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: center;
-    gap: 40px;
+    align-items: start;
+    gap: 16px;
     background-color: #ffffff;
     padding: 20px;
 }
 
-/* 컨텐츠 파트별 컨테이너 */
-.adm_content_part_warpper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-    gap: 16px;
-}
-
-/* 컨텐츠 파트별 제목 */
+/* 관리자 페이지 컨텐츠 파트별 제목 */
 .adm_content_part_title {
     font-size: 14px;
-    font-weight: 500;
-    color: #70968e;
-}
-
-/* 링크 버튼 */
-.adm_content_part_link {
-    font-size: 16px;
-    font-weight: 500;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    background-color: transparent;
-    transition: all 0.3s;
-    cursor: pointer;
-}
-
-/* 링크 버튼 HOVER효과 */
-.adm_content_part_link:hover {
-    gap: 60px;
+    font-weight: 700;
     color: #64c5b1;
+    margin-left: 8px;
 }
 
 /* 관리자 페이지 테이블 컨테이너 */
@@ -146,13 +118,14 @@
     min-width: 100px;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 16px;
     border: 1px solid #E7E7E7;
     font-size: 14px;
     color: #434343;
     font-weight: 400;
+    padding: 10px;
 }
 
 /* 테이블 바디 SMALL */
@@ -160,13 +133,14 @@
     min-width: 120px;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 16px;
     border: 1px solid #E7E7E7;
     font-size: 14px;
     color: #434343;
     font-weight: 400;
+    padding: 10px;
 }
 
 /* 테이블 바디 MEDIUM */
@@ -174,13 +148,14 @@
     min-width: 140px;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 16px;
     border: 1px solid #E7E7E7;
     font-size: 14px;
     color: #434343;
     font-weight: 400;
+    padding: 10px;
 }
 
 /* 테이블 바디 컨테이너 */
@@ -221,9 +196,9 @@
     align-items: center;
     padding: 8px 5px;
     border: 1px solid #E7E7E7;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
-    color: #434343;
+    color: #747474;
     padding: 0px 20px;
 }
 
@@ -237,4 +212,31 @@
     -webkit-line-clamp: 1;
     line-clamp: 1;
     -webkit-box-orient: vertical;
+}
+
+/* 전체 보기 링크 버튼 */
+.full_view_link_button {
+    padding: 8px 12px;
+    border: 1px solid #cccccc;
+    color: #7b7b7b;
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+/* 전체 보기 링크 버튼 HOVER효과 */
+.full_view_link_button:hover {
+    border: 1px solid #64c5b1;
+    color: #64c5b1;
+}
+
+/* 관리자 아이콘 */
+.manager_icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
 }

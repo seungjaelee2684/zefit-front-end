@@ -94,6 +94,7 @@
     font-size: 28px;
     font-weight: 700;
     color: #00AEEF;
+    user-select: none;
 }
 
 /* 회사 소개 섹션 부제목 */
@@ -214,6 +215,7 @@
     font-size: 28px;
     font-weight: 700;
     color: white;
+    user-select: none;
 }
 
 /* 비즈니스 소개 카드 컨테이너 */
@@ -307,7 +309,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
+    gap: 60px;
     background-color: #F1F1F1;
 }
 
@@ -316,6 +318,7 @@
     font-size: 28px;
     font-weight: 700;
     color: #00AEEF;
+    user-select: none;
 }
 
 /* 파트너 소개 리스트 */
@@ -384,6 +387,7 @@
     font-size: 28px;
     font-weight: 700;
     color: white;
+    user-select: none;
 }
 
 /* 문의하기 설명글 */

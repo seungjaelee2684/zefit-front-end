@@ -2,10 +2,11 @@
 
 /* 서비스 사이드 탭 컨테이너 */
 .service_side_tap_container {
-    position: fixed;
-    bottom: calc(2% + 200px);
+    position: absolute;
+    top: 540px;
     right: 0;
-    z-index: 19;
+    z-index: 15;
+    transition: all 0.2s;
 }
 
 /* 사이드 탭 리스트 컨테이너 */
@@ -13,7 +14,7 @@
     display: flex;
     flex-direction: column;
     align-items: end;
-    gap: 24px;
+    gap: 16px;
 }
 
 /* 사이드 탭 라인 컨테이너 */

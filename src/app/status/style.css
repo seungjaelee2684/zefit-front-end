@@ -11,16 +11,6 @@
     padding: 90px 0px;
 }
 
-/* status 페이지 제목 컨테이너 */
-.status_page_title_wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: start;
-    font-size: 32px;
-    font-weight: 500;
-    color: #1D5BA2;
-}
-
 /* status 페이지 목록 컨테이너 */
 .status_page_content_list {
     width: 100%;

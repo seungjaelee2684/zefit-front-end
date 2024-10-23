@@ -110,7 +110,7 @@ export default function History() {
             <div className='page_layout'>
                 <section className='history_page_container'>
                     <div className='history_page_title_container'>
-                        <h2 className='history_page_title'>
+                        <h2 className='page_title'>
                             History
                         </h2>
                         <h3 className='history_page_sub_title'>

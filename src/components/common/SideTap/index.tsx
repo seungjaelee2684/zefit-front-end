@@ -1,6 +1,7 @@
 import { usePathname } from 'next/navigation';
 import './style.css';
 import { businessNavList } from '@/data/navData';
+import { useEffect, useRef, useState } from 'react';
 
 interface SideTapProps {
     tap: any;
@@ -11,7 +12,11 @@ export default function SideTap({ tap, content }: SideTapProps) {
 
     const path = usePathname();
 
+    const sideTapRef = useRef<HTMLDivElement>(null);
+
     const isEnglish = path?.includes('/en');
+
+    const [scrolly, setScrolly] = useState<number>(0);
 
     const linkControl = (item: string) => {
         if (content === 'development') {
@@ -23,8 +28,31 @@ export default function SideTap({ tap, content }: SideTapProps) {
         }
     };
 
+    useEffect(() => {
+        const scrollEvent = () => {
+            if (!sideTapRef.current) return;
+            const y = window.scrollY;
+            
+            if (y < 600) {
+                sideTapRef.current.style.position = 'absolute';
+                sideTapRef.current.style.bottom = 'auto';
+                sideTapRef.current.style.top = '540px';
+            } else {
+                sideTapRef.current.style.position = 'fixed';
+                sideTapRef.current.style.bottom = 'calc(2% + 180px)';
+                sideTapRef.current.style.top = 'auto';
+            };
+        };
+
+        window.addEventListener('scroll', scrollEvent);
+
+        return () => {
+            window.removeEventListener('scroll', scrollEvent);
+        };
+    }, []);
+
     return (
-        <section className='service_side_tap_container'>
+        <section ref={sideTapRef} className='service_side_tap_container'>
             <ul className='side_tap_list_wrapper'>
                 {tap?.map((item: string, index: number) =>
                     <li key={index}>
