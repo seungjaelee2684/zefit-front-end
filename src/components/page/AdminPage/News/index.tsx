@@ -1,6 +1,6 @@
 'use client';
 
-import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
+import { onClickRemoveHandler } from '@/utils/RemoveDateHandler';
 import '../Notice/style.css';
 import './style.css';
 

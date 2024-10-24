@@ -1,6 +1,6 @@
 'use client';
 
-import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
+import { onClickRemoveHandler } from '@/utils/RemoveDateHandler';
 import './style.css';
 
 export default function Notice(admData: any) {
