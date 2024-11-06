@@ -10,13 +10,16 @@ import { useEffect, useState } from "react";
 import { businessNavList } from "@/data/navData";
 import SideTap from "@/components/common/SideTap";
 import MetaTagTitle from "@/utils/MetaTagTitle";
+import { isLoading } from "@/modules/loading";
+import { useRecoilState } from "recoil";
 
 export default function OpenInnovation() {
+
+    const [, setLoading] = useRecoilState(isLoading);
 
     const developmentData = businessNavList[2].list?.map((item: any) => item.id);
 
     const [innovationData, setInnovationData] = useState<any>(null);
-    console.log("🚀 ~ OpenInnovation ~ innovationData:", innovationData)
 
     useEffect(() => {
         fetch('/api/inquiry/open_innovation')
@@ -29,7 +32,10 @@ export default function OpenInnovation() {
             .then((jsonData) => {
                 setInnovationData(jsonData);
             })
-            .catch((error) => console.error("Fetch error:", error));
+            .catch((error) => console.error("Fetch error:", error))
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     return (
@@ -51,7 +57,7 @@ export default function OpenInnovation() {
                         <div className='top_info_background_box' />
                         <img
                             className='top_info_image'
-                            src='http://www.zefit.co.kr/theme/basic/assets/images/zefit/adult_eeg_system_bg.jpg'
+                            src='https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_adult_eeg_system_bg.jpg'
                             alt='신약개발기술' />
                         <div className='top_info_content_wrapper'>
                             <div className='top_info_content_box'>
@@ -82,15 +88,11 @@ export default function OpenInnovation() {
                             <li key={index} className='card_box'>
                                 <div className='card_step_box'>
                                     step {item?.id}
-                                    
                                 </div>
-                                <span className='card_step_box_text'>
-                                        
-                                    </span>
-                                {(index !== innovationData?.step.length - 1)
+                                {/* {(index !== innovationData?.step.length - 1)
                                     && <div className='card_next_step_arrow'>
                                         <i className='icon-arrow-right' />
-                                    </div>}
+                                    </div>} */}
                                 <img
                                     className='card_box_icon'
                                     src={item?.icon}

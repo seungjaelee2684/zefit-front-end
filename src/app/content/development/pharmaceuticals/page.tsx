@@ -9,13 +9,15 @@ import { useEffect, useState } from "react";
 import SideTap from "@/components/common/SideTap";
 import { businessNavList } from "@/data/navData";
 import MetaTagTitle from "@/utils/MetaTagTitle";
+import { useRecoilState } from "recoil";
+import { isLoading } from "@/modules/loading";
 
 export default function Pharmaceuticals() {
 
     const developmentData = businessNavList[2].list?.map((item: any) => item.id);
+    const [, setLoading] = useRecoilState(isLoading);
 
     const [pharmaceuticalsData, setPharmaceuticalsData] = useState<any>(null);
-    console.log("🚀 ~ Pharmaceuticals ~ pharmaceuticalsData:", pharmaceuticalsData)
 
     useEffect(() => {
         fetch('/api/inquiry/pharmaceuticals')
@@ -28,7 +30,10 @@ export default function Pharmaceuticals() {
             .then((jsonData) => {
                 setPharmaceuticalsData(jsonData);
             })
-            .catch((error) => console.error("Fetch error:", error));
+            .catch((error) => console.error("Fetch error:", error))
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     return (
@@ -48,7 +53,7 @@ export default function Pharmaceuticals() {
                         <div className='top_info_background_box' />
                         <img
                             className='top_info_image'
-                            src='http://www.zefit.co.kr/theme/basic/assets/images/zefit/adult_eeg_system_bg.jpg'
+                            src='https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_adult_eeg_system_bg.jpg'
                             alt='신약개발기술' />
                         <div className='top_info_content_wrapper'>
                             <div className='top_info_content_box'>

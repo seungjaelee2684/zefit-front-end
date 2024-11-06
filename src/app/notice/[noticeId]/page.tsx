@@ -9,13 +9,15 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
 import { supabase } from "@/utils/Supabase";
+import { isLoading } from "@/modules/loading";
+import { useRecoilState } from "recoil";
 
 export default function NoticeDetail() {
 
     const { noticeId }: any = useParams();
 
+    const [, setLoading] = useRecoilState(isLoading);
     const [noticeData, setNoticeData] = useState<any>(null);
-    console.log(noticeData);
 
     const db_table_name = 'notices';
     const sql_query = '*';
@@ -34,6 +36,8 @@ export default function NoticeDetail() {
                     setNoticeData(data[0]);
                 } catch (error) {
                     console.error("Error fetching data from Supabase:", error);
+                } finally {
+                    setLoading(false);
                 };
             };
             fetchData()

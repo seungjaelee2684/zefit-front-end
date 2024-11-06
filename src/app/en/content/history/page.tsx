@@ -7,14 +7,19 @@ import PageTap from '@/components/common/PageTap';
 import { useEffect, useRef, useState } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
 import { supabase } from '@/utils/Supabase';
+import { isLoading } from '@/modules/loading';
+import { useRecoilState } from 'recoil';
+import { useMediaQuery } from 'react-responsive';
 
 export default function HistoryEN() {
+
+    const isMobile = useMediaQuery({ maxWidth: 1170 });
 
     const pointRefs = useRef<HTMLDivElement[]>([]);
     const lineRef = useRef<HTMLDivElement>(null);
 
+    const [, setLoading] = useRecoilState(isLoading);
     const [historyData, setHistoryData] = useState<any[]>([]);
-    console.log("🚀 ~ History ~ historyData:", historyData);
 
     const date = new Date();
     const year = `${date.getFullYear()}`;
@@ -33,16 +38,27 @@ export default function HistoryEN() {
                 result[created_year] = {
                     id: item.id, // id 추가
                     created_year: String(created_year),
-                    content: [],
+                    content: {},
                 };
             }
 
-            // 해당 연도에 해당하는 month와 content를 추가
-            result[created_year].content.push({
-                created_month,
-                kr: item.content_kr,
-                en: item.content_en,
-            });
+            // 해당 연도와 월에 해당하는 content를 추가
+            if (!result[created_year].content[created_month]) {
+                result[created_year].content[created_month] = {
+                    created_month,
+                    kr: item.content_kr,
+                    en: item.content_en,
+                };
+            } else {
+                result[created_year].content[created_month].kr += '\n\n' + item.content_kr;
+                result[created_year].content[created_month].en += '\n\n' + item.content_en;
+            }
+        });
+
+        // content 객체를 배열로 변환
+        Object.keys(result).forEach(year => {
+            result[Number(year)].content = Object.values(result[Number(year)].content)
+                .sort((a: any, b: any) => parseInt(b.created_month) - parseInt(a.created_month)); // 월 순서로 정렬
         });
 
         const resultArray = Object.values(result);
@@ -66,6 +82,8 @@ export default function HistoryEN() {
                 setHistoryData(data);
             } catch (error) {
                 console.error("Error fetching data from Supabase:", error);
+            } finally {
+                setLoading(false);
             };
         };
 
@@ -73,23 +91,44 @@ export default function HistoryEN() {
     }, []);
 
     useEffect(() => {
-        if (pointRefs.current.length > 0) {
-            const firstPoint = pointRefs.current[0].getBoundingClientRect();
-            const lastPoint = pointRefs.current[pointRefs.current.length - 1].getBoundingClientRect();
+        const firstPoint = pointRefs.current[0]?.getBoundingClientRect();
+        const lastPoint = pointRefs.current[pointRefs.current.length - 1]?.getBoundingClientRect();
 
-            const top = firstPoint.top;
-            const bottom = lastPoint.bottom;
+        const top = firstPoint?.top;
+        const bottom = lastPoint?.bottom;
+
+        const distance = bottom - top;
+
+        if (pointRefs.current.length > 0) {
+            if (lineRef.current) {
+                lineRef.current.style.top = (isMobile) ? `10px` : `23px`;
+                lineRef.current.style.height = (isMobile) ? `${distance - 4}px` : `${distance}px`;
+            }
+        }
+
+        const resizeAction = () => {
+            const firstPointM = pointRefs.current[0]?.getBoundingClientRect();
+            const lastPointM = pointRefs.current[pointRefs.current.length - 1]?.getBoundingClientRect();
+
+            const top = firstPointM?.top;
+            const bottom = lastPointM?.bottom;
 
             const distance = bottom - top;
 
-            console.log(`첫 번째 포인트와 마지막 포인트 사이의 거리: ${distance}px`);
-
-            if (lineRef.current) {
-                lineRef.current.style.top = `23px`;
-                lineRef.current.style.height = `${distance}px`;
+            if (pointRefs.current.length > 0) {
+                if (lineRef.current) {
+                    lineRef.current.style.top = (isMobile) ? `10px` : `23px`;
+                    lineRef.current.style.height = (isMobile) ? `${distance - 4}px` : `${distance}px`;
+                }
             }
-        }
-    }, [historyData]);
+        };
+
+        window.addEventListener('resize', resizeAction);
+
+        return () => {
+            window.removeEventListener('resize', resizeAction);
+        };
+    }, [historyData, isMobile]);
 
     return (
         <article>

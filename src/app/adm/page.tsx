@@ -7,21 +7,27 @@ import AdmScrollTop from '@/components/page/AdminPage/AdmScrollTop';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/utils/Supabase';
+import { getLastLoginDateTime } from '@/utils/DateTime';
+import { useRecoilState } from 'recoil';
+import { isLoading } from '@/modules/loading';
+import { useMediaQuery } from 'react-responsive';
+import Head from 'next/head';
 
 export default function Admin() {
 
     const router = useRouter();
 
+    const isMobile = useMediaQuery({ maxWidth: 1170 });
+
+    const [, setLoading] = useRecoilState(isLoading);
     const [resultData, setResultData] = useState<any>();
 
-    console.log(resultData);
-
     const dataTitleList = [
-        { id: '문의한 글', href: '/adm/inquirys' },
-        { id: '연혁', href: '/adm/historys' },
-        { id: '인증 및 파트너 현황', href: '/adm/partners' },
-        { id: '공지사항', href: '/adm/notices' },
-        { id: '보도자료', href: '/adm/news' }
+        { id: '문의한 글', href: '/adm/inquirys', category: '문의하기' },
+        { id: '연혁', href: '/adm/historys', category: '연혁' },
+        { id: '인증 및 파트너 현황', href: '/adm/partners', category: '인증 & 파트너' },
+        { id: '공지사항', href: '/adm/notices', category: '공지사항' },
+        { id: '보도자료', href: '/adm/news', category: '보도자료' }
     ];
 
     const dataChange = (item: any, index: number) => {
@@ -61,11 +67,11 @@ export default function Admin() {
             let admList = [];
             try {
                 const [inquirys, historys, partners, notices, news] = await Promise.all([
-                    supabase.from('inquirys').select('*').order('created_at', { ascending: true }).range(0, 2),
-                    supabase.from('historys').select('*').order('created_at', { ascending: true }).range(0, 2),
-                    supabase.from('partners').select('*').order('created_at', { ascending: true }).range(0, 2),
-                    supabase.from('notices').select('*').order('created_at', { ascending: true }).range(0, 2),
-                    supabase.from('news').select('*').order('created_at', { ascending: true }).range(0, 2)
+                    supabase.from('inquirys').select('*').order('created_at', { ascending: false }).range(0, 2),
+                    supabase.from('historys').select('*').order('created_at', { ascending: false }).range(0, 2),
+                    supabase.from('partners').select('*').order('created_at', { ascending: false }).range(0, 2),
+                    supabase.from('notices').select('*').order('created_at', { ascending: false }).range(0, 2),
+                    supabase.from('news').select('*').order('created_at', { ascending: false }).range(0, 2)
                 ])
                 if (historys.error) {
                     throw historys.error;
@@ -79,6 +85,8 @@ export default function Admin() {
                 setResultData(admList);
             } catch (error) {
                 console.error("Error fetching data from Supabase:", error);
+            } finally {
+                setLoading(false);
             };
         };
         fetchData()
@@ -89,7 +97,7 @@ export default function Admin() {
         const cookies = document.cookie.split(';');
         for (let cookie of cookies) {
             const [name, value] = cookie.trim().split('=');
-            if (name === 'lastLogin') {
+            if (name === 'zf-alv') {
                 return value;
             }
         }
@@ -99,31 +107,8 @@ export default function Admin() {
     // lastLogin 값 확인
     const lastLogin = getLastLoginFromCookie();
 
-    const getLastLoginDateTime = () => {
-        if (lastLogin) {
-            const loginDate = new Date(lastLogin); // ISO 문자열을 Date 객체로 변환
-            const year = loginDate.getFullYear();
-            const month = loginDate.getMonth() + 1; // getMonth()는 0부터 시작하므로 1을 더함
-            const day = loginDate.getDate();
-            const hours = loginDate.getHours();
-            const minutes = loginDate.getMinutes();
-            const seconds = loginDate.getSeconds();
-
-            return {
-                year,
-                month,
-                day,
-                hours,
-                minutes,
-                seconds
-            };
-        } else {
-            return null;
-        }
-    };
-
     // 날짜와 시간 출력
-    const lastLoginDateTime = getLastLoginDateTime();
+    const lastLoginDateTime = getLastLoginDateTime(lastLogin);
 
     if (!lastLogin) {
         // lastLogin 값이 없으면 로그인 페이지로 이동
@@ -168,17 +153,16 @@ export default function Admin() {
                                                 cloudtree
                                             </td>
                                             <td className='small_table_body'>
-                                                <img
-                                                    className='manager_icon'
-                                                    src='http://www.zefit.co.kr/theme/basic/img/no_profile.gif'
-                                                    alt='관리자' />
+                                                {(!isMobile)
+                                                    && <img
+                                                        className='manager_icon'
+                                                        src='https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_no_profile.gif'
+                                                        alt='관리자' />}
                                                 관리자
                                             </td>
                                             <td className='table_body_content_room'>
                                                 <span className='table_body_content_room_span'>
-                                                    {lastLoginDateTime?.year}-{lastLoginDateTime?.month}-{lastLoginDateTime?.day}
-                                                    &nbsp;&nbsp;
-                                                    {lastLoginDateTime?.hours}:{lastLoginDateTime?.minutes}:{lastLoginDateTime?.seconds}
+                                                    {lastLoginDateTime}
                                                 </span>
                                             </td>
                                         </tr>
@@ -197,8 +181,11 @@ export default function Admin() {
                                     <table className='adm_table_container'>
                                         <thead className='adm_table_header_container'>
                                             <tr className='adm_table_header_box'>
-                                                <th className='small_table_header'>
+                                                <th className='medium_table_header'>
                                                     {(index === 0) ? '이름' : '닉네임'}
+                                                </th>
+                                                <th className='small_table_header'>
+                                                    분류
                                                 </th>
                                                 <th style={{ width: '100%' }} className='table_header_text'>
                                                     {dataChange(item, index).step_1}
@@ -206,7 +193,7 @@ export default function Admin() {
                                                 <th style={{ width: '100%' }} className='table_header_text'>
                                                     {dataChange(item, index).step_2}
                                                 </th>
-                                                <th className='medium_table_header'>
+                                                <th className='large_table_header'>
                                                     날짜
                                                 </th>
                                             </tr>
@@ -216,8 +203,17 @@ export default function Admin() {
                                                 <tr
                                                     key={idx}
                                                     className='table_body_lane'>
-                                                    <td style={{ color: '#64c5b1' }} className='small_table_body'>
+                                                    <td
+                                                        style={{
+                                                            color: (index === 0) ? '#333333' : '#64c5b1'
+                                                        }}
+                                                        className='medium_table_body'>
                                                         {(index === 0) ? data?.name : 'cloudtree'}
+                                                    </td>
+                                                    <td
+                                                        style={{ color: '#64c5b1' }}
+                                                        className='small_table_body'>
+                                                        {dataTitleList[index]?.category}
                                                     </td>
                                                     <td className='table_body_content_room'>
                                                         <span className='table_body_content_room_span'>
@@ -229,8 +225,11 @@ export default function Admin() {
                                                             {dataChange(data, index).answer_2}
                                                         </span>
                                                     </td>
-                                                    <td className='medium_table_body'>
-                                                        {data?.created_at.slice(0, 10)}
+                                                    <td
+                                                        className='large_table_body'>
+                                                        {(index === 0)
+                                                            ? getLastLoginDateTime(data?.created_at)
+                                                            : data?.created_at.slice(0, 10)}
                                                     </td>
                                                 </tr>
                                             )}

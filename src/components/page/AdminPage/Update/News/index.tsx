@@ -5,18 +5,22 @@ import { CorrectProps } from '../History';
 import './style.css';
 import { supabase } from '@/utils/Supabase';
 import { handleImageChange, handleImageDelete } from '@/utils/HandleImage';
-import { onClickRemoveHandler } from '@/utils/RemoveDateHandler';
-import { onClickAddHandler } from '@/utils/AddDataHandler';
+import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
+import { onClickAddHandler, uploadFileAndGetUrl } from '@/utils/AddDataHandler';
 import { onClickUpdateHandler } from '@/utils/UpdateDataHandler';
+import { useMediaQuery } from 'react-responsive';
 
 export default function CorrectNews({ admData, isUpload, setIsUpload }: CorrectProps) {
+
+    const isMobile = useMediaQuery({ maxWidth: 1170 });
 
     const id = admData?.id;
 
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    const [inputImg, setInputImg] = useState<any>(null);
+    const [inputImg, setInputImg] = useState<File | null>(null);
     const [newsInput, setNewsInput] = useState<any>({
-        isSpecial: false,
+        image: null,
+        link: '',
         title_kr: '',
         title_en: '',
         content_kr: '',
@@ -24,9 +28,7 @@ export default function CorrectNews({ admData, isUpload, setIsUpload }: CorrectP
         writer_kr: '(주)제핏',
         writer_en: 'Zefit Inc.'
     });
-    const { isSpecial, title_kr, title_en, content_kr, content_en, writer_kr, writer_en } = newsInput;
-
-    console.log(admData, isUpload);
+    const { link, title_kr, title_en, content_kr, content_en, writer_kr, writer_en } = newsInput;
 
     const onChangeInputHandler = (e: any) => {
         const { name, value } = e.target;
@@ -36,11 +38,44 @@ export default function CorrectNews({ admData, isUpload, setIsUpload }: CorrectP
         });
     };
 
+    const onClickNewsAdd = async (e: any) => {
+        const isReal = confirm("이대로 추가하시겠습니까?");
+
+        if (isReal) {
+            if (inputImg && previewUrl) {
+                const imageUrl = await uploadFileAndGetUrl(inputImg);
+                if (!imageUrl) return alert('업로드에 실패했습니다.');
+                onClickAddHandler(e, { ...newsInput, image: imageUrl }, 'news');
+            } else {
+                onClickAddHandler(e, newsInput, 'news');
+            };
+        };
+    };
+
+    const onClickNewsUpdate = async (e: any) => {
+        const isReal = confirm("수정을 완료하시겠습니까?");
+
+        if (isReal) {
+            if (admData?.image === previewUrl) {
+                onClickUpdateHandler(e, newsInput, id, 'news');
+            } else {
+                if (inputImg && previewUrl) {
+                    const imageUrl = await uploadFileAndGetUrl(inputImg);
+                    onClickUpdateHandler(e, { ...newsInput, image: imageUrl }, id, 'news');
+                } else {
+                    onClickUpdateHandler(e, newsInput, id, 'news');
+                }
+
+            };
+        }
+    };
+
     useEffect(() => {
         if (admData) {
             setPreviewUrl(isUpload ? null : admData?.image);
             setNewsInput({
-                isSpecial: isUpload ? false : admData?.is_special,
+                image: isUpload ? null : admData?.image,
+                link: isUpload ? '' : admData?.link,
                 title_kr: isUpload ? '' : admData?.title_kr,
                 title_en: isUpload ? '' : admData?.title_en,
                 content_kr: isUpload ? '' : admData?.content_kr,
@@ -54,7 +89,11 @@ export default function CorrectNews({ admData, isUpload, setIsUpload }: CorrectP
     return (
         <table className='input_table_container'>
             <tbody className='input_table_body'>
-                <tr style={{ height: '200px' }} className='input_table_body_lane'>
+                <tr
+                    style={{
+                        height: (isMobile) ? '120px' : '600px'
+                    }}
+                    className='input_table_body_lane'>
                     <th className='input_table_body_head'>
                         이미지
                     </th>
@@ -69,7 +108,7 @@ export default function CorrectNews({ admData, isUpload, setIsUpload }: CorrectP
                             {(previewUrl)
                                 ? <div className="image_preview_overlay">
                                     <button
-                                        onClick={() => handleImageDelete(setInputImg, setPreviewUrl)}
+                                        onClick={() => handleImageDelete(setInputImg, setPreviewUrl, setNewsInput, newsInput)}
                                         className='image_delete_button'>
                                         <i className='icon-close' />
                                     </button>
@@ -82,37 +121,6 @@ export default function CorrectNews({ admData, isUpload, setIsUpload }: CorrectP
                                     </div>
                                 </label>}
                         </div>
-                    </td>
-                </tr>
-                <tr style={{ height: '100px' }} className='input_table_body_lane'>
-                    <th className='input_table_body_head'>
-                        분류
-                    </th>
-                    <td className='input_table_body_room'>
-                        <span
-                            style={{
-                                color: (isSpecial) ? '#64c5b1' : '#858585',
-                                fontWeight: (isSpecial) ? '700' : '400'
-                            }}
-                            onClick={() => setNewsInput({ ...newsInput, isSpecial: true })}
-                            className='radio_button_wrapper'>
-                            <div className='radio_button_select'>
-                                {(isSpecial) && <div className='radio_button_point' />}
-                            </div>
-                            중요
-                        </span>
-                        <span
-                            style={{
-                                color: (!isSpecial) ? '#64c5b1' : '#858585',
-                                fontWeight: (!isSpecial) ? '700' : '400'
-                            }}
-                            onClick={() => setNewsInput({ ...newsInput, isSpecial: false })}
-                            className='radio_button_wrapper'>
-                            <div className='radio_button_select'>
-                                {(!isSpecial) && <div className='radio_button_point' />}
-                            </div>
-                            일반
-                        </span>
                     </td>
                 </tr>
                 <tr style={{ height: '100px' }} className='input_table_body_lane'>
@@ -138,6 +146,20 @@ export default function CorrectNews({ admData, isUpload, setIsUpload }: CorrectP
                             name='writer_en'
                             value={writer_en}
                             autoComplete='off'
+                            onChange={onChangeInputHandler} />
+                    </td>
+                </tr>
+                <tr style={{ height: '100px' }} className='input_table_body_lane'>
+                    <th className='input_table_body_head'>
+                        자료 링크
+                    </th>
+                    <td className='input_table_body_room'>
+                        <input
+                            className='table_input'
+                            name='link'
+                            value={link}
+                            autoComplete='off'
+                            placeholder='http://www.zefit.co.kr/'
                             onChange={onChangeInputHandler} />
                     </td>
                 </tr>
@@ -195,12 +217,12 @@ export default function CorrectNews({ admData, isUpload, setIsUpload }: CorrectP
                     <td className='update_button_container'>
                         {(isUpload)
                             ? <button
-                                onClick={(e) => onClickAddHandler(e, newsInput, 'news')}
+                                onClick={onClickNewsAdd}
                                 className='update_button'>
                                 추가하기
                             </button>
                             : <button
-                                onClick={(e) => onClickUpdateHandler(e, newsInput, id, 'news')}
+                                onClick={onClickNewsUpdate}
                                 className='update_button'>
                                 수정 완료
                             </button>}

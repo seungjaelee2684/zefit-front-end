@@ -3,25 +3,37 @@
 import ScrollGuide from '@/components/page/LandingPage/ScrollGuide';
 import './style.css';
 import MainHeader from '@/components/common/MainHeader';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import MobileHeader from '@/components/common/MobileHeader';
 import { supabase } from '@/utils/Supabase';
+import { useRecoilState } from 'recoil';
+import { isLoading } from '@/modules/loading';
+import Popup from '@/components/common/Popup';
 
 export default function Home() {
 
-    const [isMounted, setIsMounted] = useState(false);
+    const backRef = useRef<HTMLDivElement>(null);
+    const backImage = 'https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_3551210086_0f617416_20811665.jpg';
+    const img = new Image();
+    const [, setLoading] = useRecoilState(isLoading);
+
+    img.onload = () => {
+        if (!backRef.current) return;
+        backRef.current.style.backgroundImage = `url('${backImage}')`;
+        setLoading(false);
+    };
+
+    img.src = backImage;
 
     // 뷰포트 반응형
     const isMobile = useMediaQuery({ maxWidth: 1170 });
 
     const [serviceHref, setServiceHref] = useState<any>(null); // 서비스 첫번째 데이터 state
     const [partner, setPartner] = useState<any[]>([]); // 파트너 리스트 state
+    const [popupData, setPopupData] = useState<any>(null);
 
     // 마운트했을 때 api통신을 통해 파트너 리스트와 서비스 데이터 가져오기
     useEffect(() => {
-        setIsMounted(true);
-
         fetch('/api/inquiry/landing/service')
             .then((response) => {
                 if (!response.ok) {
@@ -32,38 +44,55 @@ export default function Home() {
             .then((jsonData) => setServiceHref(jsonData))
             .catch((error) => console.error("Fetch error:", error));
 
+        const fetchPopup = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('notices')
+                    .select('*')
+                    .eq('is_special', true)
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+                if (error) {
+                    throw error;
+                }
+                setPopupData(data);
+            } catch (error) {
+                console.error("Error fetching paginated data from Supabase:", error);
+            };
+        };
+
         const fetchData = async () => {
             try {
                 const { data, error } = await supabase
                     .from('partners')
                     .select('*')
-                    .eq('state', 'partner');
+                    .eq('state', 'partner')
+                    .order('created_at', { ascending: true });
                 if (error) {
                     throw error;
                 }
                 setPartner(data);
-                console.log(data);
             } catch (error) {
                 console.error("Error fetching paginated data from Supabase:", error);
-            }
+            };
         };
 
+        fetchPopup();
         fetchData();
     }, []);
-
-    if (!isMounted) {
-        return null; // 또는 로딩 인디케이터
-    }
 
     return (
         <article>
 
+            {/* 팝업창 */}
+            <Popup popupData={popupData} />
+
             {/* 메인 페이지 헤더 */}
-            {(isMobile) ? <MobileHeader /> : <MainHeader />}
+            <MainHeader />
 
             {/* 상단 배너 */}
             <section className='landing_top_banner_container'>
-                <div className='landing_top_banner' />
+                <div ref={backRef} className='landing_top_banner' />
                 <div className='top_banner_text_box'>
                     <h1 className='top_banner_title'>
                         Greater Value For Your Life
@@ -90,7 +119,7 @@ export default function Home() {
                     </h3>
                     <img
                         className='company_image'
-                        src='http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img1.jpg'
+                        src='https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_main_img1.jpg'
                         alt='회사소개 이미지' />
                     <ul className='company_link_button_wrapper'>
                         <li className='company_link_button_box'>
@@ -145,7 +174,7 @@ export default function Home() {
                                     <div
                                         className='business_card_image'
                                         style={{
-                                            backgroundImage: 'url(http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img2.jpg)'
+                                            backgroundImage: 'url(https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_main_img2.jpg)'
                                         }} />
                                     <div className='business_card_text_box'>
                                         <strong className='business_card_title'>
@@ -164,7 +193,7 @@ export default function Home() {
                                     <div
                                         className='business_card_image'
                                         style={{
-                                            backgroundImage: 'url(http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img3.jpg)'
+                                            backgroundImage: 'url(https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_main_img3.jpg)'
                                         }} />
                                     <div className='business_card_text_box'>
                                         <strong className='business_card_title'>
@@ -183,11 +212,11 @@ export default function Home() {
                                     <div
                                         className='business_card_image'
                                         style={{
-                                            backgroundImage: 'url(http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img10.jpg)'
+                                            backgroundImage: 'url(https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_main_img10.jpg)'
                                         }} />
                                     <div className='business_card_text_box'>
                                         <strong className='business_card_title'>
-                                            Pharmaceuticals
+                                            Drug Dicovery
                                         </strong>
                                         <p className='business_card_content'>
                                             신약개발 혁신 플랫폼

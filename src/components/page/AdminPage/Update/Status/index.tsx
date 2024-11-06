@@ -3,26 +3,27 @@
 import { useEffect, useState } from 'react';
 import { CorrectProps } from '../History';
 import './style.css';
-import { supabase } from '@/utils/Supabase';
 import { handleImageChange, handleImageDelete } from '@/utils/HandleImage';
-import { onClickRemoveHandler } from '@/utils/RemoveDateHandler';
-import { onClickAddHandler } from '@/utils/AddDataHandler';
+import { onClickRemoveHandler } from '@/utils/RemoveDataHandler';
+import { onClickAddHandler, uploadFileAndGetUrl } from '@/utils/AddDataHandler';
 import { onClickUpdateHandler } from '@/utils/UpdateDataHandler';
+import { useMediaQuery } from 'react-responsive';
 
 export default function CorrectStatus({ admData, isUpload, setIsUpload }: CorrectProps) {
+
+    const isMobile = useMediaQuery({ maxWidth: 1170 });
 
     const id = admData?.id;
 
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-    const [inputImg, setInputImg] = useState<any>(null);
+    const [inputImg, setInputImg] = useState<File | null>(null);
     const [statusInput, setStatusInput] = useState<any>({
+        image: null,
         state: 'partner',
         title_kr: '',
         title_en: ''
     });
     const { state, title_kr, title_en } = statusInput;
-
-    console.log(admData, isUpload);
 
     const onChangeInputHandler = (e: any) => {
         const { name, value } = e.target;
@@ -32,10 +33,43 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
         });
     };
 
+    const onClickStatusAdd = async (e: any) => {
+        const isReal = confirm("이대로 추가하시겠습니까?");
+
+        if (isReal) {
+            if (inputImg && previewUrl) {
+                const imageUrl = await uploadFileAndGetUrl(inputImg);
+                if (!imageUrl) return alert('업로드에 실패했습니다.');
+                onClickAddHandler(e, { ...statusInput, image: imageUrl }, 'partners');
+            } else {
+                onClickAddHandler(e, statusInput, 'partners');
+            };
+        };
+    };
+
+    const onClickStatusUpdate = async (e: any) => {
+        const isReal = confirm("수정을 완료하시겠습니까?");
+
+        if (isReal) {
+            if (admData?.image === previewUrl) {
+                onClickUpdateHandler(e, statusInput, id, 'partners');
+            } else {
+                if (inputImg && previewUrl) {
+                    const imageUrl = await uploadFileAndGetUrl(inputImg);
+                    onClickUpdateHandler(e, { ...statusInput, image: imageUrl }, id, 'partners');
+                } else {
+                    onClickUpdateHandler(e, statusInput, id, 'partners');
+                }
+
+            };
+        }
+    };
+
     useEffect(() => {
         if (admData) {
             setPreviewUrl(isUpload ? null : admData?.image);
             setStatusInput({
+                image: isUpload ? null : admData?.image,
                 state: isUpload ? 'partner' : admData?.state,
                 title_kr: isUpload ? '' : admData?.title_kr,
                 title_en: isUpload ? '' : admData?.title_en
@@ -46,7 +80,11 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
     return (
         <table className='input_table_container'>
             <tbody className='input_table_body'>
-                <tr style={{ height: '200px' }} className='input_table_body_lane'>
+                <tr
+                    style={{
+                        height: (isMobile) ? '120px' : '600px'
+                    }}
+                    className='input_table_body_lane'>
                     <th className='input_table_body_head'>
                         이미지
                     </th>
@@ -61,7 +99,7 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                             {(previewUrl)
                                 ? <div className="image_preview_overlay">
                                     <button
-                                        onClick={() => handleImageDelete(setInputImg, setPreviewUrl)}
+                                        onClick={() => handleImageDelete(setInputImg, setPreviewUrl, setStatusInput, statusInput)}
                                         className='image_delete_button'>
                                         <i className='icon-close' />
                                     </button>
@@ -135,20 +173,20 @@ export default function CorrectStatus({ admData, isUpload, setIsUpload }: Correc
                 </tr>
                 <tr style={{ width: '100%' }}>
                     <td className='update_button_container'>
-                    {(isUpload)
+                        {(isUpload)
                             ? <button
-                                onClick={(e) => onClickAddHandler(e, statusInput, 'partners')}
+                                onClick={onClickStatusAdd}
                                 className='update_button'>
                                 추가하기
                             </button>
                             : <button
-                                onClick={(e) => onClickUpdateHandler(e, statusInput, id, 'partners')}
+                                onClick={onClickStatusUpdate}
                                 className='update_button'>
                                 수정 완료
                             </button>}
                         {(!isUpload)
                             && <button
-                            onClick={(e) => onClickRemoveHandler(e, admData, id, 'partners')}
+                                onClick={(e) => onClickRemoveHandler(e, admData, id, 'partners')}
                                 className='update_button'>
                                 삭제
                             </button>}

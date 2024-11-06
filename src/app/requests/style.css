@@ -109,6 +109,7 @@
     font-size: 14px;
     transition: all 0.3s;
     border: 1px solid #c2c2c2;
+    background-color: white;
 }
 
 /* 문의하기 input FOCUS효과 */
@@ -150,7 +151,7 @@
     position: absolute;
     top: 2px;
     right: 2px;
-    background-image: url('http://www.zefit.co.kr/theme/basic/img/require.png');
+    background-image: url('https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_require.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -192,7 +193,7 @@
 
 /* 동의문 체크 박스 */
 .check_box {
-    width: 15px;
+    min-width: 15px;
     height: 15px;
     display: flex;
     justify-content: center;
@@ -230,4 +231,77 @@
 /* 문의하기 버튼 AVTIVE효과 */
 .requests_button:focus {
     background-color: #194481;
+}
+
+
+/*==========================================================*/
+/* 반응형 style */
+@media screen and (max-width: 1170px) {
+    .requests_page_layout {
+        height: 1300px;
+    }
+
+    .background_color_wrapper {
+        padding: 40px 0px;
+        gap: 24px;
+    }
+
+    .requests_title {
+        font-size: 18px;
+        gap: 8px;
+        font-weight: 500;
+        margin-bottom: 20px;
+    }
+    
+    .requests_title_under_bar {
+        width: 50px;
+        height: 2px;
+    }
+
+    .requests_form_content_wrapper {
+        width: 94%;
+        gap: 24px;
+    }
+
+    .requests_lane_wrapper {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .requests_input_label {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .requests_input {
+        height: 36px;
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .requests_textarea {
+        font-size: 12px;
+        padding: 10px;
+        height: 180px;
+    }
+
+    .check_textarea_box {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .check_box_button {
+        font-size: 9px;
+    }
+
+    .check_box {
+        min-width: 10px;
+        height: 10px;
+        border-radius: 2px;
+    }
+
+    .requests_button {
+        height: 36px;
+        font-size: 12px;
+    }
 }

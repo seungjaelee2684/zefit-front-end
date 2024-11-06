@@ -9,8 +9,12 @@ import DropDown from '@/components/common/DropDown';
 import { useEffect, useState } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
 import { supabase } from '@/utils/Supabase';
+import { isLoading } from '@/modules/loading';
+import { useRecoilState } from 'recoil';
 
 export default function News() {
+
+    const [, setLoading] = useRecoilState(isLoading);
 
     const [dropdownValue, setDropdownValue] = useState<{
         title: string,
@@ -28,8 +32,6 @@ export default function News() {
     const end = start + 10 - 1;
     const dataCount = totalCount;
     const division = Math.ceil(dataCount / 10);
-
-    console.log(dropdownValue.value, search);
 
     let pageList: number[] = [1];
 
@@ -51,7 +53,6 @@ export default function News() {
                     throw error;
                 }
                 setNewsData(data);
-                console.log(data);
             } catch (error) {
                 console.error("Error fetching data from Supabase:", error);
             };
@@ -71,7 +72,6 @@ export default function News() {
                     throw error;
                 }
                 setNewsData(data);
-                console.log(start, end, data)
             } catch (error) {
                 console.error("Error fetching paginated data from Supabase:", error);
             }
@@ -88,12 +88,14 @@ export default function News() {
                 setTotalCount(count);
             } catch (error) {
                 console.error("Error fetching total count from Supabase:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchData();
         fetchTotalCount();
-    }, []);
+    }, [page]);
 
     return (
         <article>
@@ -120,7 +122,7 @@ export default function News() {
                         <button
                             onClick={onSubmitSearchHandler}
                             className='search_button'>
-                            검색
+                            <i className='icon-magnifier'></i>
                         </button>
                     </form>
                     <div className='notice_table_wrapper'>

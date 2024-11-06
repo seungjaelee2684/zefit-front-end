@@ -7,10 +7,21 @@ import './style.css';
 import { checkArea } from "@/data/checkArea";
 import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
+import { onClickAddHandler, onClickRequestsHandler } from "@/utils/AddDataHandler";
+import { isLoading } from "@/modules/loading";
+import { useRecoilState } from "recoil";
 
 export default function Requests() {
 
+    const [, setLoading] = useRecoilState(isLoading);
     const [provisionData, setProvisionData] = useState<any>(null);
+    const [requestsInput, setRequestsInput] = useState<any>({
+        name: null,
+        email: null,
+        company: null,
+        title: null,
+        content: null
+    });
     const [check, setCheck] = useState<{
         personal: boolean,
         use: boolean
@@ -18,6 +29,7 @@ export default function Requests() {
         personal: false,
         use: false
     });
+    const { name, email, company, title, content } = requestsInput;
     const { personal, use } = check;
 
     const onClickCheckHandler = (e: any, param: string) => {
@@ -30,8 +42,19 @@ export default function Requests() {
         };
     };
 
+    const onChangeRequestsHandler = (e: any) => {
+        const { name, value } = e.target;
+        setRequestsInput({
+            ...requestsInput,
+            [name]: value
+        });
+    };
+
     const onSubmitHandler = (e: any) => {
         e.preventDefault();
+
+        if (!personal || !use) return;
+        onClickRequestsHandler(e, requestsInput, 'ko');
     };
 
     useEffect(() => {
@@ -45,7 +68,10 @@ export default function Requests() {
             .then((jsonData) => {
                 setProvisionData(jsonData);
             })
-            .catch((error) => console.error("Fetch error:", error));
+            .catch((error) => console.error("Fetch error:", error))
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     return (
@@ -57,14 +83,16 @@ export default function Requests() {
             <section className='requests_page_layout'>
                 <img
                     className='requests_page_background_image'
-                    src='http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_bg.jpg'
+                    src='https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_main_bg.jpg'
                     alt='문의하기 배경 이미지' />
                 <div className='background_color_wrapper'>
                     <h2 className='requests_title'>
                         contact us
                         <div className='requests_title_under_bar' />
                     </h2>
-                    <form className='requests_form_content_wrapper'>
+                    <form
+                        onSubmit={onSubmitHandler}
+                        className='requests_form_content_wrapper'>
                         <div className='requests_lane_wrapper'>
                             <div className='requests_input_wrapper'>
                                 <label className='requests_input_label'>
@@ -72,8 +100,11 @@ export default function Requests() {
                                 </label>
                                 <div className='requests_input_box'>
                                     <input
+                                        name="name"
+                                        value={name}
                                         className='requests_input'
-                                        placeholder='이름' />
+                                        placeholder='이름'
+                                        onChange={onChangeRequestsHandler} />
                                 </div>
                             </div>
                             <div className='requests_input_wrapper'>
@@ -82,8 +113,11 @@ export default function Requests() {
                                 </label>
                                 <div className='requests_input_box'>
                                     <input
+                                        name="email"
+                                        value={email}
                                         className='requests_input'
-                                        placeholder='이메일' />
+                                        placeholder='이메일'
+                                        onChange={onChangeRequestsHandler} />
                                 </div>
                             </div>
                         </div>
@@ -93,8 +127,11 @@ export default function Requests() {
                             </label>
                             <div className='requests_input_box'>
                                 <input
+                                    name="company"
+                                    value={company}
                                     className='requests_input'
-                                    placeholder='회사명(부서/직책)' />
+                                    placeholder='회사명(부서/직책)'
+                                    onChange={onChangeRequestsHandler} />
                             </div>
                         </div>
                         <div className='requests_input_wrapper'>
@@ -103,8 +140,11 @@ export default function Requests() {
                             </label>
                             <div className='requests_input_box'>
                                 <input
+                                    name="title"
+                                    value={title}
                                     className='requests_input'
-                                    placeholder='제목' />
+                                    placeholder='제목'
+                                    onChange={onChangeRequestsHandler} />
                             </div>
                         </div>
                         <div className='requests_input_wrapper'>
@@ -112,8 +152,11 @@ export default function Requests() {
                                 문의내용*
                             </label>
                             <textarea
+                                name="content"
+                                value={content}
                                 className='requests_textarea'
-                                placeholder='이곳에 문의할 내용을 입력해주세요.' />
+                                placeholder='이곳에 문의할 내용을 입력해주세요.'
+                                onChange={onChangeRequestsHandler} />
                         </div>
                         <div className='requests_input_wrapper'>
                             <label className='requests_input_label'>
@@ -182,7 +225,12 @@ export default function Requests() {
                             </span>
                             전체 약관에 동의합니다.
                         </button>
-                        <button className='requests_button'>
+                        <button
+                            style={{
+                                backgroundColor: (!personal || !use) ? '#b8b8b8' : '#275F97'
+                            }}
+                            className='requests_button'
+                            onClick={onSubmitHandler}>
                             문의하기
                         </button>
                     </form>

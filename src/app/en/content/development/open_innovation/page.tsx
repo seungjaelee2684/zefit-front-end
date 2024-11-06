@@ -10,13 +10,16 @@ import { useEffect, useState } from "react";
 import { businessNavList } from "@/data/navData";
 import SideTap from "@/components/common/SideTap";
 import MetaTagTitle from "@/utils/MetaTagTitle";
+import { isLoading } from "@/modules/loading";
+import { useRecoilState } from "recoil";
 
 export default function OpenInnovationEN() {
 
-    const developmentData = businessNavList[2].list?.map((item: any) => item.id);
+    const [, setLoading] = useRecoilState(isLoading);
+
+    const developmentData = businessNavList[2].list?.map((item: any) => item.en);
 
     const [innovationData, setInnovationData] = useState<any>(null);
-    console.log("🚀 ~ OpenInnovation ~ innovationData:", innovationData)
 
     useEffect(() => {
         fetch('/api/inquiry/open_innovation')
@@ -29,14 +32,17 @@ export default function OpenInnovationEN() {
             .then((jsonData) => {
                 setInnovationData(jsonData);
             })
-            .catch((error) => console.error("Fetch error:", error));
+            .catch((error) => console.error("Fetch error:", error))
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     return (
         <article>
             <MetaTagTitle title='Open Innovation' ko={false} />
             <PageHeader />
-            <PageBanner pageTitle='pharmaceuticals' />
+            <PageBanner pageTitle='Drug discovery' />
             <PageTap tap='business' />
             <SideTap tap={developmentData} content='development' />
             <div className='page_layout'>
@@ -51,7 +57,7 @@ export default function OpenInnovationEN() {
                         <div className='top_info_background_box' />
                         <img
                             className='top_info_image'
-                            src='http://www.zefit.co.kr/theme/basic/assets/images/zefit/adult_eeg_system_bg.jpg'
+                            src='https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_adult_eeg_system_bg.jpg'
                             alt='오픈이노베이션' />
                         <div className='top_info_content_wrapper'>
                             <div className='top_info_content_box'>

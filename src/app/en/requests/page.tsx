@@ -6,10 +6,22 @@ import PageTap from "@/components/common/PageTap";
 import '../../requests/style.css';
 import { useEffect, useState } from "react";
 import MetaTagTitle from "@/utils/MetaTagTitle";
+import { onClickRequestsHandler } from "@/utils/AddDataHandler";
+import { isLoading } from "@/modules/loading";
+import { useRecoilState } from "recoil";
 
 export default function RequestsEN() {
 
+    const [, setLoading] = useRecoilState(isLoading);
+
     const [provisionData, setProvisionData] = useState<any>(null);
+    const [requestsInput, setRequestsInput] = useState<any>({
+        name: null,
+        email: null,
+        company: null,
+        title: null,
+        content: null
+    });
     const [check, setCheck] = useState<{
         personal: boolean,
         use: boolean
@@ -17,6 +29,7 @@ export default function RequestsEN() {
         personal: false,
         use: false
     });
+    const { name, email, company, title, content } = requestsInput;
     const { personal, use } = check;
 
     const onClickCheckHandler = (e: any, param: string) => {
@@ -29,10 +42,20 @@ export default function RequestsEN() {
         };
     };
 
-    const onSubmitHandler = (e: any) => {
-        e.preventDefault();
+    const onChangeRequestsHandler = (e: any) => {
+        const { name, value } = e.target;
+        setRequestsInput({
+            ...requestsInput,
+            [name]: value
+        });
     };
 
+    const onSubmitHandler = (e: any) => {
+        e.preventDefault();
+
+        if (!personal || !use) return;
+        onClickRequestsHandler(e, requestsInput, 'en');
+    };
     useEffect(() => {
         fetch('/api/inquiry/requests/provision')
             .then((response) => {
@@ -44,7 +67,10 @@ export default function RequestsEN() {
             .then((jsonData) => {
                 setProvisionData(jsonData);
             })
-            .catch((error) => console.error("Fetch error:", error));
+            .catch((error) => console.error("Fetch error:", error))
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     return (
@@ -56,7 +82,7 @@ export default function RequestsEN() {
             <section className='requests_page_layout'>
                 <img
                     className='requests_page_background_image'
-                    src='http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_bg.jpg'
+                    src='https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_main_bg.jpg'
                     alt='문의하기 배경 이미지' />
                 <div className='background_color_wrapper'>
                     <h2 className='requests_title'>
@@ -71,8 +97,11 @@ export default function RequestsEN() {
                                 </label>
                                 <div className='requests_input_box'>
                                     <input
+                                        name='name'
+                                        value={name}
                                         className='requests_input'
-                                        placeholder='Responsibility' />
+                                        placeholder='Responsibility'
+                                        onChange={onChangeRequestsHandler} />
                                 </div>
                             </div>
                             <div className='requests_input_wrapper'>
@@ -81,8 +110,11 @@ export default function RequestsEN() {
                                 </label>
                                 <div className='requests_input_box'>
                                     <input
+                                        name='email'
+                                        value={email}
                                         className='requests_input'
-                                        placeholder='Email' />
+                                        placeholder='Email'
+                                        onChange={onChangeRequestsHandler} />
                                 </div>
                             </div>
                         </div>
@@ -92,8 +124,11 @@ export default function RequestsEN() {
                             </label>
                             <div className='requests_input_box'>
                                 <input
+                                    name='company'
+                                    value={company}
                                     className='requests_input'
-                                    placeholder='Company Name' />
+                                    placeholder='Company Name'
+                                    onChange={onChangeRequestsHandler} />
                             </div>
                         </div>
                         <div className='requests_input_wrapper'>
@@ -102,8 +137,11 @@ export default function RequestsEN() {
                             </label>
                             <div className='requests_input_box'>
                                 <input
+                                    name='title'
+                                    value={title}
                                     className='requests_input'
-                                    placeholder='Title' />
+                                    placeholder='Title'
+                                    onChange={onChangeRequestsHandler} />
                             </div>
                         </div>
                         <div className='requests_input_wrapper'>
@@ -111,8 +149,11 @@ export default function RequestsEN() {
                                 CONTENT OF INQUIRY*
                             </label>
                             <textarea
+                                name='content'
+                                value={content}
                                 className='requests_textarea'
-                                placeholder='Please enter the content you want to inquire about here.' />
+                                placeholder='Please enter the content you want to inquire about here.'
+                                onChange={onChangeRequestsHandler} />
                         </div>
                         <div className='requests_input_wrapper'>
                             <label className='requests_input_label'>
@@ -181,7 +222,13 @@ export default function RequestsEN() {
                             </span>
                             I agree to all terms.
                         </button>
-                        <button className='requests_button'>
+                        <button
+                            style={{
+                                backgroundColor: (!personal || !use) ? '#b8b8b8' : '#275F97',
+                                cursor: (!personal || !use) ? 'default' : 'pointer'
+                            }}
+                            className='requests_button'
+                            onClick={onSubmitHandler}>
                             Inquire
                         </button>
                     </form>

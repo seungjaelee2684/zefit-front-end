@@ -6,6 +6,9 @@ import PageBanner from '@/components/common/PageBanner';
 import PageTap from '@/components/common/PageTap';
 import { useEffect } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
+import { useMediaQuery } from 'react-responsive';
+import { isLoading } from '@/modules/loading';
+import { useRecoilState } from 'recoil';
 
 declare global {
     interface Window {
@@ -14,6 +17,10 @@ declare global {
 };
 
 export default function ContactMap() {
+
+    const [, setLoading] = useRecoilState(isLoading);
+
+    const isMobile = useMediaQuery({ maxWidth: 1170 });
 
     const address = '대구광역시 서구 와룡로 307 디센터1976 지식산업센터';
 
@@ -69,6 +76,7 @@ export default function ContactMap() {
         };
 
         mapScript.addEventListener('load', onLoadKakaoMap);
+        setLoading(false);
     }, []);
 
     return (
@@ -119,7 +127,7 @@ export default function ContactMap() {
                                             대구광역시 서구 와룡로 307 디센터1976 지식산업센터 422호
                                         </p>
                                         <span
-                                            style={{ marginTop: '24px' }}
+                                            style={{ marginTop: (isMobile) ? '10px' : '24px' }}
                                             className='info_sub_title'>
                                             기업부설연구소.
                                         </span>
@@ -149,7 +157,7 @@ export default function ContactMap() {
                             </ul>
                         </div>
                     </div>
-                    <ul className='come_way_wrapper'>
+                    {/* <ul className='come_way_wrapper'>
                         <li className='come_way_columns_lane'>
                             <h3
                                 style={{ backgroundColor: '#fb5852' }}
@@ -218,7 +226,7 @@ export default function ContactMap() {
                                 </p>
                             </div>
                         </li>
-                    </ul>
+                    </ul> */}
                 </section>
             </div>
         </article>

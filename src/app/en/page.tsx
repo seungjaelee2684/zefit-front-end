@@ -4,18 +4,35 @@ import ScrollGuide from '@/components/page/LandingPage/ScrollGuide';
 import '../style.css';
 import './style.css'
 import MainHeader from '@/components/common/MainHeader';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import MetaTagTitle from '@/utils/MetaTagTitle';
 import { useMediaQuery } from 'react-responsive';
 import { supabase } from '@/utils/Supabase';
+import { useRecoilState } from 'recoil';
+import { isLoading } from '@/modules/loading';
+import Popup from '@/components/common/Popup';
 
 export default function HomeEN() {
+
+    const backRef = useRef<HTMLDivElement>(null);
+    const backImage = 'https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_3551210086_0f617416_20811665.jpg';
+    const img = new Image();
+    const [, setLoading] = useRecoilState(isLoading);
+
+    img.onload = () => {
+        if (!backRef.current) return;
+        backRef.current.style.backgroundImage = `url('${backImage}')`;
+        setLoading(false);
+    };
+
+    img.src = backImage;
 
     // 뷰포트 반응형
     const isMobile = useMediaQuery({ maxWidth: 1170 });
 
     const [serviceHref, setServiceHref] = useState<any>(null); // 서비스 첫번째 데이터 state
     const [partner, setPartner] = useState<any[]>([]); // 파트너 리스트 state
+    const [popupData, setPopupData] = useState<any>(null);
 
     // 마운트했을 때 api통신을 통해 파트너 리스트와 서비스 데이터 가져오기
     useEffect(() => {
@@ -29,6 +46,23 @@ export default function HomeEN() {
             .then((jsonData) => setServiceHref(jsonData))
             .catch((error) => console.error("Fetch error:", error));
 
+        const fetchPopup = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('notices')
+                    .select('*')
+                    .eq('is_special', true)
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+                if (error) {
+                    throw error;
+                }
+                setPopupData(data);
+            } catch (error) {
+                console.error("Error fetching paginated data from Supabase:", error);
+            };
+        };
+
         const fetchData = async () => {
             try {
                 const { data, error } = await supabase
@@ -39,21 +73,24 @@ export default function HomeEN() {
                     throw error;
                 }
                 setPartner(data);
-                console.log(data);
             } catch (error) {
                 console.error("Error fetching paginated data from Supabase:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
+        fetchPopup();
         fetchData();
     }, []);
 
     return (
         <article>
+            <Popup popupData={popupData} />
             <MetaTagTitle title='' ko={false} />
             <MainHeader />
             <section className='landing_top_banner_container'>
-                <div className='landing_top_banner' />
+                <div ref={backRef} className='landing_top_banner' />
                 <div className='top_banner_text_box'>
                     <h1 className='top_banner_title'>
                         Greater Value For Your Life
@@ -74,7 +111,7 @@ export default function HomeEN() {
                     </h3>
                     <img
                         className='company_image'
-                        src='http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img1.jpg'
+                        src='https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_main_img1.jpg'
                         alt='회사소개 이미지' />
                     <ul className='company_link_button_wrapper'>
                         <li className='company_link_button_box'>
@@ -116,12 +153,14 @@ export default function HomeEN() {
                             OUR BUSINESS
                         </h2>
                         <ul className='business_card_wrapper'>
-                            <li>
-                                <a className='business_card_box'>
+                            <li className='business_card_out_wrapper'>
+                                <a
+                                    href='/en/content/zebrafish'
+                                    className='business_card_box'>
                                     <div
                                         className='business_card_image'
                                         style={{
-                                            backgroundImage: 'url(http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img2.jpg)'
+                                            backgroundImage: 'url(https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_main_img2.jpg)'
                                         }} />
                                     <div className='business_card_text_box'>
                                         <strong className='business_card_title'>
@@ -133,12 +172,14 @@ export default function HomeEN() {
                                     </div>
                                 </a>
                             </li>
-                            <li>
-                                <a className='business_card_box'>
+                            <li className='business_card_out_wrapper'>
+                                <a
+                                    href={`/en/content/service/${serviceHref?.service}`}
+                                    className='business_card_box'>
                                     <div
                                         className='business_card_image'
                                         style={{
-                                            backgroundImage: 'url(http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img3.jpg)'
+                                            backgroundImage: 'url(https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_main_img3.jpg)'
                                         }} />
                                     <div className='business_card_text_box'>
                                         <strong className='business_card_title'>
@@ -150,16 +191,18 @@ export default function HomeEN() {
                                     </div>
                                 </a>
                             </li>
-                            <li>
-                                <a className='business_card_box'>
+                            <li className='business_card_out_wrapper'>
+                                <a
+                                    href='/en/content/development/pharmaceuticals'
+                                    className='business_card_box'>
                                     <div
                                         className='business_card_image'
                                         style={{
-                                            backgroundImage: 'url(http://www.zefit.co.kr/theme/basic/assets/images/zefit/main_img10.jpg)'
+                                            backgroundImage: 'url(https://ifvlnreaxggdzpirozcu.supabase.co/storage/v1/object/public/zefit_public/static_main_img10.jpg)'
                                         }} />
                                     <div className='business_card_text_box'>
                                         <strong className='business_card_title'>
-                                            Pharmaceuticals
+                                            Drug Dicovery
                                         </strong>
                                         <p className='business_card_content'>
                                             {"innovative drug discovery platform"}

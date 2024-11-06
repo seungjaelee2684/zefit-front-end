@@ -9,15 +9,16 @@ import { useEffect, useRef, useState } from "react";
 import SideTap from "@/components/common/SideTap";
 import { businessNavList } from "@/data/navData";
 import MetaTagTitle from "@/utils/MetaTagTitle";
+import { isLoading } from "@/modules/loading";
+import { useRecoilState } from "recoil";
 
 export default function PipelineEN() {
 
-    const developmentData = businessNavList[2].list?.map((item: any) => item.id);
+    const developmentData = businessNavList[2].list?.map((item: any) => item.en);
 
+    const [, setLoading] = useRecoilState(isLoading);
     const [pipelineData, setPipelineData] = useState<any>(null);
     const [percent, setPercent] = useState<string[]>(['0%', '0%', '0%']);
-    console.log("🚀 ~ Pipeline ~ percent:", percent)
-    console.log("🚀 ~ Pipeline ~ pipelineData:", pipelineData)
 
     useEffect(() => {
         fetch('/api/inquiry/pipeline')
@@ -32,17 +33,21 @@ export default function PipelineEN() {
 
                 setPipelineData(jsonData);
 
-                setTimeout(() => {setPercent(targetPercent);}, 200);
-                // setPercent(targetPercent);
+                setTimeout(() => {
+                    setPercent(targetPercent);
+                }, 200);
             })
-            .catch((error) => console.error("Fetch error:", error));
+            .catch((error) => console.error("Fetch error:", error))
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     return (
         <article>
             <MetaTagTitle title='Pipeline' ko={false} />
             <PageHeader />
-            <PageBanner pageTitle='pharmaceuticals' />
+            <PageBanner pageTitle='Drug discovery' />
             <PageTap tap='business' />
             <SideTap tap={developmentData} content='development' />
             <div className='page_layout'>

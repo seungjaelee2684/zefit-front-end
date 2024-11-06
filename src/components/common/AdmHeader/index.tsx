@@ -21,6 +21,11 @@ export default function AdmHeader({ title }: AdmHeaderProps) {
         setOpenTap(!openTap);
     };
 
+    const onClickLogoutHandler = () => {
+        document.cookie = "lastLogin=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+        window.location.href = "/";
+    };
+
     useEffect(() => {
         if (!tapRef.current) return;
 
@@ -57,29 +62,20 @@ export default function AdmHeader({ title }: AdmHeaderProps) {
                 <nav className='adm_header_nav_container'>
                     <ul className='adm_header_nav_list'>
                         <li>
-                            <button className='adm_header_menu_button'>
-                                <span className='icon-menu'></span>
-                            </button>
+                            <a
+                                href='/'
+                                className='adm_header_home_button'>
+                                <span className='icon-home'></span>
+                            </a>
                         </li>
-                        <div className='adm_header_right_wrapper'>
-                            <li>
-                                <a
-                                    href='/'
-                                    className='adm_header_home_button'>
-                                    <span className='icon-home'></span>
-                                </a>
-                            </li>
-                            <li>
-                                <button className='adm_header_profile_button'>
-                                    <img
-                                        className='adm_profile_img'
-                                        src='http://www.zefit.co.kr/theme/basic/img/no_profile.gif'
-                                        alt='프로필 이미지' />
-                                </button>
-                            </li>
-                        </div>
+                        <li>
+                            <a
+                                onClick={onClickLogoutHandler}
+                                className='adm_header_home_button'>
+                                <i className='icon-logout'></i>
+                            </a>
+                        </li>
                     </ul>
-
                 </nav>
             </div>
             <div className='adm_header_bottom_container'>
