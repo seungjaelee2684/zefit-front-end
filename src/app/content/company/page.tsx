@@ -1,26 +1,37 @@
 'use client';
 
-import MainHeader from "@/components/common/MainHeader";
 import PageBanner from "@/components/common/PageBanner";
 import PageHeader from "@/components/common/PageHeader";
 import PageTap from "@/components/common/PageTap";
 import './style.css';
-import { companyData } from "@/data/companyData";
 import MetaTagTitle from "@/utils/MetaTagTitle";
 import { useMediaQuery } from "react-responsive";
 import { useRecoilState } from "recoil";
 import { isLoading } from "@/modules/loading";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Company() {
 
     const isMobile = useMediaQuery({ maxWidth: 1170 });
     const [, setLoading] = useRecoilState(isLoading);
 
-    const iconList = ['모델', '빅데이터', '인프라'];
+    const [companyData, setCompanyData] = useState<any>(null);
 
     useEffect(() => {
-        setLoading(false);
+        fetch(`/api/inquiry/company`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((jsonData) => {
+                setCompanyData(jsonData);
+            })
+            .catch((error) => console.error("Fetch error:", error))
+            .finally(() => {
+                setLoading(false);
+            });
     }, []);
 
     return (
@@ -70,7 +81,7 @@ export default function Company() {
                                 차별화된 신약개발 플랫폼
                             </h4>
                             <p className='different_develop_sub_title'>
-                                {'현재 제핏은 국내 유수 연구기관과 제약회사에\n화합물 시험 서비스를 제공하고 있습니다.'}
+                                {'현재 제핏은 국내 우수 연구기관과 제약회사에\n화합물 시험 서비스를 제공하고 있습니다.'}
                             </p>
                             <div className='company_center_bar' />
                             <p className='different_develop_introduce'>
@@ -131,7 +142,7 @@ export default function Company() {
                                             <div className='card_content_top_lane'>
                                                 <img
                                                     className='card_content_icon'
-                                                    src={`/icons/회사개요%20${iconList[index]}_black.png`} // 아이콘 교체 필요
+                                                    src={item.icon}
                                                     alt={`${item.id} 아이콘`} />
                                                 <strong className='card_content_title' style={{ color: item.titlecolor }}>
                                                     {item.title}
